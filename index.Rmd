@@ -1,0 +1,23 @@
+---
+title: "Instrumentos de An&aacute;lisis Urbanos II"
+description: "Profesor: Juan Pablo Ruiz Nicolini"
+
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+```
+
+**Maestr&iacute;a en Econom&iacute;a Urbana | Universidad Torcuato Di Tella**
+
+8 de junio - 17 de agosto de 2021 | 19.15hs | VIRTUAL
+
+
+### Clase 1
+
+* Presentación y puesta en marcha desde 0

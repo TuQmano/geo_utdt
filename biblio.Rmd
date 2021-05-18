@@ -1,0 +1,50 @@
+---
+title: "Bibliograf&iacute;a"
+description: |
+  Lecturas recomendadas y materiales de apoyo
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+```
+
+
+### PRINCIPAL
+
+**Fundamentos**: [_An Intro to R_](https://colinfay.me/intro-to-r/statistical-models-in-r.html), Collin Fay.
+
+**Programación**: [R para Ciencia de Datos](https://es.r4ds.hadley.nz/) (Traducción de [R for Data Science](https://r4ds.had.co.nz/)), Garrett Grolemund, Hadley Wickham.
+
+**Visualización**: [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/), Hadley Wickham.
+
+**Geocomputación**: [_Geocomputation with R_](https://geocompr.robinlovelace.net/); Robin Lovelace, Jakub Nowosad & Jannes Muenchow.
+
+
+---
+
+
+### CONSULTA 
+
+#### GENERAL
+
+* [AnalizaR Datos Políticos](https://arcruz0.github.io/libroadp/), Francisco Urdinez y Andrés Cruz Labrín (Editores).
+
+* [Ciencia de Datos para Gente Sociable](https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/), Antonio Vazquez Brust.
+
+* [Ciencia de datos para curiosos](https://bookdown.org/martinmontaneb/CienciaDeDatosParaCuriosos/), Martín Montané.
+
+
+#### DATA VIZ
+
+* [Data Visualizaction: A Practival Introduction](https://socviz.co/index.html#preface), Kieran Healey.
+
+* [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/), Claus Wilke.
+
+#### GEO 
+
+* [Herramientas de análisis espacial en R](https://martinmontane.github.io/AnalisisEspacialEnR/), Martín Montané. 

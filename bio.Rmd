@@ -1,0 +1,18 @@
+---
+title: "Juan Pablo Ruiz Nicolini"
+description: |
+  Bio
+site: distill::distill_website
+---
+
+Soy el [\@TuQmano](https://twitter.com/TuQmano), también conocido como Juan Pablo Ruiz Nicolini. Soy politólogo\^2 de la Universidad Torcuato Di Tella. Trabajo con datos y visualizaciones. Me gustan las elecciones. *Data Scientist (wip)* (*DS*).
+
+Como politólogo [mis temas de investigación](https://www.researchgate.net/profile/Juan-Ruiz-Nicolini)se concentra en estudios electorales, partidos políticos y reforma política. En particular he trabajado en la evaluación del impacto político del cambio en la tecnología con la que se emiten los votos.
+
+Como *DS* vengo trabajando en el desarrollo de paquetes de `R` para [facilitar herramientas y el acceso a datos políticos de Argentina](https://github.com/politicaargentina/).
+
+------------------------------------------------------------------------
+
+**Juan Pablo Ruiz Nicolini**
+
+[www.tuQmano.ar](www.tuQmano.ar)

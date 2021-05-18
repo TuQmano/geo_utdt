@@ -1,0 +1,106 @@
+---
+title: "Programa"
+description: |
+  Hoja de Ruta del Curso
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+```
+
+## Sesión 1: Presentación 
+
+-   Configuración de tecnologías y puesta en marcha
+
+## Sesión 2: Introducción
+
+**`R` + RStudio**
+
+-   `R base` y el suite *Tidyverse*
+
+-   Organización del flujo de trabajo (.`Rproj`, `here`y `git`)
+
+-   Reproducibilidad y Comunicación (`.R` y `Rmd`)
+
+    ------------------------------------------------------------------------
+
+## Sesión 3: Domar los datos I
+
+**Los principales paquetes y sus verbos para:**
+
+-   leer datos (`readr`, `heaven`, `readxl`, `googlesheets4`, etc)
+
+-   limpiar datos (`tidyr`, `janitor`, `tibble`)
+
+-   transformar datos (`dplyr`)
+
+## Sesión 4: Domar los datos II
+
+-   \+`dplyr`
+
+**Ampliando la caja de herramientas:**
+
+-   `lubridate` para trabajar el tiempo
+
+-   `forcats` para datos categóricos (factors)
+
+-   `stringr` para datos de texto
+
+## Sesión 4: Domar los datos III
+
+**Trabajar con *geo* data:**
+
+-   `sf`
+
+-   `rmapshaper`
+
+-   `geoAr`
+
+## Sesión 5: Programación (intro)
+
+**No repetirse uno mismo**
+
+-   Escribir funciones
+
+-   Programación funcional (Introducción a `purrr` )
+
+-   Auxiliares: la pipa de `magrittr` (`%>%`) para encadenar y `glue` para facilitar la
+
+## Sesión 6: Tópicos I
+
+Obtener datos de la web:
+
+-   ejemplos aplicados con APIs y scraping con `rvest`
+
+------------------------------------------------------------------------
+
+## Sesión 7: Data Viz I
+
+**La *Gramática de los Gráficos***
+
+-   Introducción a `ggplot2`
+
+## Sesión 8: Data Viz II
+
+**Las muchas capas de `ggplot2`**
+
+-   `sf`: para mapas estáticos
+
+Extensiones: `patchwork`, `cowplot` , entre otros.
+
+## Sesión 9: Data Viz III
+
+**Distintas formas de representar información geográfica:**
+
+-   `leaflet`: para mapas interactivos
+
+-   `geofacet:` para grillas como si fueran mapas
+
+------------------------------------------------------------------------
+
+## Sesión 10:
