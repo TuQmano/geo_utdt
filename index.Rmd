@@ -1,6 +1,6 @@
 ---
 title: "Instrumentos de An&aacute;lisis Urbanos II"
-description: "Profesor: Juan Pablo Ruiz Nicolini"
+description: "Profesores: Juan Pablo Ruiz Nicolini y Pablo Tiscornia"
 
 site: distill::distill_website
 ---
@@ -13,11 +13,125 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-**Maestr&iacute;a en Econom&iacute;a Urbana | Universidad Torcuato Di Tella**
+# **Maestría en Economía Urbana \| Universidad Torcuato Di Tella**
 
-8 de junio - 17 de agosto de 2021 | 19.15hs | VIRTUAL
+**8 de junio - 17 de agosto de 2021 \| 19.15hs \| VIRTUAL**
 
+## **Descripción del curso:**
 
-### Clase 1
+*Instrumentos de Análisis Urbano II* está pensado como un curso general de Ciencia de Datos aplicados a temas relacionados con las ciudades. Para ello nos valdremos de un conjunto de herramientas computaciones que en conjunto tienen como objetivo la elaboración de un proyecto de Ciencia de Datos para el análisis urbano: desde la obtención de los datos (de diversas fuentes y formatos); su curaduría, limpieza, procesamiento, análisis y comunicación de los mismos.
 
-* Presentación y puesta en marcha desde 0
+Desde el inicio, además, presentaremos una alternativa para la organización del proyecto para potenciar la reproducibilidad de las investigaciones y sacar provecho del control de versiones y el trabajo colaborativo.
+
+## Organización del curso
+
+El curso se divide en tres grandes módulos, cada uno de los cuales se concentra en varias sesiones.
+
+En el primero de ellos, a lo largo de las primeras dos clases, presentaremos el programa, evaluaremos el conocimiento previo de los participantes y avanzaremos con la instalación, puesta a punto y presentación de las herramientas que proponemos utilizar a lo largo de la materia.
+
+El segundo modulo, que abarca desde la sesión 3 hasta la 6 inclusive, está pensado para introducir herramientas y técnicas para el acceso, limpieza y transformación de datos.
+
+Por último, en el tercer modulo nos proponemos avanzar en una introducción práctica a diversas técnicas para la visualización de los datos en general y geográficos en particular.
+
+## MODULO 1
+
+### Sesión 1: Presentación
+
+-   Configuración de tecnologías y puesta en marcha
+
+### Sesión 2: Introducción
+
+**`R` + RStudio**
+
+-   Organización del flujo de trabajo (.`Rproj`, y `git`)
+
+```{=html}
+<!-- -->
+```
+-   `R base` y el suite *Tidyverse*
+
+-   Reproducibilidad y Comunicación (`.R` y `Rmd`)
+
+    ------------------------------------------------------------------------
+
+## MODULO 2
+
+### Sesión 3: Domar los datos I
+
+**Los principales paquetes y sus verbos para:**
+
+-   leer datos (`readr`, `heaven`, `readxl`, `googlesheets4`, etc)
+
+-   limpiar datos (`tidyr`, `janitor`, `tibble`)
+
+-   transformar datos (`dplyr`)
+
+### Sesión 4: Domar los datos II
+
+-   \+`dplyr`
+
+**Ampliando la caja de herramientas:**
+
+-   `lubridate` para trabajar el tiempo
+
+-   `forcats` para datos categóricos (factors)
+
+-   `stringr` para datos de texto
+
+### Sesión 4: Domar los datos III
+
+**Trabajar con *geo* data:**
+
+-   `sf`
+
+-   `rmapshaper`
+
+-   `geoAr`
+
+### Sesión 5: Programación (intro)
+
+**No repetirse uno mismo**
+
+-   Escribir funciones
+
+-   Programación funcional (Introducción a `purrr` )
+
+-   Auxiliares: la pipa de `magrittr` (`%>%`) para encadenar y `glue` para facilitar la
+
+### Sesión 6: Tópicos I
+
+Obtener datos de la web:
+
+-   ejemplos aplicados con APIs y *web scraping* con `rvest`
+
+------------------------------------------------------------------------
+
+## MODULO 3
+
+### Sesión 7: Data Viz I
+
+**La *Gramática de los Gráficos***
+
+-   Introducción a `ggplot2`
+
+### Sesión 8: Data Viz II
+
+**Las muchas capas de `ggplot2`**
+
+-   `sf`: para mapas estáticos
+
+Extensiones: `patchwork`, `cowplot` , entre otros.
+
+### Sesión 9: Data Viz III
+
+**Distintas formas de representar información geográfica:**
+
+-   `leaflet`: para mapas interactivos
+
+-   `geofacet:` para grillas como si fueran mapas
+
+------------------------------------------------------------------------
+
+### Sesión 10: Presentaciones 
+
+-   Discusión de propuestas para el trabajo final por parte de los alumnos.

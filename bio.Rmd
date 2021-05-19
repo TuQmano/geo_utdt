@@ -1,18 +1,24 @@
 ---
-title: "Juan Pablo Ruiz Nicolini"
+title: "Profesores"
 description: |
-  Bio
+ \¿Quiénes somos? 
 site: distill::distill_website
 ---
 
-Soy el [\@TuQmano](https://twitter.com/TuQmano), también conocido como Juan Pablo Ruiz Nicolini. Soy politólogo\^2 de la Universidad Torcuato Di Tella. Trabajo con datos y visualizaciones. Me gustan las elecciones. *Data Scientist (wip)* (*DS*).
+**JUAN PABLO RUIZ NICOLINI**
 
-Como politólogo [mis temas de investigación](https://www.researchgate.net/profile/Juan-Ruiz-Nicolini)se concentra en estudios electorales, partidos políticos y reforma política. En particular he trabajado en la evaluación del impacto político del cambio en la tecnología con la que se emiten los votos.
+También conocido como el [\@TuQmano](https://twitter.com/TuQmano). Soy politólogo$^2$ por Universidad Torcuato Di Tella. Trabajo con datos y visualizaciones. Me gustan las elecciones. *Cientista de Datos* en progreso (*DS wip*).
+
+Como politólogo [mis temas de investigación](https://www.researchgate.net/profile/Juan-Ruiz-Nicolini) se concentraron en estudios electorales, partidos y reforma política. En particular he trabajado en la evaluación del impacto político del cambio en la tecnología con la que se emiten los votos.
 
 Como *DS* vengo trabajando en el desarrollo de paquetes de `R` para [facilitar herramientas y el acceso a datos políticos de Argentina](https://github.com/politicaargentina/).
 
+[`r icon::fa("globe")`](https://www.tuqmano.com/) [tuqmano.ar](https://www.tuqmano.com/)
+
+[`r icon::fa("twitter")`](https://twitter.com/TuQmano) [TuQmano](https://twitter.com/TuQmano)
+
+[`r icon::fa("github")`](https://github.com/tuqmano) <https://github.com/tuqmano>
+
 ------------------------------------------------------------------------
 
-**Juan Pablo Ruiz Nicolini**
-
-[www.tuQmano.ar](www.tuQmano.ar)
+**PABLO TISCORNIA**

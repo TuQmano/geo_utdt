@@ -4,7 +4,7 @@ description:
 output_dir: "_site"
 navbar:
   left:
-    - text: "Juan Pablo Ruiz Nicolini"
+    - text: "Profesores"
       href: bio.html
   right:
     - text: "Inicio"
@@ -13,7 +13,6 @@ navbar:
       href: programa.html
     - text: "Bibliografia"
       href: biblio.html
-    
     - text: "Herramientas"
       href: software.html
       
