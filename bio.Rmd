@@ -7,17 +7,15 @@ site: distill::distill_website
 
 **JUAN PABLO RUIZ NICOLINI**
 
-También conocido como el [\@TuQmano](https://twitter.com/TuQmano). Soy politólogo$^2$ por Universidad Torcuato Di Tella. Trabajo con datos y visualizaciones. Me gustan las elecciones. *Cientista de Datos* en progreso (*DS wip*).
+También conocido como el _TuQmano._ Soy politólogo$^2$ por la Universidad Torcuato Di Tella. Trabajo con datos y visualizaciones. Me gustan las elecciones. *Cientista de Datos* en progreso (*DS*).
 
 Como politólogo [mis temas de investigación](https://www.researchgate.net/profile/Juan-Ruiz-Nicolini) se concentraron en estudios electorales, partidos y reforma política. En particular he trabajado en la evaluación del impacto político del cambio en la tecnología con la que se emiten los votos.
 
+
+
 Como *DS* vengo trabajando en el desarrollo de paquetes de `R` para [facilitar herramientas y el acceso a datos políticos de Argentina](https://github.com/politicaargentina/).
 
-[`r icon::fa("globe")`](https://www.tuqmano.com/) [tuqmano.ar](https://www.tuqmano.com/)
-
-[`r icon::fa("twitter")`](https://twitter.com/TuQmano) [TuQmano](https://twitter.com/TuQmano)
-
-[`r icon::fa("github")`](https://github.com/tuqmano) <https://github.com/tuqmano>
+[`r icon::fa("globe")`](https://www.tuqmano.com/) [tuqmano.ar](https://www.tuqmano.com/) | [`r icon::fa("twitter")`](https://twitter.com/TuQmano) [TuQmano](https://twitter.com/TuQmano) | [`r icon::fa("github")`](https://github.com/tuqmano) [/tuqmano](https://github.com/tuqmano)
 
 ------------------------------------------------------------------------
 

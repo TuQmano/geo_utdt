@@ -1,20 +1,43 @@
 name: "utdt_geo"
-title: "Instrumentos de Analisis Urbanos II"
-description:
+title: "Inicio"
+description: "MEU - UTDT"
 output_dir: "_site"
 navbar:
+  logo:
+    image: https://www.utdt.edu/Images/ui2014/logo.png
+    href: https://www.utdt.edu
   left:
     - text: "Profesores"
       href: bio.html
   right:
-    - text: "Inicio"
-      href: index.html
-    - text: "Programa"
-      href: programa.html
+    - text: "Sesiones"
+      menu:
+        - text: "Clase 1"
+#          href: publish_article.html
+        - text: "Clase 2"
+#          href: publish_article.html
+        - text: "Clase 3"
+#          href: publish_article.html
+        - text: "Clase 4"
+#          href: publish_article.html
+        - text: "Clase 5"
+#          href: publish_article.html
+        - text: "Clase 6"
+#          href: publish_article.html
+        - text: "Clase 7"
+#          href: publish_article.html
+        - text: "Clase 8"
+#          href: publish_article.html
+        - text: "Clase 9"
+#          href: publish_article.html
+        - text: "Clase 10"
+#          href: publish_article.html
     - text: "Bibliografia"
       href: biblio.html
     - text: "Herramientas"
       href: software.html
+    - icon: fab fa-github
+      href: https://github.com/tuqmano/geo_utdt
       
       
 output: distill::distill_article

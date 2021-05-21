@@ -13,13 +13,13 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-# **Maestría en Economía Urbana \| Universidad Torcuato Di Tella**
+### **Maestría en Economía Urbana \| Universidad Torcuato Di Tella**
 
 **8 de junio - 17 de agosto de 2021 \| 19.15hs \| VIRTUAL**
 
-## **Descripción del curso:**
+#### **Descripción del curso:**
 
-*Instrumentos de Análisis Urbano II* está pensado como un curso general de Ciencia de Datos aplicados a temas relacionados con las ciudades. Para ello nos valdremos de un conjunto de herramientas computaciones que en conjunto tienen como objetivo la elaboración de un proyecto de Ciencia de Datos para el análisis urbano: desde la obtención de los datos (de diversas fuentes y formatos); su curaduría, limpieza, procesamiento, análisis y comunicación de los mismos.
+*Instrumentos de Análisis Urbano II* está pensado como un curso aplicado de Ciencia de Datos a temas relacionados con las ciudades. Para ello nos valdremos de un conjunto de herramientas computaciones que en conjunto tienen como objetivo la elaboración de un proyecto de Ciencia de Datos para el análisis urbano: desde la obtención de los datos (de diversas fuentes y formatos); su curaduría, limpieza, procesamiento, análisis y comunicación de los mismos.
 
 Desde el inicio, además, presentaremos una alternativa para la organización del proyecto para potenciar la reproducibilidad de las investigaciones y sacar provecho del control de versiones y el trabajo colaborativo.
 
@@ -29,11 +29,22 @@ El curso se divide en tres grandes módulos, cada uno de los cuales se concentra
 
 En el primero de ellos, a lo largo de las primeras dos clases, presentaremos el programa, evaluaremos el conocimiento previo de los participantes y avanzaremos con la instalación, puesta a punto y presentación de las herramientas que proponemos utilizar a lo largo de la materia.
 
-El segundo modulo, que abarca desde la sesión 3 hasta la 6 inclusive, está pensado para introducir herramientas y técnicas para el acceso, limpieza y transformación de datos.
+El segundo Módulo, que abarca desde la sesión 3 hasta la 6 inclusive, está pensado para introducir herramientas y técnicas para el acceso, limpieza y transformación de datos.
 
-Por último, en el tercer modulo nos proponemos avanzar en una introducción práctica a diversas técnicas para la visualización de los datos en general y geográficos en particular.
+Por último, en el tercer Módulo nos proponemos avanzar en una introducción práctica a diversas técnicas para la visualización de los datos en general y geográficos en particular.
 
-## MODULO 1
+## Práctica y Evaluación
+
+Este curso está pensado para avanzar a través de la práctica de los contenidos. Por lo que se espera de los alumnos una participación activa, con entregas de pequeños ejercicios cotidianamente. Esta participación será parte de la evaluación final ($40\%$). 
+
+El otro $60\%$ es la puntuación máxima del informe que se requerirá como evaluación final. El mismo consistirá en el desarrollo de un proyecto de Ciencia de Datos sobre ciudades que incorpore las distintas herramientas expuestas a lo largo del curso. 
+
+
+---
+
+# MÓDULOS
+
+## Módulo 1
 
 ### Sesión 1: Presentación
 
@@ -54,7 +65,7 @@ Por último, en el tercer modulo nos proponemos avanzar en una introducción pr�
 
     ------------------------------------------------------------------------
 
-## MODULO 2
+## Módulo 2
 
 ### Sesión 3: Domar los datos I
 
@@ -65,6 +76,10 @@ Por último, en el tercer modulo nos proponemos avanzar en una introducción pr�
 -   limpiar datos (`tidyr`, `janitor`, `tibble`)
 
 -   transformar datos (`dplyr`)
+
+**Herramientas auxiliares para mejorar el flujo del código:**
+
+-   la pipa de `magrittr` (`%>%`) para encadenar y `glue` para facilitar la concatenación. 
 
 ### Sesión 4: Domar los datos II
 
@@ -78,7 +93,7 @@ Por último, en el tercer modulo nos proponemos avanzar en una introducción pr�
 
 -   `stringr` para datos de texto
 
-### Sesión 4: Domar los datos III
+### Sesión 5: Domar los datos III
 
 **Trabajar con *geo* data:**
 
@@ -88,7 +103,7 @@ Por último, en el tercer modulo nos proponemos avanzar en una introducción pr�
 
 -   `geoAr`
 
-### Sesión 5: Programación (intro)
+### Sesión 6: Programación (intro)
 
 **No repetirse uno mismo**
 
@@ -96,9 +111,8 @@ Por último, en el tercer modulo nos proponemos avanzar en una introducción pr�
 
 -   Programación funcional (Introducción a `purrr` )
 
--   Auxiliares: la pipa de `magrittr` (`%>%`) para encadenar y `glue` para facilitar la
 
-### Sesión 6: Tópicos I
+### Sesión 7: Tópicos I
 
 Obtener datos de la web:
 
@@ -106,32 +120,29 @@ Obtener datos de la web:
 
 ------------------------------------------------------------------------
 
-## MODULO 3
+## Módulo 3
 
-### Sesión 7: Data Viz I
+### Sesión 8: Data Viz I
 
 **La *Gramática de los Gráficos***
 
 -   Introducción a `ggplot2`
 
-### Sesión 8: Data Viz II
+### Sesión 9: Data Viz II
 
 **Las muchas capas de `ggplot2`**
 
--   `sf`: para mapas estáticos
+-   `geom_sf()`: para mapas estáticos
 
-Extensiones: `patchwork`, `cowplot` , entre otros.
+Extensiones: `mapsf`,`patchwork`, `cowplot` , entre otros.
 
-### Sesión 9: Data Viz III
+### Sesión 10: Data Viz III
 
 **Distintas formas de representar información geográfica:**
 
 -   `leaflet`: para mapas interactivos
 
--   `geofacet:` para grillas como si fueran mapas
+-   `geofacet`: para grillas como si fueran mapas
 
-------------------------------------------------------------------------
+-   `tilemaps`: _cuando el área no importa_
 
-### Sesión 10: Presentaciones 
-
--   Discusión de propuestas para el trabajo final por parte de los alumnos.
