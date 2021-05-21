@@ -15,7 +15,7 @@ Como politólogo [mis temas de investigación](https://www.researchgate.net/prof
 
 Como *DS* vengo trabajando en el desarrollo de paquetes de `R` para [facilitar herramientas y el acceso a datos políticos de Argentina](https://github.com/politicaargentina/).
 
-[`r icon::fa("globe")`](https://www.tuqmano.com/) [tuqmano.ar](https://www.tuqmano.com/) | [`r icon::fa("twitter")`](https://twitter.com/TuQmano) [TuQmano](https://twitter.com/TuQmano) | [`r icon::fa("github")`](https://github.com/tuqmano) [/tuqmano](https://github.com/tuqmano)
+[`r icons::fontawesome("globe")`](https://www.tuqmano.com/) [tuqmano.ar](https://www.tuqmano.com/) | [`r icons::fontawesome("twitter")`](https://twitter.com/TuQmano) [TuQmano](https://twitter.com/TuQmano) | [`r icons::fontawesome("github")`](https://github.com/tuqmano) [/tuqmano](https://github.com/tuqmano)
 
 ------------------------------------------------------------------------
 
