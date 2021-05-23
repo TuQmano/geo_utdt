@@ -20,3 +20,10 @@ Como *DS* vengo trabajando en el desarrollo de paquetes de `r icons::fontawesome
 ------------------------------------------------------------------------
 
 **PABLO TISCORNIA**
+
+
+Sociólogo (UBA), especializado en metodología, producción y procesamiento de datos estadísticos, principalmente en el ámbito público. Últimamente me encuentro enfocado en la mejora de procesos de trabajo vinculados al tratamiento de datos.
+
+He participado en la organización y difusión de la comunidad de [R en Buenos Aires](https://renbaires.github.io/) y en el desarrollo del [paquetes eph](https://holatam.github.io/eph/), cuyo principal objetivo es facilitar herramientas y el acceso a datos de la Encuesta Permanente de Hogares - INDEC, mediante el lenguaje de programación `R`.
+
+[`r icons::fontawesome("globe")`](https://rpubs.com/pablotisco) [Rpubs-pablotis](https://rpubs.com/pablotisco) | [`r icons::fontawesome("twitter")`](https://twitter.com/pabblo_h) [pabblo_h](https://twitter.com/pabblo_h) | [`r icons::fontawesome("github")`](https://github.com/pablotis) [/pablotis](https://github.com/pablotis)
