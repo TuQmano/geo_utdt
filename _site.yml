@@ -10,7 +10,7 @@ navbar:
     - text: "Profesores"
       href: bio.html
     - text: "Descargar Programa"
-      href: programa_pdf/programa.pdf
+      href: https://github.com/TuQmano/geo_utdt/raw/master/programa_pdf/programa.pdf
   right:
     - text: "Sesiones"
       menu:
@@ -42,4 +42,6 @@ navbar:
       href: https://github.com/tuqmano/geo_utdt
       
       
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    toc:true

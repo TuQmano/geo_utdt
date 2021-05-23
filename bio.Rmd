@@ -9,7 +9,7 @@ site: distill::distill_website
 
 También conocido como el _TuQmano._ Soy politólogo$^2$ por la Universidad Torcuato Di Tella. Trabajo con datos y visualizaciones. Me gustan las elecciones. *Cientista de Datos* en progreso (*DS*).
 
-Como politólogo [mis temas de investigación](https://www.researchgate.net/profile/Juan-Ruiz-Nicolini) se concentraron en estudios electorales, partidos y reforma política. En particular he trabajado en la evaluación del impacto político del cambio en la tecnología con la que se emiten los votos.
+Como politólogo [mis temas de investigación](https://www.researchgate.net/profile/Juan-Ruiz-Nicolini) se concentraron en estudios electorales, partidos y reforma política. En particular, he trabajado en la evaluación del impacto político del cambio en la tecnología con la que se emiten los votos.
 
 
 

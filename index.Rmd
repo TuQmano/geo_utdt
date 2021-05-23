@@ -18,23 +18,23 @@ knitr::opts_chunk$set(echo = FALSE)
 **8 de junio - 17 de agosto de 2021 \| 19.15hs \| VIRTUAL**
 
 #### **Descripción del curso:**
-*Instrumentos de Análisis Urbano II* está pensado como un curso aplicado de Ciencia de Datos para ciudades. Para ello nos valdremos de herramientas computaciones que en conjunto tienen como objetivo la elaboración de un proyecto de análisis urbano: desde la obtención de los datos (de diversas fuentes y formatos); su curaduría, limpieza, procesamiento, análisis y comunicación de los mismos.
+*Instrumentos de Análisis Urbano II* está pensado como un curso aplicado de Ciencia de Datos para ciudades. Para ello nos valdremos de herramientas computacionales que, en conjunto, tienen como objetivo la elaboración de un proyecto de análisis urbano desde la obtención de los datos (de diversas fuentes y formatos); su curaduría, limpieza, procesamiento, análisis, hasta la comunicación de los mismos.
 
 Desde el inicio, además, propondremos alternativas para la organización del proyecto que apuntan a potenciar la reproducibilidad de las investigaciones y sacar provecho del control de versiones y el trabajo colaborativo.
 
 ## Organización del curso
 
-El curso se divide en tres grandes módulos, cada uno de los cuales se concentra en varias sesiones.
+El curso se divide en tres grandes módulos:
 
 1.  a lo largo de las primeras dos clases, presentaremos el programa, evaluaremos el conocimiento previo de los participantes y avanzaremos con la instalación y _mise en place_ de las herramientas que proponemos utilizar a lo largo de la materia.
 
 2.  desde la sesión 3 hasta la 6 inclusive, se procurará introducir técnicas para el acceso, limpieza y transformación de datos.
 
-3. por último, se presentarán técnicas para la visualización de datos en general y geográficos en particular, a la vez que se discutirán casos y aplicaciones. 
+3. por último, desde el séptimo y hasta el décimo encuentro, se presentarán técnicas para la visualización de datos en general y geográficos en particular, a la vez que se discutirán casos y aplicaciones. 
 
 ## Práctica y Evaluación
 
-Este curso está pensado para avanzar a través de la práctica de los contenidos. Por ello se espera de los alumnos una participación activa, con entregas de pequeños ejercicios cotidianamente. Esta participación será parte de la evaluación final ($40\%$) que requerirá además la entrega de un informe original sobre un tema urbano que aplique el conjunto de herramientas expuestas a lo largo del curso. La puntuación máxima del informe será el $60\%$ de la nota final. 
+Este curso está pensado para avanzar a través de la práctica de los contenidos. Por ello se espera de los alumnos una participación activa, con entregas de pequeños ejercicios periódicamente. Esta participación será parte de la evaluación final ($40\%$) que requerirá además la entrega de un informe original sobre un tema urbano que aplique el conjunto de herramientas expuestas a lo largo del curso. La puntuación máxima del informe será el $60\%$ de la nota final. 
 
 
 ---
