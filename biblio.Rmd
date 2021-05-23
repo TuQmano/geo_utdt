@@ -48,3 +48,12 @@ knitr::opts_chunk$set(echo = FALSE)
 #### GEO 
 
 * [Herramientas de análisis espacial en R](https://martinmontane.github.io/AnalisisEspacialEnR/), Martín Montané. 
+
+#### SOFTWARE / PROGRAMACIÓN
+
+* [What They Forgot to Teach You About R](https://rstats.wtf/), Jennifer Bryan & Jim Hester. 
+
+* [Happy Git and GitHub for the useR](https://happygitwithr.com/), Jennifer Bryan, STAT 545 TAs & Jim Hester. 
+
+* [A Handbook for Teaching and Learning with R and RStudio](https://rstudio4edu.github.io/rstudio4edu-book/), Desirée De Leon & Alison Hill. 
+

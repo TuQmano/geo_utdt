@@ -9,6 +9,8 @@ navbar:
   left:
     - text: "Profesores"
       href: bio.html
+    - text: "Descargar Programa"
+      href: programa_pdf/programa.pdf
   right:
     - text: "Sesiones"
       menu:
