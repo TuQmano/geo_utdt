@@ -15,27 +15,25 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## **Descripción del curso:**
 
-
-*Instrumentos de Análisis Urbano II* está pensado como un curso aplicado de Ciencia de Datos para ciudades. Para ello nos valdremos de herramientas computaciones que en conjunto tienen como objetivo la elaboración de un proyecto de análisis urbano: desde la obtención de los datos (de diversas fuentes y formatos); su curaduría, limpieza, procesamiento, análisis y comunicación de los mismos.
+*Instrumentos de Análisis Urbano II* está pensado como un curso aplicado de Ciencia de Datos para ciudades. Para ello nos valdremos de herramientas computacionales que, en conjunto, tienen como objetivo la elaboración de un proyecto de análisis urbano desde la obtención de los datos (de diversas fuentes y formatos); su curaduría, limpieza, procesamiento, análisis, hasta la comunicación de los mismos.
 
 Desde el inicio, además, propondremos alternativas para la organización del proyecto que apuntan a potenciar la reproducibilidad de las investigaciones y sacar provecho del control de versiones y el trabajo colaborativo.
 
 ## Organización del curso
 
-El curso se divide en tres grandes módulos, cada uno de los cuales se concentra en varias sesiones.
+El curso se divide en tres grandes módulos:
 
-1.  a lo largo de las primeras dos clases, presentaremos el programa, evaluaremos el conocimiento previo de los participantes y avanzaremos con la instalación y _mise en place_ de las herramientas que proponemos utilizar a lo largo de la materia.
+1.  a lo largo de las primeras dos clases, presentaremos el programa, evaluaremos el conocimiento previo de los participantes y avanzaremos con la instalación y *mise en place* de las herramientas que proponemos utilizar a lo largo de la materia.
 
 2.  desde la sesión 3 hasta la 6 inclusive, se procurará introducir técnicas para el acceso, limpieza y transformación de datos.
 
-3. por último, se presentarán técnicas para la visualización de datos en general y geográficos en particular, a la vez que se discutirán casos y aplicaciones. 
+3.  por último, desde el séptimo y hasta el décimo encuentro, se presentarán técnicas para la visualización de datos en general y geográficos en particular, a la vez que se discutirán casos y aplicaciones.
 
 ## Práctica y Evaluación
 
-Este curso está pensado para avanzar a través de la práctica de los contenidos. Por ello se espera de los alumnos una participación activa, con entregas de pequeños ejercicios cotidianamente. Esta participación será parte de la evaluación final ($40\%$) que requerirá además la entrega de un informe original sobre un tema urbano que aplique el conjunto de herramientas expuestas a lo largo del curso. La puntuación máxima del informe será el $60\%$ de la nota final. 
+Este curso está pensado para avanzar a través de la práctica de los contenidos. Por ello se espera de los alumnos una participación activa, con entregas de pequeños ejercicios periódicamente. Esta participación será parte de la evaluación final ($40\%$) que requerirá además la entrega de un informe original sobre un tema urbano que aplique el conjunto de herramientas expuestas a lo largo del curso. La puntuación máxima del informe será el $60\%$ de la nota final.
 
-
----
+------------------------------------------------------------------------
 
 # MÓDULOS
 
@@ -51,9 +49,8 @@ Este curso está pensado para avanzar a través de la práctica de los contenido
 
 -   Organización del flujo de trabajo (.`Rproj`, y `git`)
 
-```{=html}
 <!-- -->
-```
+
 -   `R base` y el suite *Tidyverse*
 
 -   Reproducibilidad y Comunicación (`.R` y `Rmd`)
@@ -74,7 +71,7 @@ Este curso está pensado para avanzar a través de la práctica de los contenido
 
 **Herramientas auxiliares para mejorar el flujo del código:**
 
--   la pipa de `magrittr` (`%>%`) para encadenar y `glue` para facilitar la concatenación. 
+-   la pipa de `magrittr` (`%>%`) para encadenar y `glue` para facilitar la concatenación.
 
 ### Sesión 4: Domar los datos II
 
@@ -105,7 +102,6 @@ Este curso está pensado para avanzar a través de la práctica de los contenido
 -   Escribir funciones
 
 -   Programación funcional (Introducción a `purrr` )
-
 
 ### Sesión 7: Tópicos I
 
@@ -139,50 +135,48 @@ Extensiones: `mapsf`,`patchwork`, `cowplot` , entre otros.
 
 -   `geofacet`: para grillas como si fueran mapas
 
--   `tilemaps`: _cuando el área no importa_
+-   `tilemaps`: *cuando el área no importa*
 
 # BIBLIOGRAFÍA
 
+> `(Los títulos acá listados funcionan como hipervínculo para acceder al material)`
+
 ### PRINCIPAL
 
-**Fundamentos**: [_An Intro to R_](https://colinfay.me/intro-to-r/statistical-models-in-r.html), Collin Fay.
+**Fundamentos**: [*An Intro to R*](https://colinfay.me/intro-to-r/statistical-models-in-r.html), Collin Fay.
 
-**Programación**: [R para Ciencia de Datos](https://es.r4ds.hadley.nz/) (Traducción de [R for Data Science](https://r4ds.had.co.nz/)), Garrett Grolemund, Hadley Wickham.
+**Programación**: [*R para Ciencia de Datos*](https://es.r4ds.hadley.nz/) (Traducción de [*R for Data Science*](https://r4ds.had.co.nz/)*)*, Garrett Grolemund, Hadley Wickham.
 
-**Visualización**: [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/), Hadley Wickham.
+**Visualización**: [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org/), Hadley Wickham.
 
-**Geocomputación**: [_Geocomputation with R_](https://geocompr.robinlovelace.net/); Robin Lovelace, Jakub Nowosad & Jannes Muenchow.
+**Geocomputación**: [*Geocomputation with R*](https://geocompr.robinlovelace.net/); Robin Lovelace, Jakub Nowosad & Jannes Muenchow.
 
+------------------------------------------------------------------------
 
----
-
-
-### CONSULTA 
+### CONSULTA
 
 #### GENERAL
 
-* [AnalizaR Datos Políticos](https://arcruz0.github.io/libroadp/), Francisco Urdinez y Andrés Cruz Labrín (Editores).
+-   [*AnalizaR Datos Políticos*](https://arcruz0.github.io/libroadp/), Francisco Urdinez y Andrés Cruz Labrín (Editores).
 
-* [Ciencia de Datos para Gente Sociable](https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/), Antonio Vazquez Brust.
+-   [*Ciencia de Datos para Gente Sociable*](https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/), Antonio Vazquez Brust.
 
-* [Ciencia de datos para curiosos](https://bookdown.org/martinmontaneb/CienciaDeDatosParaCuriosos/), Martín Montané.
-
+-   [*Ciencia de datos para curiosos*](https://bookdown.org/martinmontaneb/CienciaDeDatosParaCuriosos/), Martín Montané.
 
 #### DATA VIZ
 
-* [Data Visualizaction: A Practival Introduction](https://socviz.co/index.html#preface), Kieran Healey.
+-   [*Data Visualizaction: A Practival Introduction*](https://socviz.co/index.html#preface), Kieran Healey.
 
-* [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/), Claus Wilke.
+-   [*Fundamentals of Data Visualization*](https://clauswilke.com/dataviz/), Claus Wilke.
 
-#### GEO 
+#### GEO
 
-* [Herramientas de análisis espacial en R](https://martinmontane.github.io/AnalisisEspacialEnR/), Martín Montané. 
+-   [*Herramientas de análisis espacial en R*](https://martinmontane.github.io/AnalisisEspacialEnR/), Martín Montané.
 
 #### SOFTWARE / PROGRAMACIÓN
 
-* [What They Forgot to Teach You About R](https://rstats.wtf/), Jennifer Bryan & Jim Hester. 
+-   [*What They Forgot to Teach You About R*](https://rstats.wtf/), Jennifer Bryan & Jim Hester.
 
-* [Happy Git and GitHub for the useR](https://happygitwithr.com/), Jennifer Bryan, STAT 545 TAs & Jim Hester. 
+-   [*Happy Git and GitHub for the useR*](https://happygitwithr.com/), Jennifer Bryan, STAT 545 TAs & Jim Hester.
 
-* [A Handbook for Teaching and Learning with R and RStudio](https://rstudio4edu.github.io/rstudio4edu-book/), Desirée De Leon & Alison Hill. 
-
+-   [*A Handbook for Teaching and Learning with R and RStudio*](https://rstudio4edu.github.io/rstudio4edu-book/)*,* Desirée De Leon & Alison Hill.
