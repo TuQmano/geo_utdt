@@ -1,7 +1,7 @@
 name: "utdt_geo"
 title: "Inicio"
 description: "MEU - UTDT"
-output_dir: "_site"
+output_dir: "docs"
 navbar:
   logo:
     image: https://www.utdt.edu/Images/ui2014/logo.png
