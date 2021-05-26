@@ -40,8 +40,4 @@ navbar:
       href: software.html
     - icon: fab fa-github
       href: https://github.com/tuqmano/geo_utdt
-      
-      
-output: 
-  distill::distill_article:
-    toc:true
+output: distill::distill_article
