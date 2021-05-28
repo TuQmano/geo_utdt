@@ -28,9 +28,9 @@ El curso se divide en tres grandes módulos:
 
 1.  a lo largo de las primeras dos clases, presentaremos el programa, evaluaremos el conocimiento previo de los participantes y avanzaremos con la instalación y _mise en place_ de las herramientas que proponemos utilizar a lo largo de la materia.
 
-2.  desde la sesión 3 hasta la 6 inclusive, se procurará introducir técnicas para el acceso, limpieza y transformación de datos.
+2.  desde la sesión 3 hasta la 7 inclusive, se procurará introducir técnicas para el acceso, limpieza y transformación de datos.
 
-3. por último, desde el séptimo y hasta el décimo encuentro, se presentarán técnicas para la visualización de datos en general y geográficos en particular, a la vez que se discutirán casos y aplicaciones. 
+3. por último, desde el octavo al décimo encuentro, se presentarán técnicas para la visualización de datos en general y geográficos en particular, a la vez que se discutirán casos y aplicaciones. 
 
 ## Práctica y Evaluación
 
@@ -45,7 +45,7 @@ Este curso está pensado para avanzar a través de la práctica de los contenido
 
 ### Sesión 1: Presentación
 
--   Configuración de tecnologías y puesta en marcha
+-   Configuración de herramientas y puesta en marcha
 
 ### Sesión 2: Introducción
 
