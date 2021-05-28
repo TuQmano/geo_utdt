@@ -109,9 +109,7 @@ Este curso está pensado para avanzar a través de la práctica de los contenido
 -   Programación funcional (Introducción a `purrr` )
 
 
-### Sesión 7: Tópicos I
-
-Obtener datos de la web:
+### Sesión 7: Obtener datos de la web
 
 -   ejemplos aplicados con APIs y *web scraping* con `rvest`
 
