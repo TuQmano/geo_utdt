@@ -47,6 +47,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 #### GEO 
 
+* [Spatial Data Science (*with applications in R*)](https://www.r-spatial.org/book), Edzer Pebesma y Roger Bivand.
+
 * [Herramientas de análisis espacial en R](https://martinmontane.github.io/AnalisisEspacialEnR/), Martín Montané. 
 
 #### SOFTWARE / PROGRAMACIÓN
