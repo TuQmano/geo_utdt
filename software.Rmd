@@ -9,7 +9,7 @@ site: distill::distill_website
 
 1.  [`Slack`](https://slack.com/intl/es-ar/) - Espacio de trabajo
 
-2.  .[`git`](https://git-scm.com/)& [*`Github`*](https://github.com/)- Control de versiones + DEV
+2.  .[`git`](https://git-scm.com/) & [*`Github`*](https://github.com/) - Control de versiones + DEV
 
 3.  [`R`](https://cran.r-project.org/) - *CRAN (The Comprehensive R Archive Network)*
 
