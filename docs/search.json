@@ -1,6 +1,22 @@
 {
   "articles": [
     {
+      "path": "biblio.html",
+      "title": "Bibliograf&iacute;a",
+      "description": "Lecturas recomendadas y materiales de apoyo\n",
+      "author": [],
+      "contents": "\r\nPRINCIPAL\r\nFundamentos: An Intro to R, Collin Fay.\r\nProgramación: R para Ciencia de Datos (Traducción de R for Data Science), Garrett Grolemund, Hadley Wickham.\r\nVisualización: ggplot2: Elegant Graphics for Data Analysis, Hadley Wickham.\r\nGeocomputación: Geocomputation with R; Robin Lovelace, Jakub Nowosad & Jannes Muenchow.\r\nCONSULTA\r\nGENERAL\r\nAnalizaR Datos Políticos, Francisco Urdinez y Andrés Cruz Labrín (Editores).\r\nCiencia de Datos para Gente Sociable, Antonio Vazquez Brust.\r\nCiencia de datos para curiosos, Martín Montané.\r\nDATA VIZ\r\nData Visualizaction: A Practival Introduction, Kieran Healey.\r\nFundamentals of Data Visualization, Claus Wilke.\r\nGEO\r\nSpatial Data Science (with applications in R), Edzer Pebesma y Roger Bivand.\r\nHerramientas de análisis espacial en R, Martín Montané.\r\nSOFTWARE / PROGRAMACIÓN\r\nWhat They Forgot to Teach You About R, Jennifer Bryan & Jim Hester.\r\nHappy Git and GitHub for the useR, Jennifer Bryan, STAT 545 TAs & Jim Hester.\r\nA Handbook for Teaching and Learning with R and RStudio, Desirée De Leon & Alison Hill.\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-07T12:17:50-03:00"
+    },
+    {
+      "path": "bio.html",
+      "title": "Profesores",
+      "description": "\\¿Quiénes somos? \n",
+      "author": [],
+      "contents": "\r\nJUAN PABLO RUIZ NICOLINI\r\nTambién conocido como el TuQmano. Soy politólogo\\(^2\\) por la Universidad Torcuato Di Tella. Trabajo con datos y visualizaciones. Me gustan las elecciones. Cientista de Datos en progreso (DS).\r\nComo politólogo mis temas de investigación se concentraron en estudios electorales, partidos y reforma política. En particular, he trabajado en la evaluación del impacto político del cambio en la tecnología con la que se emiten los votos.\r\nComo DS vengo trabajando en el desarrollo de paquetes de  para facilitar herramientas y el acceso a datos políticos de Argentina.\r\n tuqmano.ar |  TuQmano |  /tuqmano\r\nPABLO TISCORNIA\r\nSociólogo (UBA), especializado en metodología, producción y procesamiento de datos estadísticos, principalmente en el ámbito público. Últimamente me encuentro enfocado en la mejora de procesos de trabajo vinculados al tratamiento de datos.\r\nHe participado en la organización y difusión de la comunidad de R en Buenos Aires y en el desarrollo del paquetes eph, cuyo principal objetivo es facilitar herramientas y el acceso a datos de la Encuesta Permanente de Hogares - INDEC, mediante el lenguaje de programación R.\r\n Rpubs-pablotis |  pabblo_h |  /pablotis\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-07T12:18:14-03:00"
+    },
+    {
       "path": "index.html",
       "title": "Instrumentos de An&aacute;lisis Urbanos II",
       "description": "Profesores: Juan Pablo Ruiz Nicolini y Pablo Tiscornia",
