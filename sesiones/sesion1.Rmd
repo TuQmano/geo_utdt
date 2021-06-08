@@ -1,0 +1,237 @@
+---
+title: "Instrumentos de An&aacute;lisis Urbanos II"
+subtitle: "Maestría en Economía Urbana"
+author: "Juan Pablo Ruiz Nicolini"
+institute: "Universidad Torcuato Di Tella"
+date: "08/06/2021"
+output:
+  xaringan::moon_reader:
+    css: styles.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.retina = 3,
+                      out.width = 300, ### control plot size
+                      cache = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "extra_styles", "scribble", "editable", "broadcast"))
+```
+
+
+```{r xaringan-extra-styles}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+
+xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
+
+```
+
+
+
+class: center, middle
+
+
+# J.P. Ruiz Nicolini 
+
+### Politólogo<sup>2</sup> (UTDT)
+
+
+####`->` [researchgate.net/juanpabloruiznicolini](https://www.researchgate.net/profile/Juan_Ruiz_Nicolini)
+
+
+#### Áreas: 
+
+#### estudios electorales | reforma política  | métodos cuantitativos
+
+---
+
+class: center, middle
+
+# @TuQmano
+
+### Cientista de Datos 
+
+####{polAr} `->` [politicargentina.github.io/data-warehouse](https://politicaargentina.github.io/data_warehouse/)
+
+
+---
+class: inverse, center, middle
+
+# Quienes son ustedes?
+
+--
+
+MACHETE: 
+
+.pull-left[
+
+```
+* Nombre
+* Formación
+* Procedencia
+* Programación / Software
+* Intereses
+
+```
+]
+
+--
+
+.pull-right[
+
+```
+*  Juana Pérez
+*  Arquitecta
+*  UNR / Rosario, Santa Fe
+*  Excel / SPSS / Stata
+*  Sindicatos y Mov. Sociales
+```
+
+]
+
+
+---
+
+# Historia de R
+
+
+> Más que lenguaje de programación R **_"es un dialecto de un lenguage de programación de los 70s"_** (S - Bell Laboratories: AT&T, Nokia...)<sup>1</sup>
+.footnote[
+[1] La cita y este repaso se basan en _slides_ de  [Germán Rosati](https://github.com/gefero/fund-prog-r/)
+]
+
+--
+
+* Creado por **R**oss Ithaka y **R**obert Gentelman (1991 a 1993)
+
+`S -> R`
+
+--
+
+* 2000: 1.0V
+
+--
+
+* 2011: Nace el entorno de desarrollo integrado (IDE) R Studio 
+
+--
+
+* 2020: 4.0V
+
+---
+
+# Qué es R?
+
+## LENGUAJE
+
+- Multiplataforma (Win, Mac, Linux... PStation)
+
+--
+
+- Desarrollado por estadísticos para estadísticas
+
+--
+
+- Potente herramienta para generar Viz
+
+--
+
+- Funcionalidad de base + paquetes específicos
+
+--
+
+- Gran comunidad de usuaries colaborando
+
+--
+
+- **ES GRATIS!**
+
+
+---
+
+# Curso
+
+* La bibliografía está disponible [acá](https://tuqmano.github.io/geo_utdt/biblio.html). 
+
+--
+
+* Los `scripts` con código, _handouts_ y otra material extra se [compartirá acá](https://github.com/tuqmano/geo_utdt) luego de cada sesión. 
+
+--
+
+* Se compartirá el **código en vivo** para que puedan tener acceso desde un navegador de internet. 
+
+--
+
+* La evaluación del curso consistirá en la entrega de un informe con un análisis de datos replicando el flujo de trabajo que presentaremos en el taller. 
+
+--
+
+* A lo largo del curso deberán completar ejercicios de práctica.
+
+---
+
+background-image: url(https://cran.r-project.org/Rlogo.svg)
+background-position: 95% 5%
+background-size: 10%
+
+
+
+## _El motor de la maquina_
+
+```{r r, echo=F, out.width="80%"}
+knitr::include_graphics("https://rafalab.github.io/dslibro/R/img/R_console.png")
+```
+
+---
+background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/img/rstudio-icon.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## _**Tablero de control** (IDE)_
+
+
+```{r rstudio, echo=F, out.width="100%"}
+knitr::include_graphics("https://arcruz0.github.io/libroadp/00-images/basic-r/rstudio.png")
+```
+
+---
+class: inverse
+
+## *Mise en place*
+
+
+1.  [`Slack`](https://slack.com/intl/es-ar/) - Espacio de trabajo
+
+--
+
+2.  [`R`](https://cran.r-project.org/) - *CRAN (The Comprehensive R Archive Network)*
+
+--
+
+3.  [`RStudio`](https://www.rstudio.com/products/rstudio/) *IDE (Integrated Development Environment)*
+
+--
+
+4.  [*`Github`*](https://github.com/) & [`.git`](https://git-scm.com/) - Control de versiones + DEV
+
+--
+
+ - [_Happy Git and GitHub for the useR_](https://happygitwithr.com/)
+
+
+
+
