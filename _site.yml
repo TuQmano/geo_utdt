@@ -16,7 +16,7 @@ navbar:
     - text: "Sesiones"
       menu:
         - text: "Clase 1"
-#          href: publish_article.html
+          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion1.html
         - text: "Clase 2"
 #          href: publish_article.html
         - text: "Clase 3"
