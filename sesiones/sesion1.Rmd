@@ -24,7 +24,12 @@ knitr::opts_chunk$set(collapse = TRUE,
                       warning = FALSE,
                       message = FALSE)
 
-xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "extra_styles", "scribble", "editable", "broadcast"))
+
+```
+
+
+```{r xaringan, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "extra_styles", "scribble", "editable", "broadcast", "use_webcam"))
 
 
 xaringanExtra::use_extra_styles(
@@ -34,8 +39,8 @@ xaringanExtra::use_extra_styles(
 
 xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
 
-```
 
+```
 
 
 
