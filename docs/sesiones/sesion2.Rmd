@@ -1,0 +1,46 @@
+---
+title: "Instrumentos de An&aacute;lisis Urbanos II"
+subtitle: "Maestría en Economía Urbana"
+author: "Juan Pablo Ruiz Nicolini"
+institute: "Universidad Torcuato Di Tella"
+date: "15/06/2021"
+output:
+  xaringan::moon_reader:
+    css: styles.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+---
+
+
+
+```{r xaringan-extra-styles}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+
+xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
+
+```
+
+class: middle
+
+
+# Sesión II 
+
+### Intro a `R` 
+
+--
+* Organización
+
+--
+
+* _Dialectos_: `base` VS _Tidyverse_
+
+--
+
+* Reproducibilidad y Comunicación

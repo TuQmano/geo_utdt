@@ -1,0 +1,15 @@
+---
+title: "Este es un .Rmd"
+output: html_notebook
+---
+
+
+
+Este es un comentario normal
+
+```{r}
+
+electorAr::show_available_elections(source = "results")
+
+```
+
