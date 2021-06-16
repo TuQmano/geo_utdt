@@ -9,7 +9,7 @@
     <script src="libs/tile-view-0.2.6/tile-view.js"></script>
     <link href="libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
     <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xc57ad4dd3cc4757ace0a7e1ae24996d","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xb74b602f7674a97967eaac3a22878a8","expires":14}</script>
     <script src="libs/himalaya-1.1.0/himalaya.js"></script>
     <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
     <link href="libs/editable-0.2.6/editable.css" rel="stylesheet" />
@@ -167,7 +167,7 @@ background-image: url(https://github.com/politicaargentina/data_warehouse/blob/m
 background-position: 95% 5%
 background-size: 10%
 
-# Elección Presidencial 2019: 
+# Elección Presidencial 2015: 
 
 ### ¿Parámetros de la elección?
  
@@ -186,11 +186,11 @@ show_available_elections(source = "data")
 ##  2 arg      presi    gral   2003  ARGENTINA
 ##  3 arg      presi    gral   2007  ARGENTINA
 ##  4 arg      presi    gral   2011  ARGENTINA
-##  5 arg      presi    gral   2015  ARGENTINA
+*##  5 arg      presi    gral   2015  ARGENTINA
 ##  6 arg      presi    gral   2019  ARGENTINA
 ##  7 arg      presi    paso   2011  ARGENTINA
 ##  8 arg      presi    paso   2015  ARGENTINA
-*##  9 arg      presi    paso   2019  ARGENTINA
+##  9 arg      presi    paso   2019  ARGENTINA
 ## 10 caba     dip      gral   2005  CABA     
 ## # ... with 416 more rows
 ```
@@ -204,37 +204,37 @@ background-size: 10%
 
 ## Descarga resultados 
 
-### Presidente 2019 
+### Presidente 2015 
 
 
 ```r
-gral2019 &lt;-  get_election_data(district = 'arg', 
+gral2015 &lt;-  get_election_data(district = 'arg', 
                   category = 'presi', 
                   round = 'gral', 
-                  year = 2019, 
+                  year = 2015, 
                   level = "departamento") %&gt;% 
   get_names()
 
 
-gral2019
+gral2015
 ```
 
 ```
-## # A tibble: 4,224 x 11
-## # Groups:   codprov, depto, coddepto [528]
+## # A tibble: 4,216 x 11
+## # Groups:   codprov, depto, coddepto [527]
 ##    category round  year codprov name_prov depto  coddepto electores listas votos
 ##    &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
-##  1 presi    gral   2019 01      CABA      Comun~ 001         177609 00010   1049
-##  2 presi    gral   2019 01      CABA      Comun~ 001         177609 00002   3476
-##  3 presi    gral   2019 01      CABA      Comun~ 001         177609 00009  66396
-##  4 presi    gral   2019 01      CABA      Comun~ 001         177609 00005  47773
-##  5 presi    gral   2019 01      CABA      Comun~ 001         177609 00001   6617
-##  6 presi    gral   2019 01      CABA      Comun~ 001         177609 00004   2232
-##  7 presi    gral   2019 01      CABA      Comun~ 001         177609 blanc~  1954
-##  8 presi    gral   2019 01      CABA      Comun~ 001         177609 nulos    899
-##  9 presi    gral   2019 01      CABA      Comun~ 002         143373 00010    707
-## 10 presi    gral   2019 01      CABA      Comun~ 002         143373 00002   2100
-## # ... with 4,214 more rows, and 1 more variable: nombre_lista &lt;chr&gt;
+##  1 presi    gral   2015 01      CABA      Comun~ 001         179292 0131   33224
+##  2 presi    gral   2015 01      CABA      Comun~ 001         179292 0132    5032
+##  3 presi    gral   2015 01      CABA      Comun~ 001         179292 0133     944
+##  4 presi    gral   2015 01      CABA      Comun~ 001         179292 0135   64042
+##  5 presi    gral   2015 01      CABA      Comun~ 001         179292 0137    5362
+##  6 presi    gral   2015 01      CABA      Comun~ 001         179292 0138   17227
+##  7 presi    gral   2015 01      CABA      Comun~ 001         179292 blanc~  1330
+##  8 presi    gral   2015 01      CABA      Comun~ 001         179292 nulos    782
+##  9 presi    gral   2015 01      CABA      Comun~ 002         145810 0131   15324
+## 10 presi    gral   2015 01      CABA      Comun~ 002         145810 0132    4862
+## # ... with 4,206 more rows, and 1 more variable: nombre_lista &lt;chr&gt;
 ```
 
 ---
@@ -252,39 +252,37 @@ background-size: 10%
 
 
 ```r
-fit &lt;- gral2019[gral2019$nombre_lista == 'ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES', ] # &gt; BASE
+fit &lt;- gral2015[gral2015$nombre_lista == 'ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES', ] # &gt; BASE
 
 
 fit[fit$votos == max(fit$votos),]
 ```
 
 ```
-## Warning in max(fit$votos): ningun argumento finito para max; retornando -Inf
-```
-
-```
-## # A tibble: 0 x 11
-## # Groups:   codprov, depto, coddepto [0]
-## # ... with 11 variables: category &lt;chr&gt;, round &lt;chr&gt;, year &lt;dbl&gt;,
-## #   codprov &lt;chr&gt;, name_prov &lt;chr&gt;, depto &lt;chr&gt;, coddepto &lt;chr&gt;,
-## #   electores &lt;dbl&gt;, listas &lt;chr&gt;, votos &lt;dbl&gt;, nombre_lista &lt;chr&gt;
+## # A tibble: 1 x 11
+## # Groups:   codprov, depto, coddepto [1]
+##   category round  year codprov name_prov depto   coddepto electores listas votos
+##   &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
+## 1 presi    gral   2015 04      CORDOBA   Capital 001        1077907 0137   37769
+## # ... with 1 more variable: nombre_lista &lt;chr&gt;
 ```
 
 --
 
 
 ```r
-gral2019 %&gt;%  # &gt; TIDY
+gral2015 %&gt;%  # &gt; TIDY
   filter(nombre_lista == 'ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES') %&gt;% 
   ungroup() %&gt;% 
-  slice_min(votos)
+  slice_max(votos)
 ```
 
 ```
-## # A tibble: 0 x 11
-## # ... with 11 variables: category &lt;chr&gt;, round &lt;chr&gt;, year &lt;dbl&gt;,
-## #   codprov &lt;chr&gt;, name_prov &lt;chr&gt;, depto &lt;chr&gt;, coddepto &lt;chr&gt;,
-## #   electores &lt;dbl&gt;, listas &lt;chr&gt;, votos &lt;dbl&gt;, nombre_lista &lt;chr&gt;
+## # A tibble: 1 x 11
+##   category round  year codprov name_prov depto   coddepto electores listas votos
+##   &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
+## 1 presi    gral   2015 04      CORDOBA   Capital 001        1077907 0137   37769
+## # ... with 1 more variable: nombre_lista &lt;chr&gt;
 ```
 
 

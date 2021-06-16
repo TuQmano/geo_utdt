@@ -144,11 +144,11 @@ background-image: url(https://github.com/politicaargentina/data_warehouse/blob/m
 background-position: 95% 5%
 background-size: 10%
 
-# Elección Presidencial 2019: 
+# Elección Presidencial 2015: 
 
 ### ¿Parámetros de la elección?
  
-```{r JxC, highlight.output=c(12)}
+```{r JxC, highlight.output=c(8)}
 
 library(electorAr)
 
@@ -164,19 +164,19 @@ background-size: 10%
 
 ## Descarga resultados 
 
-### Presidente 2019 
+### Presidente 2015 
 
 ```{r presi2019}
 
-gral2019 <-  get_election_data(district = 'arg', 
+gral2015 <-  get_election_data(district = 'arg', 
                   category = 'presi', 
                   round = 'gral', 
-                  year = 2019, 
+                  year = 2015, 
                   level = "departamento") %>% 
   get_names()
 
 
-gral2019
+gral2015
 
 ```
 
@@ -195,7 +195,7 @@ background-size: 10%
 
 ```{r}
 
-fit <- gral2019[gral2019$nombre_lista == 'ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES', ] # > BASE
+fit <- gral2015[gral2015$nombre_lista == 'ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES', ] # > BASE
 
 
 fit[fit$votos == max(fit$votos),]
@@ -205,10 +205,10 @@ fit[fit$votos == max(fit$votos),]
 
 ```{r}
 
-gral2019 %>%  # > TIDY
+gral2015 %>%  # > TIDY
   filter(nombre_lista == 'ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES') %>% 
   ungroup() %>% 
-  slice_min(votos)
+  slice_max(votos)
 ```
 
 

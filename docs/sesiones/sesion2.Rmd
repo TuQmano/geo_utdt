@@ -16,31 +16,401 @@ output:
 ---
 
 
+exclude: true
 
-```{r xaringan-extra-styles}
+```{r xaringan, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "extra_styles", "scribble", "editable", "broadcast", "webcam"))
+
+
+```
+
+```{r extrasXaringan, include=FALSE}
+
 xaringanExtra::use_extra_styles(
-  hover_code_line = TRUE,         #<<
-  mute_unhighlighted_code = TRUE  #<<
+  hover_code_line = TRUE,         
+  mute_unhighlighted_code = TRUE  
 )
 
 xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
 
 ```
 
-class: middle
+
+---
+
+class: center, middle
 
 
 # Sesión II 
 
 ### Intro a `R` 
 
---
-* Organización
+---
+
+class: left
+
+# Hoja de Ruta
+
+
++  _Dialectos_: `base` VS _Tidyverse_
 
 --
 
-* _Dialectos_: `base` VS _Tidyverse_
++   Organización: proyectos, `{here}`, *.git*
 
 --
 
-* Reproducibilidad y Comunicación
++  Reproducibilidad y Comunicación (`.R` y `.Rmd`)
+
+---
+
+class: center, middle
+
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Dialéctos para `R`  
+
+# **R** `base` vs _Tidyverse_
+
+--
+
+```{r curso}
+
+curso <- data.frame(nombre= c("Juan", "Pedro", "María", "José", 
+                               "Enzo", "Ariel", "Eva"),
+                    edad= c(25, 32, 21,40, 
+                             30, 28, 37),
+                    nacim= c(1993, 1986, 1997, 1978,
+                              1988, 1990, 1981),
+                    software.primario= c("spss", "stata", "stata", 
+                                         "excel", "R", "stata",
+                                         "spss"),
+                    nivel= c(3, 5,7, 6,
+                              2, 6, 8) 
+                    )
+```
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+# **R** `base`  vs _Tidyverse_ 
+
+
+## Edad promedio del curso > **`base`**
+
+--
+
+```{r base_example}
+
+# BASE
+# 
+sum(curso$edad)/length(curso$edad)
+```
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+# **R** `base`  vs _Tidyverse_ 
+
+
+
+## Edad promedio del curso > _**Tidy**_
+
+--
+
+```{r tidy_example, warning=FALSE, message=FALSE}
+
+# Tidy / {dplyr}
+
+library(tidyverse) # cargo paqueteS
+
+curso %>% 
+  summarise(promedio = sum(edad)/length(edad))
+```
+
+---
+
+background-image: url(https://github.com/politicaargentina/data_warehouse/blob/master/hex/electorAr.png?raw=true)
+background-position: 95% 5%
+background-size: 10%
+
+# Elección Presidencial 2015: 
+
+### ¿Parámetros de la elección?
+ 
+```{r JxC, highlight.output=c(8)}
+
+library(electorAr)
+
+show_available_elections(source = "data")
+```
+
+
+---
+
+background-image: url(https://github.com/politicaargentina/data_warehouse/blob/master/hex/electorAr.png?raw=true)
+background-position: 95% 5%
+background-size: 10%
+
+## Descarga resultados 
+
+### Presidente 2015 
+
+```{r presi2019}
+
+gral2015 <-  get_election_data(district = 'arg', 
+                  category = 'presi', 
+                  round = 'gral', 
+                  year = 2015, 
+                  level = "departamento") %>% 
+  get_names()
+
+
+gral2015
+
+```
+
+---
+
+background-image: url(https://github.com/politicaargentina/data_warehouse/blob/master/hex/electorAr.png?raw=true)
+background-position: 95% 5%
+background-size: 10%
+
+### Dónde cosechó más votos el FIT? 
+
+#### Departamentos con votos `max()` 
+
+--
+
+
+```{r}
+
+fit <- gral2015[gral2015$nombre_lista == 'ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES', ] # > BASE
+
+
+fit[fit$votos == max(fit$votos),]
+```
+
+--
+
+```{r}
+
+gral2015 %>%  # > TIDY
+  filter(nombre_lista == 'ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES') %>% 
+  ungroup() %>% 
+  slice_max(votos)
+```
+
+
+---
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+# `r icon::fa("comment-dots")` vs `r icon::fa("laptop-code")`
+
+
+
+```{r pc_human, echo=FALSE, fig.retina=3, out.width= "200%"}
+knitr::include_graphics("https://github.com/TuQmano/MetodosCiPol/raw/master/docs/2020/Clase02/fig/computer_human.png")
+```
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+# Tidyverse
+
+1. Reutilizar estructuras de datos existentes
+
+2. Armar funciones simples con la _pipa_ (`%<%`)
+
+3. Adoptar la programación funcional
+
+4. Diseñado para humanos!
+
+
+ [`r icon::fa("link")` The Manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html)
+
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## El núcelo _Tidyverse_
+
+```{r tidy_hex, echo=FALSE, fig.retina=3, out.width= "60%"}
+knitr::include_graphics("https://github.com/TuQmano/MetodosCiPol/blob/master/docs/2020/Clase02/fig/tidy_hex.PNG?raw=true")
+```
+
+Fuente: [https://evamaerey.github.io/little_flipbooks_library/ggtextures/ggtextures#1](https://evamaerey.github.io/little_flipbooks_library/ggtextures/ggtextures#1)
+
+--
+
+```{r, eval=F}
+# Install from CRAN
+install.packages("tidyverse")
+```
+
+### [`r icon::fa("link")` The Tidyverse](https://tidyverse.tidyverse.org)
+
+
+---
+
+class: center, middle, inverse
+
+background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/img/rstudio-icon.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## Organización de Proyectos (I)
+
+###  `.Rproj`
+
+
+
+```{r rproj, echo=FALSE, fig.retina=3, out.width= "60%"}
+knitr::include_graphics("http://www.rstudio.com/images/docs/projects_new.png")
+```
+
+#### [`r icon::fa("link")` Using Projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+
+
+
+---
+
+class: center, middle, inverse
+
+background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/img/rstudio-icon.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+```{r here, echo=FALSE, fig.retina=3, out.width= "60%"}
+knitr::include_graphics("https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/here.png")
+```
+
+#### [`r icon::fa("link")` {here}](https://here.r-lib.org/index.html)
+
+
+## Organización de Proyectos (II)
+
+
+---
+
+background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/img/rstudio-icon.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+# {here}
+
+```{r}
+
+here::dr_here()
+
+```
+
+
+
+---
+class: center, middle, inverse
+
+## Organización de Proyectos (III)
+
+##  `.git`
+
+---
+
+# `.git `
+
+```{r, echo=FALSE}
+
+knitr::include_graphics("https://yabellini.netlify.app/img/git_concept_map.png")
+
+```
+
+---
+
+# `.git `
+
+#### varbos + usados
+
+* git status
+
+--
+
+* git pull 
+
+--
+
+* git add <file>  /  git add -A (para agregar todos)
+
+--
+
+* git commit -m 'agregar mensaje'
+
+--
+
+* git push 
+
+--
+#### [`r icon::fa("link")` Happy Git](https://happygitwithr.com/)
+
+
+
+---
+
+background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/img/rstudio-icon.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+# `R`  vs  `.Rmd`
+
+
+```{r, eval =FALSE}
+
+"scripts/archivos.R"
+
+"scripts/archivos.Rmd"
+
+```
+
+
+---
+
+background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/img/rstudio-icon.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+# R Markdown
+
+
+```{r rmd, echo=FALSE, fig.retina=3, out.width= "60%"}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/3215c7166555d2ac02ef678fd025c171f90db23c/4e60a/images/bandone.png")
+```
+
+### [`r icon::fa("link")` Comunicación](https://rmarkdown.rstudio.com/)
+
+
