@@ -18,7 +18,7 @@ curso <- data.frame(nombre= c("Juan", "Pedro", "María", "José",
                              2, 6, 8) 
 )
 
-mean(curso$edad)
+mean(curso$edad)  
 
 sum(curso$edad)/length(curso$edad)
 
