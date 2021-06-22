@@ -348,7 +348,7 @@ class: center, middle, inverse
 knitr::include_graphics("https://yabellini.netlify.app/img/git_concept_map.png")
 
 ```
-
+**Fuente**: https://yabellini.netlify.app/es/post/githubconr/
 ---
 
 # `.git `
