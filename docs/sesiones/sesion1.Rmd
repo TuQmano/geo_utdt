@@ -1,18 +1,24 @@
 ---
 title: "Instrumentos de An&aacute;lisis Urbanos II"
 subtitle: "Maestría en Economía Urbana"
-author: "Juan Pablo Ruiz Nicolini"
+author: ""
 institute: "Universidad Torcuato Di Tella"
 date: "08/06/2021"
 output:
   xaringan::moon_reader:
-    css: styles.css
+    css: ["footer-header.css", "styles.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
       highlightLines: true
       highlightSpans: true
       countIncrementalSlides: false
+---
+
+layout: true
+  
+<div class="my-footer"><span>Juan Pablo Ruiz Nicolini | @TuQmano | www.tuqmano.ar </span></div> 
+
 ---
 
 ```{r setup, include=FALSE}

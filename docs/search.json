@@ -6,7 +6,7 @@
       "description": "Lecturas recomendadas y materiales de apoyo\n",
       "author": [],
       "contents": "\r\nPRINCIPAL\r\nFundamentos: An Intro to R, Collin Fay.\r\nProgramación: R para Ciencia de Datos (Traducción de R for Data Science), Garrett Grolemund, Hadley Wickham.\r\nVisualización: ggplot2: Elegant Graphics for Data Analysis, Hadley Wickham.\r\nGeocomputación: Geocomputation with R; Robin Lovelace, Jakub Nowosad & Jannes Muenchow.\r\nCONSULTA\r\nGENERAL\r\nAnalizaR Datos Políticos, Francisco Urdinez y Andrés Cruz Labrín (Editores).\r\nCiencia de Datos para Gente Sociable, Antonio Vazquez Brust.\r\nCiencia de datos para curiosos, Martín Montané.\r\nDATA VIZ\r\nData Visualizaction: A Practival Introduction, Kieran Healey.\r\nFundamentals of Data Visualization, Claus Wilke.\r\nGEO\r\nSpatial Data Science (with applications in R), Edzer Pebesma y Roger Bivand.\r\nHerramientas de análisis espacial en R, Martín Montané.\r\nSOFTWARE / PROGRAMACIÓN\r\nWhat They Forgot to Teach You About R, Jennifer Bryan & Jim Hester.\r\nHappy Git and GitHub for the useR, Jennifer Bryan, STAT 545 TAs & Jim Hester.\r\nA Handbook for Teaching and Learning with R and RStudio, Desirée De Leon & Alison Hill.\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-06-21T22:15:57-03:00"
+      "last_modified": "2021-06-21T22:44:46-03:00"
     },
     {
       "path": "bio.html",
@@ -14,7 +14,7 @@
       "description": "\\¿Quiénes somos? \n",
       "author": [],
       "contents": "\r\nJUAN PABLO RUIZ NICOLINI\r\nTambién conocido como el TuQmano. Soy politólogo\\(^2\\) por la Universidad Torcuato Di Tella. Trabajo con datos y visualizaciones. Me gustan las elecciones. Cientista de Datos en progreso (DS).\r\nComo politólogo mis temas de investigación se concentraron en estudios electorales, partidos y reforma política. En particular, he trabajado en la evaluación del impacto político del cambio en la tecnología con la que se emiten los votos.\r\nComo DS vengo trabajando en el desarrollo de paquetes de  para facilitar herramientas y el acceso a datos políticos de Argentina.\r\n tuqmano.ar |  TuQmano |  /tuqmano\r\nPABLO TISCORNIA\r\nSociólogo (UBA), especializado en metodología, producción y procesamiento de datos estadísticos, principalmente en el ámbito público. Últimamente me encuentro enfocado en la mejora de procesos de trabajo vinculados al tratamiento de datos.\r\nHe participado en la organización y difusión de la comunidad de R en Buenos Aires y en el desarrollo del paquetes eph, cuyo principal objetivo es facilitar herramientas y el acceso a datos de la Encuesta Permanente de Hogares - INDEC, mediante el lenguaje de programación R.\r\n Rpubs-pablotis |  pabblo_h |  /pablotis\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-06-21T22:16:00-03:00"
+      "last_modified": "2021-06-21T22:44:49-03:00"
     },
     {
       "path": "index.html",
@@ -22,7 +22,7 @@
       "description": "Profesores: Juan Pablo Ruiz Nicolini y Pablo Tiscornia",
       "author": [],
       "contents": "\r\nMaestría en Economía Urbana | Universidad Torcuato Di Tella\r\n8 de junio - 17 de agosto de 2021 | 19.15hs | VIRTUAL\r\nDescripción del curso:\r\nInstrumentos de Análisis Urbano II está pensado como un curso aplicado de Ciencia de Datos para ciudades. Para ello nos valdremos de herramientas computacionales que, en conjunto, tienen como objetivo la elaboración de un proyecto de análisis urbano desde la obtención de los datos (de diversas fuentes y formatos); su curaduría, limpieza, procesamiento, análisis, hasta la comunicación de los mismos.\r\nDesde el inicio, además, propondremos alternativas para la organización del proyecto que apuntan a potenciar la reproducibilidad de las investigaciones y sacar provecho del control de versiones y el trabajo colaborativo.\r\nOrganización del curso\r\nEl curso se divide en tres grandes módulos:\r\na lo largo de las primeras dos clases, presentaremos el programa, evaluaremos el conocimiento previo de los participantes y avanzaremos con la instalación y mise en place de las herramientas que proponemos utilizar a lo largo de la materia.\r\ndesde la sesión 3 hasta la 7 inclusive, se procurará introducir técnicas para el acceso, limpieza y transformación de datos.\r\npor último, desde el octavo al décimo encuentro, se presentarán técnicas para la visualización de datos en general y geográficos en particular, a la vez que se discutirán casos y aplicaciones.\r\nPráctica y Evaluación\r\nEste curso está pensado para avanzar a través de la práctica de los contenidos. Por ello se espera de los alumnos una participación activa, con entregas de pequeños ejercicios periódicamente. Esta participación será parte de la evaluación final (\\(40\\%\\)) que requerirá además la entrega de un informe original sobre un tema urbano que aplique el conjunto de herramientas expuestas a lo largo del curso. La puntuación máxima del informe será el \\(60\\%\\) de la nota final.\r\nMÓDULOS\r\nMódulo 1\r\nSesión 1: Presentación\r\nConfiguración de herramientas y puesta en marcha\r\nSesión 2: Introducción\r\nR + RStudio\r\nOrganización del flujo de trabajo (.Rproj, y git)\r\nR base y el suite Tidyverse\r\nReproducibilidad y Comunicación (.R y Rmd)\r\n\r\nMódulo 2\r\nSesión 3: Domar los datos I\r\nLos principales paquetes y sus verbos para:\r\nleer datos (readr, heaven, readxl, googlesheets4, etc)\r\nlimpiar datos (tidyr, janitor, tibble)\r\ntransformar datos (dplyr)\r\nHerramientas auxiliares para mejorar el flujo del código:\r\nla pipa de magrittr (%>%) para encadenar y glue para facilitar la concatenación.\r\nSesión 4: Domar los datos II\r\n+dplyr\r\nAmpliando la caja de herramientas:\r\nlubridate para trabajar el tiempo\r\nforcats para datos categóricos (factors)\r\nstringr para datos de texto\r\nSesión 5: Domar los datos III\r\nTrabajar con geo data:\r\nsf\r\nrmapshaper\r\ngeoAr\r\nSesión 6: Programación (intro)\r\nNo repetirse uno mismo\r\nEscribir funciones\r\nProgramación funcional (Introducción a purrr )\r\nSesión 7: Obtener datos de la web\r\nejemplos aplicados con APIs y web scraping con rvest\r\nMódulo 3\r\nSesión 8: Data Viz I\r\nLa Gramática de los Gráficos\r\nIntroducción a ggplot2\r\nSesión 9: Data Viz II\r\nLas muchas capas de ggplot2\r\ngeom_sf(): para mapas estáticos\r\nExtensiones: mapsf,patchwork, cowplot , entre otros.\r\nSesión 10: Data Viz III\r\nDistintas formas de representar información geográfica:\r\nleaflet: para mapas interactivos\r\ngeofacet: para grillas como si fueran mapas\r\ntilemaps: cuando el área no importa\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-06-21T22:16:03-03:00"
+      "last_modified": "2021-06-21T22:44:51-03:00"
     },
     {
       "path": "software.html",
@@ -30,7 +30,7 @@
       "description": "Herramientas y programas\n",
       "author": [],
       "contents": "\r\nConfigurar\r\nSlack - Espacio de trabajo\r\nR - CRAN (The Comprehensive R Archive Network)\r\nRStudio IDE (Integrated Development Environment)\r\n.git & Github - Control de versiones + DEV\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-06-21T22:16:04-03:00"
+      "last_modified": "2021-06-21T22:44:52-03:00"
     }
   ],
   "collections": []
