@@ -206,7 +206,7 @@ background-size: 10%
 
 > Lupu, Noam and Susan C. Stokes. 2009. "The Social Bases of Political Parties in Argentina, 1912-2003." Latin American Research Review 44 (1): 58-87. 
 
-> Fuente: [www.noamlupu.com/data.html](www.noamlupu.com/data.html)
+> Fuente: [www.noamlupu.com/data.html](https://www.noamlupu.com/data.html)
 --
 
 ```{r haven}
@@ -228,7 +228,7 @@ background-size: 10%
 
 > Lupu, Noam and Susan C. Stokes. 2009. "The Social Bases of Political Parties in Argentina, 1912-2003." Latin American Research Review 44 (1): 58-87. 
 
-> Fuente: [www.noamlupu.com/data.html](www.noamlupu.com/data.html)
+> Fuente: [www.noamlupu.com/data.html](https://www.noamlupu.com/data.html)
 
 ```{r haven2}
 
