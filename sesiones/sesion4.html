@@ -23,7 +23,6 @@
     <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-scribble/scribble.js"></script>
     <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
-    <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
     <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="footer-header.css" type="text/css" />
@@ -103,13 +102,34 @@ class: inverse, center, middle
 ```r
 
    
-  vroom::vroom("https://storage.googleapis.com/properati-data-public/ar_properties.csv.gz")
+  datos &lt;- vroom::vroom("https://storage.googleapis.com/properati-data-public/ar_properties.csv.gz")
    
 
 ```
 
 
 ---
+
+# Inspeccionamos dataset
+
+
+```r
+
+skimr::skim(datos)
+
+```
+
+
+
+&lt;img src="figs/skimr.png" width="100%" /&gt;
+
+
+---
+
+background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/dplyr.png)
+background-position: 95% 5%
+background-size: 10%
+
 
 ## + verbos de `{dplyr}`
 
@@ -135,7 +155,14 @@ class: inverse, center, middle
 
 --
 
-* `across()` en el [*nuevo* `{dplyr}` <i class="fas  fa-link "></i>](https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/) 
+background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/dplyr.png), url(https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/dplyr.png)
+background-position: 95% 5%, 95% 50%
+background-size: 10%, 10%
+
+
+## [*nuevo* `{dplyr}` <i class="fas  fa-link "></i>](https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/) 
+
+* `across()` 
 
 --
 
@@ -248,7 +275,7 @@ dmy("6 de octubre de 2020")
 ```r
 library(lubridate) # (b)
 today() + 365
-## [1] "2022-06-28"
+## [1] "2022-06-29"
 ```
 
 --
@@ -270,6 +297,7 @@ background-size: 10%
 &gt; *Los factores son útiles cuando se tiene datos categóricos, variables que tienen un conjunto de valores fijo y conocido, y cuando se desea mostrar los vectores de caracteres en orden no alfabético* **R4DS - &lt;https://es.r4ds.hadley.nz/factores.html&gt;**
 --
 
+
 * `fct_reorder()` &gt; modifica el orden
 
 --
@@ -283,7 +311,6 @@ background-size: 10%
 
 * `fct_lump()` &gt; agrupa 
 
----
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

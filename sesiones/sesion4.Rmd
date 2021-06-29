@@ -81,7 +81,7 @@ class: inverse, center, middle
 ```{r, eval = F}
 
    
-  vroom::vroom("https://storage.googleapis.com/properati-data-public/ar_properties.csv.gz")
+  datos <- vroom::vroom("https://storage.googleapis.com/properati-data-public/ar_properties.csv.gz")
    
 
 
@@ -89,6 +89,31 @@ class: inverse, center, middle
 
 
 ---
+
+# Inspeccionamos dataset
+
+```{r, eval=F}
+
+skimr::skim(datos)
+
+```
+
+
+
+```{r, echo=FALSE, out.width= '100%'}
+
+knitr::include_graphics("figs/skimr.png")
+
+
+```
+
+
+---
+
+background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/dplyr.png)
+background-position: 95% 5%
+background-size: 10%
+
 
 ## + verbos de `{dplyr}`
 
@@ -114,7 +139,14 @@ class: inverse, center, middle
 
 --
 
-* `across()` en el [*nuevo* `{dplyr}` `r icon::fa("link")`](https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/) 
+background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/dplyr.png), url(https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/dplyr.png)
+background-position: 95% 5%, 95% 50%
+background-size: 10%, 10%
+
+
+## [*nuevo* `{dplyr}` `r icon::fa("link")`](https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/) 
+
+* `across()` 
 
 --
 
@@ -247,6 +279,7 @@ background-size: 10%
 > *Los factores son útiles cuando se tiene datos categóricos, variables que tienen un conjunto de valores fijo y conocido, y cuando se desea mostrar los vectores de caracteres en orden no alfabético* **R4DS - <https://es.r4ds.hadley.nz/factores.html>**
 --
 
+
 * `fct_reorder()` > modifica el orden
 
 --
@@ -260,4 +293,3 @@ background-size: 10%
 
 * `fct_lump()` > agrupa 
 
----
