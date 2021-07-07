@@ -215,7 +215,7 @@ Fuente: [_Spatial Data Science_](https://keen-swartz-3146c4.netlify.app/geometri
 
 --
 
-* `predicates`: una consulta lógica que para determianr si determianda propiedad es  `TRUE` 
+* `predicates`: una consulta lógica para determinar si una propiedad es  `TRUE` 
 
  - `is.empty()`
 --
