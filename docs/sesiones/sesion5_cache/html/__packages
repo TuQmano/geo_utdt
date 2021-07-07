@@ -1,0 +1,7 @@
+base
+lubridate
+geoAr
+usethis
+devtools
+sf
+rnaturalearth
