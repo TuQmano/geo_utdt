@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Instrumentos de Análisis Urbanos II</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xec87329cecb46c397ca164002ebde76","expires":14}</script>
+    <script src="libs/himalaya/himalaya.js"></script>
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <link href="libs/editable/editable.css" rel="stylesheet" />
+    <script src="libs/editable/editable.js"></script>
+    <script src="libs/xaringanExtra-webcam/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <script src="libs/peerjs/peerjs.min.js"></script>
+    <script src="libs/tiny.toast/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast/broadcast.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="footer-header.css" type="text/css" />
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Instrumentos de Análisis Urbanos II
+## Maestría en Economía Urbana
+### 
+### Universidad Torcuato Di Tella
+### 20/07/2021
+
+---
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;&lt;span&gt;Juan Pablo Ruiz Nicolini | @TuQmano | &lt;a href="www.tuqmano.ar"&gt;www.tuqmano.ar&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
+
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #fdbd15;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+---
+
+class:  middle, center, inverse
+
+
+# Programación (Intro)
+
+---
+
+## <i class="fas  fa-book "></i> Referencias
+
+* [_Pipes_, Funciones, Vectores e Iteración](https://es.r4ds.hadley.nz/programar-intro.html), en **Wickham y Grolemnud**
+
+
+--
+
+&lt;img src="https://es.r4ds.hadley.nz/diagrams_w_text_as_path/es/data-science-program.svg" width="90%" /&gt;
+
+---
+
+# Programando con `R base`
+
+
+```r
+
+df &lt;- tibble::tibble(
+ a = rnorm(10),
+ b = rnorm(10),
+ c = rnorm(10),
+ d = rnorm(10)
+)
+
+
+df
+## # A tibble: 10 x 4
+##         a      b        c      d
+##     &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+##  1  0.845 -0.656  0.220   -0.481
+##  2 -1.69  -0.574 -0.00300 -1.08 
+##  3  2.42  -0.701  0.456   -0.393
+##  4 -0.345  2.24  -0.323   -0.698
+##  5  1.50  -1.13  -0.343   -1.28 
+##  6  0.966 -0.291  0.209    0.617
+##  7 -0.139 -1.05  -1.56    -1.32 
+##  8 -1.74   1.26   0.304    0.434
+##  9  1.78   1.21  -0.337   -0.981
+## 10  0.320 -0.893 -0.896   -0.861
+```
+
+---
+
+# Programando con `R base`
+
+
+
+```r
+
+df$a &lt;- (df$a - min(df$a)) /
+ (max(df$a) - min(df$a))
+
+df$b &lt;- (df$b - min(df$b)) /
+ (max(df$b) - min(df$a))
+
+df$c &lt;- (df$c - min(df$c)) /
+ (max(df$c) - min(df$c))
+
+df$d &lt;- (df$d - min(df$d)) /
+ (max(df$d) - min(df$d))
+```
+
+--
+* Qué estamos calculando? 
+
+--
+* Dónde está el error?
+
+--
+
+&gt; **Deberías considerar escribir una función cuando has copiado y pegado un bloque de código más de dos veces** - [**<i class="fas  fa-link "></i> R4DS**](https://es.r4ds.hadley.nz/funciones.html#cu%C3%A1ndo-deber%C3%ADas-escribir-una-funci%C3%B3n)
+
+---
+
+# Progrmando con `R base` 
+
+
+```r
+
+x &lt;- df$a
+
+(x - min(x)) / (max(x) - min(x))
+##  [1] 0.62086528 0.01094091 1.00000000 0.33512160 0.77721297 0.64991239
+##  [7] 0.38450649 0.00000000 0.84410914 0.49468569
+```
+
+--
+
+
+```r
+
+rng &lt;- range(x)
+
+(x - rng[1]) / (rng[2] - rng[1])
+##  [1] 0.62086528 0.01094091 1.00000000 0.33512160 0.77721297 0.64991239
+##  [7] 0.38450649 0.00000000 0.84410914 0.49468569
+```
+
+--
+
+
+```r
+
+rescale01 &lt;- function(x) {
+ rng &lt;- range(x, na.rm = TRUE)
+ (x - rng[1]) / (rng[2] - rng[1])
+}
+
+
+rescale01(c(22, 50, 10, 32))
+## [1] 0.30 1.00 0.00 0.55
+```
+
+---
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/electorAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+
+## Datos `{electorAr}`
+
+
+```r
+
+library(electorAr)
+
+tucuman_dip_gral_2017 %&gt;% 
+  get_names()
+## # A tibble: 6 x 9
+## # Groups:   codprov [1]
+##   category round  year codprov name_prov electores listas   votos nombre_lista  
+##   &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;         
+## 1 dip      gral   2017 23      TUCUMAN     1217274 0180    154930 FUERZA REPUBL~
+## 2 dip      gral   2017 23      TUCUMAN     1217274 0503     46609 FRENTE DE IZQ~
+## 3 dip      gral   2017 23      TUCUMAN     1217274 0521    319221 CAMBIEMOS PAR~
+## 4 dip      gral   2017 23      TUCUMAN     1217274 0548    459257 FRENTE JUSTIC~
+## 5 dip      gral   2017 23      TUCUMAN     1217274 blancos   5920 blancos       
+## 6 dip      gral   2017 23      TUCUMAN     1217274 nulos    12947 nulos
+```
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/electorAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## % votos 
+
+
+```r
+
+library(electorAr)
+library(dplyr)
+
+tucuman_dip_gral_2017 %&gt;% 
+  get_names() %&gt;% 
+  transmute(nombre_lista, votos, 
+*           pct = round(votos/sum(votos)*100,1))
+## # A tibble: 6 x 4
+## # Groups:   codprov [1]
+##   codprov nombre_lista                               votos   pct
+##   &lt;chr&gt;   &lt;chr&gt;                                      &lt;dbl&gt; &lt;dbl&gt;
+## 1 23      FUERZA REPUBLICANA                        154930  15.5
+## 2 23      FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES  46609   4.7
+## 3 23      CAMBIEMOS PARA EL BICENTENARIO            319221  32  
+## 4 23      FRENTE JUSTICIALISTA POR TUCUMAN          459257  46  
+## 5 23      blancos                                     5920   0.6
+## 6 23      nulos                                      12947   1.3
+```
+
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/electorAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+## `function()` 
+### generalizar cálculo de % para un vector
+
+
+
+```r
+
+calcular_pct &lt;- function(data){
+  
+* round(data/sum(data)*100,1)
+  
+}
+```
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/electorAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+## % votos 
+###  `calcular_pct(data)` 
+
+
+```r
+datos &lt;- electorAr::tucuman_dip_gral_2017
+
+datos %&gt;% 
+  electorAr::get_names() %&gt;% 
+  dplyr::transmute(nombre_lista,
+*                  pct = calcular_pct(data = votos))
+## # A tibble: 6 x 3
+## # Groups:   codprov [1]
+##   codprov nombre_lista                                pct
+##   &lt;chr&gt;   &lt;chr&gt;                                     &lt;dbl&gt;
+## 1 23      FUERZA REPUBLICANA                         15.5
+## 2 23      FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES   4.7
+## 3 23      CAMBIEMOS PARA EL BICENTENARIO             32  
+## 4 23      FRENTE JUSTICIALISTA POR TUCUMAN           46  
+## 5 23      blancos                                     0.6
+## 6 23      nulos                                       1.3
+```
+
+
+---
+background-image: url(https://github.com/tidyverse/magrittr/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# "*Esto no es una pipa*"
+
+### Una receta
+
+```r
+the_data &lt;-  read.csv('/path/to/data/file.csv') %&gt;%
+  subset(variable_a &gt; x) %&gt;%
+  transform(variable_c = variable_a/variable_b) %&gt;%
+  head(100)
+```
+--
+* Secuencia de comandos u ordenes
+
+--
+
+* Lectura de izquierda a derecha
+
+--
+
+* Minimizar (i) funciones anidadas y (ii)
+creación de objetos intermedios
+
+--
+
+* Facilita posibiidad de modificar secuencia y agregar pasos en el medio de la misma
+
+[<i class="fas  fa-link "></i>{magrittr}](https://magrittr.tidyverse.org/)
+
+---
+
+background-image: url(https://github.com/tidyverse/glue/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Facilitando el _pegado_
+
+
+
+```
+## Mi nombre es TuQmano. 
+## Trabajo de Cientista de Datos. 
+## Nací el jueves 15 de septiembre de 1983
+```
+
+
+[<i class="fas  fa-link "></i>{glue}](https://glue.tidyverse.org/) 
+[y <i class="fas  fa-link "></i> alternativas](https://trinkerrstuff.wordpress.com/2013/09/15/paste-paste0-and-sprintf-2/) como `paste()`, `paste0()` y `sprintf()`. 
+
+
+--
+
+```r
+
+glue("Mi nombre es {nombre}. 
+     Trabajo de {ocupacion}.
+     Nací el {format(aniversario, '%A, %d de %B de %Y')}")
+```
+
+--
+
+```r
+
+library(glue)
+
+nombre &lt;- "TuQmano"
+ocupacion &lt;- "Cientista de Datos"
+aniversario &lt;- as.Date("1983-09-15")
+```
+
+
+
+
+
+
+---
+
+background-image: url(https://github.com/tidyverse/purrr/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Iteración 
+
+
+[<i class="fas  fa-link "></i>{purrr}](https://purrr.tidyverse.org/)
+
+&lt;img src="https://www.gerkelab.com/blog/2018-09-20-import-a-directory-of-csv-files-at-once-using-purrr-and-readr_files/map_dfr-csv_files-read_csv.png" width="70%" /&gt;
+
+
+<i class="fas  fa-link "></i> **&lt;https://www.gerkelab.com/blog/2018/09/import-directory-csv-purrr-readr/&gt;**
+
+
+
+---
+
+
+background-image: url(https://github.com/tidyverse/purrr/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Iteración 
+## Ejemplo: guardar múltiples archivos
+
+
+
+--
+
+```r
+
+
+library(geoAr)  # para geometrías
+
+
+geo &lt;- get_geo("ARGENTINA") %&gt;% 
+  add_geo_codes()
+  
+
+geo
+## Simple feature collection with 526 features and 8 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -73.57219 ymin: -55.05624 xmax: -53.64276 ymax: -21.74531
+## Geodetic CRS:  WGS 84
+## # A tibble: 526 x 9
+##    codprov_censo coddepto_censo codprov coddepto nomdepto_censo name_prov   
+##    &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;       
+##  1 02            001            01      001      COMUNA 01      CABA        
+##  2 02            002            01      002      COMUNA 02      CABA        
+##  3 02            003            01      003      COMUNA 03      CABA        
+##  4 02            004            01      004      COMUNA 04      CABA        
+##  5 06            091            02      011      BERAZATEGUI    BUENOS AIRES
+##  6 74            056            19      001      LA CAPITAL     SAN LUIS    
+##  7 02            005            01      005      COMUNA 05      CABA        
+##  8 02            006            01      006      COMUNA 06      CABA        
+##  9 06            147            02      019      CARLOS CASARES BUENOS AIRES
+## 10 02            007            01      007      COMUNA 07      CABA        
+## # ... with 516 more rows, and 3 more variables: codprov_iso &lt;chr&gt;,
+## #   name_iso &lt;chr&gt;, geometry &lt;MULTIPOLYGON [°]&gt;
+```
+
+
+---
+
+
+background-image: url(https://github.com/tidyverse/purrr/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Iteración 
+## Ejemplo: guardar múltiples archivos
+
+
+
+
+```r
+
+# CORRER EN VERSION LOCAL / para evitar guardado 
+
+data &lt;- geo %&gt;% 
+  group_by(name_prov) %&gt;%
+  nest() 
+
+
+
+dir.create("geo_arg")
+
+data %&gt;% 
+  mutate(salida = walk2(.x = data, .y = name_prov,
+                     ~ st_write(obj = .x, 
+                                dsn = glue::glue("geo_arg/{.y}.shp")))) 
+
+```
+
+
+
+
+
+---
+
+
+background-image: url(https://github.com/tidyverse/purrr/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+class: invese, center, middle
+
+# Iteración 
+
+'scripts/genero.R' 
+
+
+
+
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

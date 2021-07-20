@@ -1,0 +1,424 @@
+---
+title: "Instrumentos de An&aacute;lisis Urbanos II"
+subtitle: "Maestría en Economía Urbana"
+author: ""
+institute: "Universidad Torcuato Di Tella"
+date: "20/07/2021"
+output:
+  xaringan::moon_reader:
+    css: ["footer-header.css", "styles.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+---
+
+layout: true
+  
+<div class="my-footer"><span>Juan Pablo Ruiz Nicolini | @TuQmano | <a href="www.tuqmano.ar">www.tuqmano.ar</a></span></div> 
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.retina = 3,
+                      out.width = 300, ### control plot size
+                      cache = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+
+```
+
+
+```{r xaringan, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "extra_styles", "scribble", "editable", "broadcast", "webcam"))
+
+
+```
+
+```{r extrasXaringan, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+
+xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
+
+
+
+
+```
+
+---
+
+class:  middle, center, inverse
+
+
+# Programación (Intro)
+
+---
+
+## `r icon::fa("book")` Referencias
+
+* [_Pipes_, Funciones, Vectores e Iteración](https://es.r4ds.hadley.nz/programar-intro.html), en **Wickham y Grolemnud**
+
+
+--
+
+```{r, echo=FALSE, out.width="90%"}
+knitr::include_graphics("https://es.r4ds.hadley.nz/diagrams_w_text_as_path/es/data-science-program.svg")
+```
+
+---
+
+# Programando con `R base`
+
+```{r}
+
+df <- tibble::tibble(
+ a = rnorm(10),
+ b = rnorm(10),
+ c = rnorm(10),
+ d = rnorm(10)
+)
+
+
+df
+```
+
+---
+
+# Programando con `R base`
+
+
+```{r}
+
+df$a <- (df$a - min(df$a)) /
+ (max(df$a) - min(df$a))
+
+df$b <- (df$b - min(df$b)) /
+ (max(df$b) - min(df$a))
+
+df$c <- (df$c - min(df$c)) /
+ (max(df$c) - min(df$c))
+
+df$d <- (df$d - min(df$d)) /
+ (max(df$d) - min(df$d))
+```
+
+--
+* Qué estamos calculando? 
+
+--
+* Dónde está el error?
+
+--
+
+> **Deberías considerar escribir una función cuando has copiado y pegado un bloque de código más de dos veces** - [**`r icon::fa("link")` R4DS**](https://es.r4ds.hadley.nz/funciones.html#cu%C3%A1ndo-deber%C3%ADas-escribir-una-funci%C3%B3n)
+
+---
+
+# Progrmando con `R base` 
+
+```{r}
+
+x <- df$a
+
+(x - min(x)) / (max(x) - min(x))
+```
+
+--
+
+```{r}
+
+rng <- range(x)
+
+(x - rng[1]) / (rng[2] - rng[1])
+```
+
+--
+
+```{r}
+
+rescale01 <- function(x) {
+ rng <- range(x, na.rm = TRUE)
+ (x - rng[1]) / (rng[2] - rng[1])
+}
+
+
+rescale01(c(22, 50, 10, 32))
+```
+
+---
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/electorAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+
+## Datos `{electorAr}`
+
+```{r}
+
+library(electorAr)
+
+tucuman_dip_gral_2017 %>% 
+  get_names()
+```
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/electorAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## % votos 
+
+```{r}
+
+library(electorAr)
+library(dplyr)
+
+tucuman_dip_gral_2017 %>% 
+  get_names() %>% 
+  transmute(nombre_lista, votos, 
+            pct = round(votos/sum(votos)*100,1))#<<
+  
+```
+
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/electorAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+## `function()` 
+### generalizar cálculo de % para un vector
+
+
+```{r}
+
+calcular_pct <- function(data){
+  
+  round(data/sum(data)*100,1) #<<
+  
+}
+```
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/electorAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+## % votos 
+###  `calcular_pct(data)` 
+
+```{r}
+datos <- electorAr::tucuman_dip_gral_2017
+
+datos %>% 
+  electorAr::get_names() %>% 
+  dplyr::transmute(nombre_lista,
+                   pct = calcular_pct(data = votos)) #<<
+```
+
+
+---
+background-image: url(https://github.com/tidyverse/magrittr/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# "*Esto no es una pipa*"
+
+### Una receta
+```{r, eval=FALSE}
+the_data <-  read.csv('/path/to/data/file.csv') %>%
+  subset(variable_a > x) %>%
+  transform(variable_c = variable_a/variable_b) %>%
+  head(100)
+```
+--
+* Secuencia de comandos u ordenes
+
+--
+
+* Lectura de izquierda a derecha
+
+--
+
+* Minimizar (i) funciones anidadas y (ii)
+creación de objetos intermedios
+
+--
+
+* Facilita posibiidad de modificar secuencia y agregar pasos en el medio de la misma
+
+[`r icon::fa("link")`{magrittr}](https://magrittr.tidyverse.org/)
+
+---
+
+background-image: url(https://github.com/tidyverse/glue/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Facilitando el _pegado_
+
+
+```{r, echo=F}
+
+library(glue)
+
+nombre <- "TuQmano"
+
+ocupacion <- "Cientista de Datos"
+
+aniversario <- as.Date("1983-09-15")
+
+glue("Mi nombre es {nombre}. 
+     Trabajo de {ocupacion}. 
+     Nací el {format(aniversario, '%A %d de %B de %Y')}")
+```
+
+
+[`r icon::fa("link")`{glue}](https://glue.tidyverse.org/) 
+[y `r icon::fa("link")` alternativas](https://trinkerrstuff.wordpress.com/2013/09/15/paste-paste0-and-sprintf-2/) como `paste()`, `paste0()` y `sprintf()`. 
+
+
+--
+```{r, eval=F}
+
+glue("Mi nombre es {nombre}. 
+     Trabajo de {ocupacion}.
+     Nací el {format(aniversario, '%A, %d de %B de %Y')}")
+```
+
+--
+```{r, eval=F}
+
+library(glue)
+
+nombre <- "TuQmano"
+ocupacion <- "Cientista de Datos"
+aniversario <- as.Date("1983-09-15")
+```
+
+
+
+
+
+
+---
+
+background-image: url(https://github.com/tidyverse/purrr/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Iteración 
+
+
+[`r icon::fa("link")`{purrr}](https://purrr.tidyverse.org/)
+
+```{r, echo=F, out.width="70%"}
+knitr::include_graphics("https://www.gerkelab.com/blog/2018-09-20-import-a-directory-of-csv-files-at-once-using-purrr-and-readr_files/map_dfr-csv_files-read_csv.png")
+```
+
+
+`r icon::fa("link")` **<https://www.gerkelab.com/blog/2018/09/import-directory-csv-purrr-readr/>**
+
+
+
+---
+
+
+background-image: url(https://github.com/tidyverse/purrr/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Iteración 
+## Ejemplo: guardar múltiples archivos
+
+
+
+--
+```{r}
+
+
+library(geoAr)  # para geometrías
+
+
+geo <- get_geo("ARGENTINA") %>% 
+  add_geo_codes()
+  
+
+geo
+  
+```
+
+
+---
+
+
+background-image: url(https://github.com/tidyverse/purrr/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Iteración 
+## Ejemplo: guardar múltiples archivos
+
+
+
+```{r, eval=F}
+
+# CORRER EN VERSION LOCAL / para evitar guardado 
+
+data <- geo %>% 
+  group_by(name_prov) %>%
+  nest() 
+
+
+
+dir.create("geo_arg")
+
+data %>% 
+  mutate(salida = walk2(.x = data, .y = name_prov,
+                     ~ st_write(obj = .x, 
+                                dsn = glue::glue("geo_arg/{.y}.shp")))) 
+
+
+
+```
+
+
+
+
+
+---
+
+
+background-image: url(https://github.com/tidyverse/purrr/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+class: invese, center, middle
+
+# Iteración 
+
+'scripts/genero.R' 
+
+
+
+
+
+
+
+
+
+
