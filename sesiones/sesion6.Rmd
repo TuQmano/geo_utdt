@@ -72,6 +72,96 @@ class:  middle, center, inverse
 knitr::include_graphics("https://es.r4ds.hadley.nz/diagrams_w_text_as_path/es/data-science-program.svg")
 ```
 
+
+
+---
+background-image: url(https://github.com/tidyverse/magrittr/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# "*Esto no es una pipa*"
+
+### Una receta
+```{r, eval=FALSE}
+the_data <-  read.csv('/path/to/data/file.csv') %>%
+  subset(variable_a > x) %>%
+  transform(variable_c = variable_a/variable_b) %>%
+  head(100)
+```
+--
+* Secuencia de comandos u ordenes
+
+--
+
+* Lectura de izquierda a derecha
+
+--
+
+* Minimizar (i) funciones anidadas y (ii)
+creación de objetos intermedios
+
+--
+
+* Facilita posibiidad de modificar secuencia y agregar pasos en el medio de la misma
+
+[`r icon::fa("link")`{magrittr}](https://magrittr.tidyverse.org/)
+
+---
+
+background-image: url(https://github.com/tidyverse/glue/raw/master/man/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Facilitando el _pegado_
+
+
+```{r, echo=F}
+
+library(glue)
+
+nombre <- "TuQmano"
+
+ocupacion <- "Cientista de Datos"
+
+aniversario <- as.Date("1983-09-15")
+
+glue("Mi nombre es {nombre}. 
+     Trabajo de {ocupacion}. 
+     Nací el {format(aniversario, '%A %d de %B de %Y')}")
+```
+
+
+[`r icon::fa("link")`{glue}](https://glue.tidyverse.org/) 
+[y `r icon::fa("link")` alternativas](https://trinkerrstuff.wordpress.com/2013/09/15/paste-paste0-and-sprintf-2/) como `paste()`, `paste0()` y `sprintf()`. 
+
+
+--
+```{r, eval=F}
+
+glue("Mi nombre es {nombre}. 
+     Trabajo de {ocupacion}.
+     Nací el {format(aniversario, '%A, %d de %B de %Y')}")
+```
+
+--
+```{r, eval=F}
+
+library(glue)
+
+nombre <- "TuQmano"
+ocupacion <- "Cientista de Datos"
+aniversario <- as.Date("1983-09-15")
+```
+
+---
+class: middle, center, inverse
+
+# Repaso 
+
+`scripts/repaso_geo.R` 
+
+
+
 ---
 
 # Programando con `R base`
@@ -229,90 +319,6 @@ datos %>%
   dplyr::transmute(nombre_lista,
                    pct = calcular_pct(data = votos)) #<<
 ```
-
-
----
-background-image: url(https://github.com/tidyverse/magrittr/raw/master/man/figures/logo.png)
-background-position: 95% 5%
-background-size: 10%
-
-# "*Esto no es una pipa*"
-
-### Una receta
-```{r, eval=FALSE}
-the_data <-  read.csv('/path/to/data/file.csv') %>%
-  subset(variable_a > x) %>%
-  transform(variable_c = variable_a/variable_b) %>%
-  head(100)
-```
---
-* Secuencia de comandos u ordenes
-
---
-
-* Lectura de izquierda a derecha
-
---
-
-* Minimizar (i) funciones anidadas y (ii)
-creación de objetos intermedios
-
---
-
-* Facilita posibiidad de modificar secuencia y agregar pasos en el medio de la misma
-
-[`r icon::fa("link")`{magrittr}](https://magrittr.tidyverse.org/)
-
----
-
-background-image: url(https://github.com/tidyverse/glue/raw/master/man/figures/logo.png)
-background-position: 95% 5%
-background-size: 10%
-
-# Facilitando el _pegado_
-
-
-```{r, echo=F}
-
-library(glue)
-
-nombre <- "TuQmano"
-
-ocupacion <- "Cientista de Datos"
-
-aniversario <- as.Date("1983-09-15")
-
-glue("Mi nombre es {nombre}. 
-     Trabajo de {ocupacion}. 
-     Nací el {format(aniversario, '%A %d de %B de %Y')}")
-```
-
-
-[`r icon::fa("link")`{glue}](https://glue.tidyverse.org/) 
-[y `r icon::fa("link")` alternativas](https://trinkerrstuff.wordpress.com/2013/09/15/paste-paste0-and-sprintf-2/) como `paste()`, `paste0()` y `sprintf()`. 
-
-
---
-```{r, eval=F}
-
-glue("Mi nombre es {nombre}. 
-     Trabajo de {ocupacion}.
-     Nací el {format(aniversario, '%A, %d de %B de %Y')}")
-```
-
---
-```{r, eval=F}
-
-library(glue)
-
-nombre <- "TuQmano"
-ocupacion <- "Cientista de Datos"
-aniversario <- as.Date("1983-09-15")
-```
-
-
-
-
 
 
 ---
