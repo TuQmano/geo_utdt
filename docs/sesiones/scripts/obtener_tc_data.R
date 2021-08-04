@@ -9,7 +9,9 @@ obtener_tc_data <- function(){
   
   # "raspo info en formato txt"
   cronista %>% 
-    html_elements("#market-scrll-2 li") %>%
+    html_elements(xpath = "//*[(@id = 'market-scrll-2')]//li") %>%
     html_text2()
   
 }
+
+

@@ -151,7 +151,7 @@ background-size: 10%
 
 
 ```{r, echo = FALSE, out.width= '35%'}
-knitr::include_graphics("http://mikelmadina.com/images/lgg_layers_mal.jpg")
+knitr::include_graphics("../fig/ggplot_layers.png")
 ```
 
 --
@@ -235,7 +235,7 @@ background-size: 10%
 
 
 ```{r, echo = FALSE, out.width= '35%'}
-knitr::include_graphics("http://mikelmadina.com/images/lgg_layers_mal.jpg")
+knitr::include_graphics("../fig/ggplot_layers.png")
 ```
 
 ---
@@ -328,7 +328,7 @@ background-size: 10%
 
 
 ```{r, echo = FALSE, out.width= '35%'}
-knitr::include_graphics("http://mikelmadina.com/images/lgg_layers_mal.jpg")
+knitr::include_graphics("../fig/ggplot_layers.png")
 ```
 
 ---
@@ -359,7 +359,7 @@ background-size: 10%
 
 
 ```{r, echo = FALSE, out.width= '35%'}
-knitr::include_graphics("http://mikelmadina.com/images/lgg_layers_mal.jpg")
+knitr::include_graphics("../fig/ggplot_layers.png")
 ```
 
 ---
@@ -443,7 +443,7 @@ ggplot(millas, aes(cilindrada, autopista)) +
 
 --
 
-**`r icon::fa("link")`** Más detalle en esta [Intro a {ggplot}]("https://es.r4ds.hadley.nz/visualización-de-datos.html")
+**`r icon::fa("link")`** Más detalle en esta [Intro a ggplot]("https://es.r4ds.hadley.nz/visualización-de-datos.html")
 
 
 
@@ -458,7 +458,7 @@ background-size: 10%
 
 
 ```{r, echo = FALSE, out.width= '35%'}
-knitr::include_graphics("http://mikelmadina.com/images/lgg_layers_mal.jpg")
+knitr::include_graphics("../fig/ggplot_layers.png")
 ```
 
 ---
