@@ -37,7 +37,9 @@ skimr::skim(properati_tuc)
   rename(localidad = l3, 
            tipo_operacion = operation_type, 
            fecha = created_on) %>% 
-  filter(!is.na(localidad)))
+  filter(!is.na(localidad)
+         )
+  )
 
 
 # TRANSFORMACION / CUENTAS: CANTIDAD DE PUBLICACIONES POR LOCALIDAD - FECHA
@@ -45,8 +47,10 @@ skimr::skim(properati_tuc)
   group_by(localidad, fecha) %>% 
   summarise(n = n()))  
  
- ggplot(datos_plot) + 
-  geom_point(mapping = aes(x = fecha, y = localidad, size = n))
+ ggplot(data = datos_plot) + 
+  geom_point(mapping = aes(x = fecha, 
+                           y = localidad, 
+                           size = n))
  
  
  ### SEGUNDO INTENTO
@@ -110,19 +114,22 @@ skimr::skim(properati_tuc)
  
  plot3 + # CUSTOMIZACION DE CAPAS: recupero texto de x y le doy color
     theme(legend.position = "bottom", 
-          axis.text.x = element_text(color = "red"))
+          axis.text.x = element_text(color = "red", angle = 45))
  
  
 (plot4 <-  plot3 + # CUSTOMIZACION DE CAPAS: recupero texto de x y le doy color
     theme(legend.position = "top", 
           axis.text.x = element_text(color = "red"))  +
-    scale_color_viridis_c(guide = "legend") )
+    scale_color_viridis_c(option = "magma", 
+                          guide = "legend"))
  
  
  # Y LAS LOCALIDADES????
  
 fecha_media <-  mean(datos_plot$fecha)
-localidades <- unique(datos_plot$localidad) 
+
+
+summary(plot4)
 
  plot4 +
     geom_text(aes(x = fecha_media, y = localidad2,
