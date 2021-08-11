@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Instrumentos de Análisis Urbanos II</title>
+    <meta charset="utf-8" />
+    <meta name="date" content="2021-10-08" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x3e5667ce68b463bb9bcd7631fe9df14","expires":14}</script>
+    <script src="libs/himalaya/himalaya.js"></script>
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <link href="libs/editable/editable.css" rel="stylesheet" />
+    <script src="libs/editable/editable.js"></script>
+    <script src="libs/xaringanExtra-webcam/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <script src="libs/peerjs/peerjs.min.js"></script>
+    <script src="libs/tiny.toast/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast/broadcast.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="footer-header.css" type="text/css" />
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Instrumentos de Análisis Urbanos II
+## Maestría en Economía Urbana
+### 
+### Universidad Torcuato Di Tella
+### 10/08/2021
+
+---
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;&lt;span&gt;Juan Pablo Ruiz Nicolini | @TuQmano | &lt;a href="www.tuqmano.ar"&gt;www.tuqmano.ar&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
+
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #fdbd15;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+---
+
+class:  middle, center, inverse
+
+
+### Data Viz (II)
+
+#### Las muchas capas de `ggplot2 +` extensiones
+
+
+
+---
+
+class:  middle
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+background-position: 95% 5%
+background-size: 10%
+
+
+### GEOM integrado
+.pull-left[
+
+```r
+library(tidyverse)
+
+p &lt;- geoAr::get_geo(geo = "TUCUMAN") %&gt;% 
+   ggplot2::ggplot() + #  SETTING color
+*  ggplot2::geom_sf(color = "blue")
+
+p   
+```
+
+&lt;img src="sesion9_files/figure-html/unnamed-chunk-1-1.png" width="300" /&gt;
+
+]
+
+.pull-right[
+
+
+&lt;img src="https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png" width="20%" /&gt;
+
+
+]
+
+---
+
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+background-position: 95% 5%
+background-size: 10%
+
+
+
+## `aes()`
+
+### **Estéticas como capas**
+
+
+
+
+```r
+
+p + 
+* aes(fill = p$data$coddepto_censo)
+```
+
+&lt;img src="sesion9_files/figure-html/unnamed-chunk-3-1.png" width="300" /&gt;
+
+* Extraemos valores de variable desde el objeto `ggplot2`
+
+
+---
+class: inverse, center, middle
+
+
+# Galería de extensiones a `ggplot2` 
+
+&lt;https://exts.ggplot2.tidyverse.org/gallery/&gt; 
+
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 5%
+background-size: 10%
+
+# Composición de gráficos
+
+[<i class="fas  fa-link "></i>`{patchwork}`](https://patchwork.data-imaginist.com/)
+
+
+
+```r
+library(ggplot2)
+*library(patchwork)
+p1 &lt;- ggplot(mtcars) + geom_point(aes(mpg, disp))
+p2 &lt;- ggplot(mtcars) + geom_boxplot(aes(gear, disp, group = gear))
+*p1 + p2
+```
+
+&lt;img src="sesion9_files/figure-html/unnamed-chunk-4-1.png" width="300" /&gt;
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 5%
+background-size: 10%
+
+
+# Composición de gráficos
+
+.pull-left[
+[<i class="fas  fa-link "></i>`{patchwork}`](https://patchwork.data-imaginist.com/)
+
+
+
+```r
+p3 &lt;- ggplot(mtcars) + geom_smooth(aes(disp, qsec))
+p4 &lt;- ggplot(mtcars) + geom_bar(aes(carb))
+*(p1 | p2 | p3) /
+*     p4
+```
+
+&lt;img src="sesion9_files/figure-html/unnamed-chunk-5-1.png" width="300" /&gt;
+
+]
+--
+ .pull-right[
+### Alternativa 
+
+
+&lt;img src="https://wilkelab.org/cowplot/reference/figures/logo.png" width="20%" /&gt;
+
+[<i class="fas  fa-link "></i>`{cowplot}`](https://wilkelab.org/cowplot/index.html)
+
+]
+
+---
+
+background-image: url(https://wilkelab.org/cowplot/reference/figures/logo.png) 
+background-position: 95% 3%
+background-size: 10%
+
+
+# Composición de gráficos
+
+
+
+
+
+
+
+```r
+library(cowplot)
+logo_file &lt;- "https://github.com/electorArg/polAr/blob/master/hex/hex-polAr.png?raw=true"
+ggdraw(cow_plot) +
+  draw_label(label = "HECHO CON", color = "blue", size = 40, angle = 45 , alpha = .5) +
+  draw_image(logo_file, x = 1, y = 1.1, hjust = 1, vjust = 1, width = 0.15)
+```
+
+&lt;img src="sesion9_files/figure-html/unnamed-chunk-8-1.png" width="300" /&gt;
+
+
+---
+
+background-image: url(https://dreamrs.github.io/esquisse/reference/figures/esquisse.gif) 
+background-size: 70%
+
+
+# [<i class="fas  fa-link "></i>`{esquisse}`](https://dreamrs.github.io/esquisse/)
+
+
+---
+class: inverse 
+
+## <i class="fas  fa-book "></i> Referencias
+
+### Themes
+
+* `{ggthemes}` &lt;https://jrnold.github.io/ggthemes/index.html&gt;
+
+
+* `{hrbthemes}` &lt;https://cinc.rud.is/web/packages/hrbrthemes/&gt;
+
+--
+
+### Fonts
+
+* `{extrafont}` &lt;https://github.com/wch/extrafont&gt;
+* `{ggtext}` &lt;https://wilkelab.org/ggtext/&gt;
+
+--
+
+### `+` 
+
+
+* `{plotly}` &lt;https://plotly-r.com/&gt;
+
+* **The `R` Graph Gallery** &lt;https://www.r-graph-gallery.com/&gt;
+
+
+---
+
+class: center, middle, inverse
+
+# Mapas con {sf} y {mapsf} 
+
+`scripts/mapsf.r` 
+
+`srcipts/get_tiles.r`
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

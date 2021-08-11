@@ -1,0 +1,293 @@
+---
+title: "Instrumentos de An&aacute;lisis Urbanos II"
+subtitle: "Maestría en Economía Urbana"
+author: ""
+institute: "Universidad Torcuato Di Tella"
+date: "10/08/2021"
+output:
+  xaringan::moon_reader:
+    css: ["footer-header.css", "styles.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+---
+
+layout: true
+  
+<div class="my-footer"><span>Juan Pablo Ruiz Nicolini | @TuQmano | <a href="www.tuqmano.ar">www.tuqmano.ar</a></span></div> 
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.retina = 3,
+                      out.width = 300, ### control plot size
+                      cache = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+
+```
+
+
+```{r xaringan, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "extra_styles", "scribble", "editable", "broadcast", "webcam"))
+
+
+```
+
+```{r extrasXaringan, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+)
+
+xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
+
+
+
+
+```
+
+
+---
+
+class:  middle, center, inverse
+
+
+### Data Viz (II)
+
+#### Las muchas capas de `ggplot2 +` extensiones
+
+
+
+---
+
+class:  middle
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+background-position: 95% 5%
+background-size: 10%
+
+
+### GEOM integrado
+.pull-left[
+```{r}
+library(tidyverse)
+
+p <- geoAr::get_geo(geo = "TUCUMAN") %>% 
+   ggplot2::ggplot() + #  SETTING color
+   ggplot2::geom_sf(color = "blue")   #<<
+
+p   
+   
+```
+
+]
+
+.pull-right[
+
+
+```{r, echo=FALSE, out.width= "20%"}
+knitr::include_graphics("https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png")
+
+```
+
+
+]
+
+---
+
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+background-position: 95% 5%
+background-size: 10%
+
+
+
+## `aes()`
+
+### **Estéticas como capas**
+
+
+
+```{r}
+
+p + 
+  aes(fill = p$data$coddepto_censo) #<<
+
+```
+
+* Extraemos valores de variable desde el objeto `ggplot2`
+
+
+---
+class: inverse, center, middle
+
+
+# Galería de extensiones a `ggplot2` 
+
+<https://exts.ggplot2.tidyverse.org/gallery/> 
+
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 5%
+background-size: 10%
+
+# Composición de gráficos
+
+[`r icon::fa("link")``{patchwork}`](https://patchwork.data-imaginist.com/)
+
+
+```{r}
+library(ggplot2)
+library(patchwork) #<<
+p1 <- ggplot(mtcars) + geom_point(aes(mpg, disp))
+p2 <- ggplot(mtcars) + geom_boxplot(aes(gear, disp, group = gear))
+p1 + p2 #<<
+```
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 5%
+background-size: 10%
+
+
+# Composición de gráficos
+
+.pull-left[
+[`r icon::fa("link")``{patchwork}`](https://patchwork.data-imaginist.com/)
+
+
+```{r}
+p3 <- ggplot(mtcars) + geom_smooth(aes(disp, qsec))
+p4 <- ggplot(mtcars) + geom_bar(aes(carb))
+(p1 | p2 | p3) / #<<
+      p4         #<<
+```
+
+]
+--
+ .pull-right[
+### Alternativa 
+
+
+```{r, echo=FALSE, out.width="20%"}
+knitr::include_graphics("https://wilkelab.org/cowplot/reference/figures/logo.png")
+```
+
+[`r icon::fa("link")``{cowplot}`](https://wilkelab.org/cowplot/index.html)
+
+]
+
+---
+
+background-image: url(https://wilkelab.org/cowplot/reference/figures/logo.png) 
+background-position: 95% 3%
+background-size: 10%
+
+
+# Composición de gráficos
+
+
+
+
+```{r include=FALSE}
+
+library(cowplot)
+
+
+library(polAr)
+eleccion03 <- get_election_data("arg", "presi", "gral", 2003)
+electores_provincias <- eleccion03 %>% 
+  select(name_prov, electores) %>% 
+  distinct() 
+resultados <- eleccion03 %>% 
+  get_names() %>% 
+  select(nombre_lista, name_prov, votos) %>% 
+  mutate(pct = round(votos/sum(votos)*100,1)) %>% 
+  group_by(name_prov) %>% 
+  slice_max(order_by = pct, n = 2) %>% 
+  mutate(dif = abs(pct - lead(pct))) %>% 
+  fill(dif,  .direction = "down") 
+  
+#### GRAFICOS
+electores_plot <- ggplot(electores_provincias) +
+  geom_col(aes(x = electores/1000, 
+                  y = fct_reorder(name_prov, electores)))
+resultados_plot <- ggplot(resultados) +
+  geom_point(aes(x = pct,
+                 y = fct_reorder(name_prov, dif), 
+                 color = nombre_lista)) +
+  theme(legend.position = "bottom")
+
+
+
+cow_plot <- resultados_plot +
+  theme_cowplot() +
+  theme(legend.position = "bottom")
+  
+```
+
+```{r}
+library(cowplot)
+logo_file <- "https://github.com/electorArg/polAr/blob/master/hex/hex-polAr.png?raw=true"
+ggdraw(cow_plot) +
+  draw_label(label = "HECHO CON", color = "blue", size = 40, angle = 45 , alpha = .5) +
+  draw_image(logo_file, x = 1, y = 1.1, hjust = 1, vjust = 1, width = 0.15)
+```
+
+
+---
+
+background-image: url(https://dreamrs.github.io/esquisse/reference/figures/esquisse.gif) 
+background-size: 70%
+
+
+# [`r icon::fa("link")``{esquisse}`](https://dreamrs.github.io/esquisse/)
+
+
+---
+class: inverse 
+
+## `r icon::fa("book")` Referencias
+
+### Themes
+
+* `{ggthemes}` <https://jrnold.github.io/ggthemes/index.html>
+
+
+* `{hrbthemes}` <https://cinc.rud.is/web/packages/hrbrthemes/>
+
+--
+
+### Fonts
+
+* `{extrafont}` <https://github.com/wch/extrafont>
+* `{ggtext}` <https://wilkelab.org/ggtext/>
+
+--
+
+### `+` 
+
+
+* `{plotly}` <https://plotly-r.com/>
+
+* **The `R` Graph Gallery** <https://www.r-graph-gallery.com/>
+
+
+---
+
+class: center, middle, inverse
+
+# Mapas con {sf} y {mapsf} 
+
+`scripts/mapsf.r` 
+
+`srcipts/get_tiles.r`
+
