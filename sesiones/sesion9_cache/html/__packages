@@ -1,0 +1,15 @@
+base
+polAr
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+patchwork
+cowplot
+usethis
+devtools
