@@ -18,7 +18,7 @@ output:
 layout: true
   
   
-<div class="my-footer"><span>Juan Pablo Ruiz Nicolini | @TuQmano | <a href="www.tuqmano.ar">www.tuqmano.ar</a></span></div> 
+<div class="my-footer"><span>Juan Pablo Ruiz Nicolini | @TuQmano | <a href="https://tuqmano.ar/">www.tuqmano.ar</a></span></div> 
 
 ---
 
@@ -53,11 +53,6 @@ xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
 
 
 ```
-
-
-
-
-class: center, middle
 
 
 # J.P. Ruiz Nicolini 

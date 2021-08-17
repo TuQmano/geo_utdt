@@ -34,7 +34,7 @@ navbar:
         - text: "Clase 9"
           href: https://tuqmano.github.io/geo_utdt/sesiones/sesion9.html
         - text: "Clase 10"
-#          href: publish_article.html
+          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion9.html
     - text: "Bibliografia"
       href: biblio.html
     - text: "Herramientas"
