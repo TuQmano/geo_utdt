@@ -64,6 +64,8 @@ knitr::include_graphics("figs/clarin.png")
 
 ---
 
+class: inverse
+
 # TRABAJO FINAL
 
 ## Contenido del trabajo:
@@ -81,9 +83,7 @@ knitr::include_graphics("figs/clarin.png")
 
 * Comentarios a modo de conclusión respecto a los resultados obtenidos, tanto en lo que refiere a la información producida como a lo enfrentado durante el procesamiento de datos
 
-## Formato de entrega:
-
-* Repositorio en Github cuyo contenido sea el proyecto, estructurado y ordenado para el análisis.
+**Formato de entrega:**  Repositorio en Github cuyo contenido sea el proyecto, estructurado y ordenado para el análisis.
 
 ---
 
@@ -96,6 +96,8 @@ class:  middle, center, inverse
 
 
 ---
+
+class: center
 
 ## Elegir el gráfico correcto para nuestros datos
 
@@ -165,11 +167,11 @@ a + b + c
 
 
 ---
-
+class: center
 
 ## Elegir el gráfico correcto para nuestros datos
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width='50%'}
 
 
 a <- plot_pie(data1, c(10,35,55,75,93))  + theme_void() + theme(legend.position = "none")
@@ -218,7 +220,7 @@ class:inverse
 > **"_Trump loves this 2016 election map because it suggests the majority of the country supports him (...)_"** **([NYT](https://www.nytimes.com/interactive/2020/10/30/opinion/election-results-maps.html))**
 
 ```{r, echo=FALSE, out.width="100%"}
-knitr::include_graphics("figs/nyt.PNG")
+knitr::include_graphics("figs/nyt.png")
 ```
 
 ---
