@@ -12,33 +12,38 @@ navbar:
       href: bio.html
     - text: "Descargar Programa"
       href: https://github.com/TuQmano/geo_utdt/raw/master/programa_pdf/programa.pdf
-  right:
-    - text: "Sesiones"
-      menu:
-        - text: "Clase 1"
-          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion1.html
-        - text: "Clase 2"
-          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion2.html
-        - text: "Clase 3"
-          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion3.html
-        - text: "Clase 4"
-          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion4.html
-        - text: "Clase 5"
-          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion5.html
-        - text: "Clase 6"
-          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion6.html
-        - text: "Clase 7"
-          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion7.html  
-        - text: "Clase 8"
-          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion8.html
-        - text: "Clase 9"
-          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion9.html
-        - text: "Clase 10"
-          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion10.html
     - text: "Bibliografia"
       href: biblio.html
     - text: "Herramientas"
       href: software.html
+    - text: "Sesiones"
+      #menu:
+      #  - text: "Clase 1"
+      #    href: https://tuqmano.github.io/geo_utdt/sesiones/sesion1.html
+      #  - text: "Clase 2"
+      #    href: https://tuqmano.github.io/geo_utdt/sesiones/sesion2.html
+      #  - text: "Clase 3"
+      #    href: https://tuqmano.github.io/geo_utdt/sesiones/sesion3.html
+      #  - text: "Clase 4"
+      #    href: https://tuqmano.github.io/geo_utdt/sesiones/sesion4.html
+      #  - text: "Clase 5"
+      #    href: https://tuqmano.github.io/geo_utdt/sesiones/sesion5.html
+      #  - text: "Clase 6"
+      #    href: https://tuqmano.github.io/geo_utdt/sesiones/sesion6.html
+      #  - text: "Clase 7"
+      #    href: https://tuqmano.github.io/geo_utdt/sesiones/sesion7.html  
+      #  - text: "Clase 8"
+      #    href: https://tuqmano.github.io/geo_utdt/sesiones/sesion8.html
+      #  - text: "Clase 9"
+      #    href: https://tuqmano.github.io/geo_utdt/sesiones/sesion9.html
+      #  - text: "Clase 10"
+      #    href: https://tuqmano.github.io/geo_utdt/sesiones/sesion10.html
+    
+  right:
+    - text: "Ediciones Anteriores"
+      menu:
+      - text: "2021"  
+        href: https://tuqmano.github.io/geo_utdt2021/
     - icon: fab fa-github
       href: https://github.com/tuqmano/geo_utdt
 output: distill::distill_article

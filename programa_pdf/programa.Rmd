@@ -9,33 +9,37 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# **Maestría en Economía Urbana \| Universidad Torcuato Di Tella**
+### **Maestría en Economía Urbana \| Universidad Torcuato Di Tella**
 
-**8 de junio - 17 de agosto de 2021 \| 19.15hs \| VIRTUAL**
+**21 de junio - 30 de agosto de 2022 \| 19.15hs \| VIRTUAL**
 
-## **Descripción del curso:**
-
+#### **Descripción del curso:**
 *Instrumentos de Análisis Urbano II* está pensado como un curso aplicado de Ciencia de Datos para ciudades. Para ello nos valdremos de herramientas computacionales que, en conjunto, tienen como objetivo la elaboración de un proyecto de análisis urbano desde la obtención de los datos (de diversas fuentes y formatos); su curaduría, limpieza, procesamiento, análisis, hasta la comunicación de los mismos.
 
 Desde el inicio, además, propondremos alternativas para la organización del proyecto que apuntan a potenciar la reproducibilidad de las investigaciones y sacar provecho del control de versiones y el trabajo colaborativo.
 
 ## Organización del curso
 
-El curso se divide en tres grandes módulos:
+El curso se divide en dos grandes módulos:
 
-1.  a lo largo de las primeras dos clases, presentaremos el programa, evaluaremos el conocimiento previo de los participantes y avanzaremos con la instalación y *mise en place* de las herramientas que proponemos utilizar a lo largo de la materia.
+1.	Introducción a las principales herramientas de R para el procesamiento de datos.
 
-2.  desde la sesión 3 hasta la 7 inclusive, se procurará introducir técnicas para el acceso, limpieza y transformación de datos.
+2.	Introducción a las principales herramientas de R para el procesamiento de datos espaciales y la visualización de la información.
 
-3.  por último, desde el octavo y hasta el décimo encuentro, se presentarán técnicas para la visualización de datos en general y geográficos en particular, a la vez que se discutirán casos y aplicaciones.
+Las clases se estructuran con una presentación del contenido de forma oral seguida de prácticas en clase sobre lo expuesto. El objetivo es que los y las alumnas puedan practicar y disponer de la clase como ámbito de consulta.
+ 
 
 ## Práctica y Evaluación
 
-Este curso está pensado para avanzar a través de la práctica de los contenidos. Por ello se espera de los alumnos una participación activa, con entregas de pequeños ejercicios periódicamente. Esta participación será parte de la evaluación final ($40\%$) que requerirá además la entrega de un informe original sobre un tema urbano que aplique el conjunto de herramientas expuestas a lo largo del curso. La puntuación máxima del informe será el $60\%$ de la nota final.
+Este curso está pensado para avanzar a través de la práctica de los contenidos. Por ello se espera de los alumnos una participación activa, con entregas de pequeños ejercicios periódicamente. Esta participación será parte de la evaluación final ($40\%$) que requerirá además la entrega de un informe original sobre un tema urbano que aplique el conjunto de herramientas expuestas a lo largo del curso. La puntuación máxima del informe será el $60\%$ de la nota final. 
 
-------------------------------------------------------------------------
+Se propone un trabajo final integrador. Se espera en el mismo que se plasme el planteo de un problema plausible de ser respondido con datos y el desarrollo de los procedimientos programáticos en R para la resolución del mismo.
 
-# MÓDULOS
+El trabajo debe incluir los contenidos dictados a lo largo de los dos módulos (Planteo de un problema, importación y limpieza de la base de datos, generación de indicadores no espaciales y espaciales y presentación de los resultados. Se ofrece elegir un tema propio o relativo a la base de trabajo que se dará en clase. 
+
+El formato de entrega esperado es un proyecto de trabajo en RStudio vinculado a un repositorio en Github.
+
+---
 
 ## Módulo 1
 
@@ -45,19 +49,12 @@ Este curso está pensado para avanzar a través de la práctica de los contenido
 
 ### Sesión 2: Introducción
 
-**`R` + RStudio**
+- Intro a **`R`** y  **RStudio** + Paquetes
 
 -   Organización del flujo de trabajo (.`Rproj`, y `git`)
 
-<!-- -->
+- Scripts vs _RMarkdown_
 
--   `R base` y el suite *Tidyverse*
-
--   Reproducibilidad y Comunicación (`.R` y `Rmd`)
-
-    ------------------------------------------------------------------------
-
-## Módulo 2
 
 ### Sesión 3: Domar los datos I
 
@@ -71,7 +68,8 @@ Este curso está pensado para avanzar a través de la práctica de los contenido
 
 **Herramientas auxiliares para mejorar el flujo del código:**
 
--   la pipa de `magrittr` (`%>%`) para encadenar y `glue` para facilitar la concatenación.
+-   la pipa de `magrittr` (`%>%`) para encadenar y `glue` para facilitar la concatenación. 
+
 
 ### Sesión 4: Domar los datos II
 
@@ -79,61 +77,57 @@ Este curso está pensado para avanzar a través de la práctica de los contenido
 
 **Ampliando la caja de herramientas:**
 
--   `lubridate` para trabajar el tiempo
-
 -   `forcats` para datos categóricos (factors)
 
 -   `stringr` para datos de texto
 
-### Sesión 5: Domar los datos III
+### Sesión 5: R Intermedio
 
-**Trabajar con *geo* data:**
 
--   `sf`
+- Funciones
 
--   `rmapshaper`
+- Iteraciones / _loops_
 
--   `geoAr`
 
-### Sesión 6: Programación (intro)
 
-**No repetirse uno mismo**
+## Módulo 2: _Domar los datos_(espaciales) y Representación Visual de la Información
 
--   Escribir funciones
 
--   Programación funcional (Introducción a `purrr` )
+### Sesión 6  **Trabajar con *geo* data:**
 
-### Sesión 7: Obtener datos de la web
+- Flujo de trabajo con datos espaciales
 
--   ejemplos aplicados con APIs y *web scraping* con `rvest`
+- Procesamiento de datos con `sf`
 
-------------------------------------------------------------------------
+- El paquete `geoAr`
 
-## Módulo 3
 
-### Sesión 8: Data Viz I
+### Sesión 7: Data Viz I
 
-**La *Gramática de los Gráficos***
+- Introducción a la visualización de datos
 
--   Introducción a `ggplot2`
+- **La *Gramática de los Gráficos***
 
-### Sesión 9: Data Viz II
+- El paquete `ggplot2`
 
-**Las muchas capas de `ggplot2`**
+### Sesión 8: Data Viz II
 
--   `geom_sf()`: para mapas estáticos
+- Las muchas capas de `ggplot2`
 
-Extensiones: `mapsf`,`patchwork`, `cowplot` , entre otros.
+- Facet con `geoAr` para grillas como si fueran mapas
 
-### Sesión 10: Data Viz III
+- Composición de gráficos con `patchwork`, `cowplot` , entre otros.
 
-**Distintas formas de representar información geográfica:**
+### Sesión 9: GEO Data Viz I
 
--   `leaflet`: para mapas interactivos
+-   `geom_sf()` para mapas estáticos
 
--   `geofacet`: para grillas como si fueran mapas
+-   Una alternativa para `mapsf`
 
--   `tilemaps`: *cuando el área no importa*
+### Sesión 10: GEO Data Viz II
+
+-   `leaflet` para mapas interactivos
+
 
 # BIBLIOGRAFÍA
 

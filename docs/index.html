@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -55,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -76,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Inicio: Instrumentos de An&amp;aacute;lisis Urbanos II</title>
@@ -454,7 +456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1861,7 +1863,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -2032,7 +2037,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2066,29 +2071,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="index.html" class="title">Inicio</a>
 <a href="bio.html">Profesores</a>
 <a href="https://github.com/TuQmano/geo_utdt/raw/master/programa_pdf/programa.pdf">Descargar Programa</a>
+<a href="biblio.html">Bibliografia</a>
+<a href="software.html">Herramientas</a>
+<span class="nav-dropdown-header">Sesiones</span>
 </div>
 <div class="nav-right">
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
-Sesiones
+Ediciones Anteriores
  
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion1.html">Clase 1</a>
-<a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion2.html">Clase 2</a>
-<a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion3.html">Clase 3</a>
-<a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion4.html">Clase 4</a>
-<a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion5.html">Clase 5</a>
-<a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion6.html">Clase 6</a>
-<a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion7.html">Clase 7</a>
-<a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion8.html">Clase 8</a>
-<a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion9.html">Clase 9</a>
-<a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion10.html">Clase 10</a>
+<a href="https://tuqmano.github.io/geo_utdt2021/">2021</a>
 </div>
 </div>
-<a href="biblio.html">Bibliografia</a>
-<a href="software.html">Herramientas</a>
 <a href="https://github.com/tuqmano/geo_utdt">
 <i class="fab fa-github" aria-hidden="true"></i>
 </a>
@@ -2110,38 +2107,34 @@ Sesiones
 
 <div class="d-article">
 <h3 id="maestría-en-economía-urbana-universidad-torcuato-di-tella"><strong>Maestría en Economía Urbana | Universidad Torcuato Di Tella</strong></h3>
-<p><strong>8 de junio - 17 de agosto de 2021 | 19.15hs | VIRTUAL</strong></p>
+<p><strong>21 de junio - 30 de agosto de 2022 | 19.15hs | VIRTUAL</strong></p>
 <h4 id="descripción-del-curso"><strong>Descripción del curso:</strong></h4>
 <p><em>Instrumentos de Análisis Urbano II</em> está pensado como un curso aplicado de Ciencia de Datos para ciudades. Para ello nos valdremos de herramientas computacionales que, en conjunto, tienen como objetivo la elaboración de un proyecto de análisis urbano desde la obtención de los datos (de diversas fuentes y formatos); su curaduría, limpieza, procesamiento, análisis, hasta la comunicación de los mismos.</p>
 <p>Desde el inicio, además, propondremos alternativas para la organización del proyecto que apuntan a potenciar la reproducibilidad de las investigaciones y sacar provecho del control de versiones y el trabajo colaborativo.</p>
 <h2 id="organización-del-curso">Organización del curso</h2>
-<p>El curso se divide en tres grandes módulos:</p>
+<p>El curso se divide en dos grandes módulos:</p>
 <ol type="1">
-<li><p>a lo largo de las primeras dos clases, presentaremos el programa, evaluaremos el conocimiento previo de los participantes y avanzaremos con la instalación y <em>mise en place</em> de las herramientas que proponemos utilizar a lo largo de la materia.</p></li>
-<li><p>desde la sesión 3 hasta la 7 inclusive, se procurará introducir técnicas para el acceso, limpieza y transformación de datos.</p></li>
-<li><p>por último, desde el octavo al décimo encuentro, se presentarán técnicas para la visualización de datos en general y geográficos en particular, a la vez que se discutirán casos y aplicaciones.</p></li>
+<li><p>Introducción a las principales herramientas de R para el procesamiento de datos.</p></li>
+<li><p>Introducción a las principales herramientas de R para el procesamiento de datos espaciales y la visualización de la información.</p></li>
 </ol>
+<p>Las clases se estructuran con una presentación del contenido de forma oral seguida de prácticas en clase sobre lo expuesto. El objetivo es que los y las alumnas puedan practicar y disponer de la clase como ámbito de consulta.</p>
 <h2 id="práctica-y-evaluación">Práctica y Evaluación</h2>
 <p>Este curso está pensado para avanzar a través de la práctica de los contenidos. Por ello se espera de los alumnos una participación activa, con entregas de pequeños ejercicios periódicamente. Esta participación será parte de la evaluación final (<span class="math inline">\(40\%\)</span>) que requerirá además la entrega de un informe original sobre un tema urbano que aplique el conjunto de herramientas expuestas a lo largo del curso. La puntuación máxima del informe será el <span class="math inline">\(60\%\)</span> de la nota final.</p>
+<p>Se propone un trabajo final integrador. Se espera en el mismo que se plasme el planteo de un problema plausible de ser respondido con datos y el desarrollo de los procedimientos programáticos en R para la resolución del mismo.</p>
+<p>El trabajo debe incluir los contenidos dictados a lo largo de los dos módulos (Planteo de un problema, importación y limpieza de la base de datos, generación de indicadores no espaciales y espaciales y presentación de los resultados. Se ofrece elegir un tema propio o relativo a la base de trabajo que se dará en clase.</p>
+<p>El formato de entrega esperado es un proyecto de trabajo en RStudio vinculado a un repositorio en Github.</p>
 <hr />
-<h1 id="módulos">MÓDULOS</h1>
 <h2 id="módulo-1">Módulo 1</h2>
 <h3 id="sesión-1-presentación">Sesión 1: Presentación</h3>
 <ul>
 <li>Configuración de herramientas y puesta en marcha</li>
 </ul>
 <h3 id="sesión-2-introducción">Sesión 2: Introducción</h3>
-<p><strong><code>R</code> + RStudio</strong></p>
 <ul>
-<li>Organización del flujo de trabajo (.<code>Rproj</code>, y <code>git</code>)</li>
+<li><p>Intro a <strong><code>R</code></strong> y <strong>RStudio</strong> + Paquetes</p></li>
+<li><p>Organización del flujo de trabajo (.<code>Rproj</code>, y <code>git</code>)</p></li>
+<li><p>Scripts vs <em>RMarkdown</em></p></li>
 </ul>
-<!-- -->
-<ul>
-<li><p><code>R base</code> y el suite <em>Tidyverse</em></p></li>
-<li><p>Reproducibilidad y Comunicación (<code>.R</code> y <code>Rmd</code>)</p>
-<hr /></li>
-</ul>
-<h2 id="módulo-2">Módulo 2</h2>
 <h3 id="sesión-3-domar-los-datos-i">Sesión 3: Domar los datos I</h3>
 <p><strong>Los principales paquetes y sus verbos para:</strong></p>
 <ul>
@@ -2159,46 +2152,41 @@ Sesiones
 </ul>
 <p><strong>Ampliando la caja de herramientas:</strong></p>
 <ul>
-<li><p><code>lubridate</code> para trabajar el tiempo</p></li>
 <li><p><code>forcats</code> para datos categóricos (factors)</p></li>
 <li><p><code>stringr</code> para datos de texto</p></li>
 </ul>
-<h3 id="sesión-5-domar-los-datos-iii">Sesión 5: Domar los datos III</h3>
-<p><strong>Trabajar con <em>geo</em> data:</strong></p>
+<h3 id="sesión-5-r-intermedio">Sesión 5: R Intermedio</h3>
 <ul>
-<li><p><code>sf</code></p></li>
-<li><p><code>rmapshaper</code></p></li>
-<li><p><code>geoAr</code></p></li>
+<li><p>Funciones</p></li>
+<li><p>Iteraciones / <em>loops</em></p></li>
 </ul>
-<h3 id="sesión-6-programación-intro">Sesión 6: Programación (intro)</h3>
-<p><strong>No repetirse uno mismo</strong></p>
+<h2 id="módulo-2-domar-los-datosespaciales-y-representación-visual-de-la-información">Módulo 2: <em>Domar los datos</em>(espaciales) y Representación Visual de la Información</h2>
+<h3 id="sesión-6-trabajar-con-geo-data">Sesión 6 <strong>Trabajar con <em>geo</em> data:</strong></h3>
 <ul>
-<li><p>Escribir funciones</p></li>
-<li><p>Programación funcional (Introducción a <code>purrr</code> )</p></li>
+<li><p>Flujo de trabajo con datos espaciales</p></li>
+<li><p>Procesamiento de datos con <code>sf</code></p></li>
+<li><p>El paquete <code>geoAr</code></p></li>
 </ul>
-<h3 id="sesión-7-obtener-datos-de-la-web">Sesión 7: Obtener datos de la web</h3>
+<h3 id="sesión-7-data-viz-i">Sesión 7: Data Viz I</h3>
 <ul>
-<li>ejemplos aplicados con APIs y <em>web scraping</em> con <code>rvest</code></li>
+<li><p>Introducción a la visualización de datos</p></li>
+<li><p><strong>La <em>Gramática de los Gráficos</em></strong></p></li>
+<li><p>El paquete <code>ggplot2</code></p></li>
 </ul>
-<hr />
-<h2 id="módulo-3">Módulo 3</h2>
-<h3 id="sesión-8-data-viz-i">Sesión 8: Data Viz I</h3>
-<p><strong>La <em>Gramática de los Gráficos</em></strong></p>
+<h3 id="sesión-8-data-viz-ii">Sesión 8: Data Viz II</h3>
 <ul>
-<li>Introducción a <code>ggplot2</code></li>
+<li><p>Las muchas capas de <code>ggplot2</code></p></li>
+<li><p>Facet con <code>geoAr</code> para grillas como si fueran mapas</p></li>
+<li><p>Composición de gráficos con <code>patchwork</code>, <code>cowplot</code> , entre otros.</p></li>
 </ul>
-<h3 id="sesión-9-data-viz-ii">Sesión 9: Data Viz II</h3>
-<p><strong>Las muchas capas de <code>ggplot2</code></strong></p>
+<h3 id="sesión-9-geo-data-viz-i">Sesión 9: GEO Data Viz I</h3>
 <ul>
-<li><code>geom_sf()</code>: para mapas estáticos</li>
+<li><p><code>geom_sf()</code> para mapas estáticos</p></li>
+<li><p>Una alternativa para <code>mapsf</code></p></li>
 </ul>
-<p>Extensiones: <code>mapsf</code>,<code>patchwork</code>, <code>cowplot</code> , entre otros.</p>
-<h3 id="sesión-10-data-viz-iii">Sesión 10: Data Viz III</h3>
-<p><strong>Distintas formas de representar información geográfica:</strong></p>
+<h3 id="sesión-10-geo-data-viz-ii">Sesión 10: GEO Data Viz II</h3>
 <ul>
-<li><p><code>leaflet</code>: para mapas interactivos</p></li>
-<li><p><code>geofacet</code>: para grillas como si fueran mapas</p></li>
-<li><p><code>tilemaps</code>: <em>cuando el área no importa</em></p></li>
+<li><code>leaflet</code> para mapas interactivos</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
