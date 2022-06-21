@@ -18,7 +18,7 @@ output:
 layout: true
   
   
-<div class="my-footer"><span>Juan Pablo Ruiz Nicolini | @TuQmano | <a href="https://tuqmano.ar/">www.tuqmano.ar</a></span></div> 
+<div class="my-footer"><span>Instrumentos de Análisis Urbanos II - <a href="https://tuqmano.github.io/geo_utdt/">https://tuqmano.github.io/geo_utdt/</a></span></div> 
 
 ---
 
@@ -65,7 +65,7 @@ xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
 
 #### *estudios electorales | reforma política  | métodos cuantitativos*
 
-####{polAr} `->` [politicargentina.github.io/data-warehouse](https://politicaargentina.github.io/data_warehouse/)
+####{polAr} `->` [github.com/PoliticaArgentina/](https://github.com/PoliticaArgentina/)
 
 
 
@@ -101,7 +101,7 @@ xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
 `r icons::fontawesome("github")`[/pablotis](https://github.com/pablotis) 
 
 ---
-class: inverse, center, middle
+class: center, middle
 
 # Quienes son ustedes?
 
@@ -130,13 +130,15 @@ MACHETE:
 *  Arquitecta
 *  UNR / Rosario, Santa Fe
 *  Excel / SPSS / Stata
-*  Sindicatos y Mov. Sociales
+*  Movilidad / Desarrollo Urabano / Vivienda Social
 ```
 
 ]
 
 
 ---
+
+class: inverse
 
 # Historia de R
 
@@ -166,6 +168,8 @@ MACHETE:
 
 ---
 
+class: inverse
+
 # Qué es R?
 
 ## LENGUAJE
@@ -194,6 +198,7 @@ MACHETE:
 
 
 ---
+class: inverse
 
 # Curso
 
@@ -205,9 +210,6 @@ MACHETE:
 
 --
 
-* Se compartirá el **código en vivo** para que puedan tener acceso desde un navegador de internet. 
-
---
 
 * La evaluación del curso consistirá en la entrega de un informe con un análisis de datos replicando el flujo de trabajo que presentaremos en el taller. 
 
