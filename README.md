@@ -3,8 +3,7 @@
 
 DESCRIPCIÓN DEL CURSO:
 
-Descripción del curso: Instrumentos de Análisis Urbano II está pensado como un curso aplicado de
-Ciencia de Datos para ciudades. Para ello nos valdremos de herramientas computacionales que, en conjunto, tienen como objetivo la elaboración de un proyecto de análisis urbano desde la obtención de los datos (de diversas fuentes y formatos); su curaduría, limpieza, procesamiento, análisis, hasta la comunicación de los mismos.
+**Instrumentos de Análisis Urbano II** está pensado como un curso aplicado de Ciencia de Datos para ciudades. Para ello nos valdremos de herramientas computacionales que, en conjunto, tienen como objetivo la elaboración de un proyecto de análisis urbano desde la obtención de los datos (de diversas fuentes y formatos); su curaduría, limpieza, procesamiento, análisis, hasta la comunicación de los mismos.
 
 Desde el inicio, además, propondremos alternativas para la organización del proyecto que apuntan a potenciar la reproducibilidad de las investigaciones y sacar provecho del control de versiones y el trabajo colaborativo.
 
