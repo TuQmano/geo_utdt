@@ -54,6 +54,8 @@ xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
 
 ```
 
+---
+class: inverse 
 
 # J.P. Ruiz Nicolini 
 
@@ -73,13 +75,16 @@ xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
 
 ####`->` [researchgate.net/juanpabloruiznicolini](https://www.researchgate.net/profile/Juan_Ruiz_Nicolini)
 
-`r icons::fontawesome("globe")` [tuqmano.com](https://www.tuqmano.com/) 
+`r icons::icon_style(icons::fontawesome("globe"), fill = "#fdbd15")` [tuqmano.com](https://www.tuqmano.com/) 
 
-`r icons::fontawesome("twitter")` [@tuqmano](https://twitter.com/TuQmano) 
+`r icons::icon_style(icons::fontawesome("twitter"), fill = "#fdbd15")` [@tuqmano](https://twitter.com/TuQmano) 
 
-`r icons::fontawesome("github")` [/tuqmano](https://github.com/tuqmano) 
+`r icons::icon_style(icons::fontawesome("github"), fill = "#fdbd15")` [/tuqmano](https://github.com/tuqmano) 
 
 ---
+
+class: inverse 
+
 # Pablo Tiscornia
 
 ### Sociólogo (UBA)
@@ -94,11 +99,11 @@ xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
 
 ### **Contacto:** 
 
-`r icons::fontawesome("globe")` [Rpubs-pablotis](https://rpubs.com/pablotisco) 
+`r icons::icon_style(icons::fontawesome("globe"), fill = "#fdbd15")` [Rpubs-pablotis](https://rpubs.com/pablotisco) 
 
-`r icons::fontawesome("twitter")`[@pabblo_h](https://twitter.com/pabblo_h)
+`r icons::icon_style(icons::fontawesome("twitter"), fill = "#fdbd15")`[@pabblo_h](https://twitter.com/pabblo_h)
 
-`r icons::fontawesome("github")`[/pablotis](https://github.com/pablotis) 
+`r icons::icon_style(icons::fontawesome("github"), fill = "#fdbd15")`[/pablotis](https://github.com/pablotis) 
 
 ---
 class: center, middle
