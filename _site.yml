@@ -17,9 +17,9 @@ navbar:
     - text: "Herramientas"
       href: software.html
     - text: "Sesiones"
-      #menu:
-      #  - text: "Clase 1"
-      #    href: https://tuqmano.github.io/geo_utdt/sesiones/sesion1.html
+      menu:
+        - text: "Clase 1"
+          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion1.html
       #  - text: "Clase 2"
       #    href: https://tuqmano.github.io/geo_utdt/sesiones/sesion2.html
       #  - text: "Clase 3"
