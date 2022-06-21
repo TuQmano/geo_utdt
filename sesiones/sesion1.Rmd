@@ -59,24 +59,46 @@ xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
 
 ### Politólogo<sup>2</sup> (UTDT)
 
-
-####`->` [researchgate.net/juanpabloruiznicolini](https://www.researchgate.net/profile/Juan_Ruiz_Nicolini)
-
-
-#### Áreas: 
-
-#### estudios electorales | reforma política  | métodos cuantitativos
-
----
-
-class: center, middle
-
-# @TuQmano
-
 ### Cientista de Datos 
+
+### **Áreas de interés:**
+
+#### *estudios electorales | reforma política  | métodos cuantitativos*
 
 ####{polAr} `->` [politicargentina.github.io/data-warehouse](https://politicaargentina.github.io/data_warehouse/)
 
+
+
+### **Contacto:** 
+
+####`->` [researchgate.net/juanpabloruiznicolini](https://www.researchgate.net/profile/Juan_Ruiz_Nicolini)
+
+`r icons::fontawesome("globe")` [tuqmano.com](https://www.tuqmano.com/) 
+
+`r icons::fontawesome("twitter")` [@tuqmano](https://twitter.com/TuQmano) 
+
+`r icons::fontawesome("github")` [/tuqmano](https://github.com/tuqmano) 
+
+---
+# Pablo Tiscornia
+
+### Sociólogo (UBA)
+
+### **Áreas de interés:**
+
+#### *Metodología de la investigación | procesos de producción de datos | Estadísticas públicas*
+
+#### Paquete {eph} `->` [Caja de herramientas para el procesamiento de la eph](https://holatam.github.io/eph/)
+
+
+
+### **Contacto:** 
+
+`r icons::fontawesome("globe")` [Rpubs-pablotis](https://rpubs.com/pablotisco) 
+
+`r icons::fontawesome("twitter")`[@pabblo_h](https://twitter.com/pabblo_h)
+
+`r icons::fontawesome("github")`[/pablotis](https://github.com/pablotis) 
 
 ---
 class: inverse, center, middle
@@ -246,4 +268,41 @@ class: inverse
 
 
 
+---
+class: inverse
+
+## *Manos a la obra: Preparando Git y Github*
+
+
+- Paso 1 - [Registro en Github](https://github.com/join)
+
+--
+
+- Paso 2 - [Instalar **Git**](https://git-scm.com/downloads)
+
+--
+
+- Paso 3 - Presentarse ante GIT:
+
+PLAN A (vía R):
+
+```r
+install.packages("usethis")
+
+library(usethis)
+use_git_config(user.name = "Acá tu numbre", user.email = "acatumail@example.com")
+```
+
+
+PLAN B (vía terminal):
+
+```r
+git config --global user.name 'Jane Doe'
+git config --global user.email 'jane@example.com'
+git config --global --list
+```
+
+--
+
+- Paso 4 - [Conexión entre Rstudio + GIT + Github](https://happygitwithr.com/rstudio-git-github.html#rstudio-git-github)
 
