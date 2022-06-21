@@ -55,18 +55,6 @@ xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
 
 ---
 
-class: inverse, middle, center
-
-
-# Ejercicio _raspado web_:
-
-## TC Cronista
-
-`source("sesiones/scripts/obtener_tc_data.R")`
-
-
----
-
 class:  middle, center, inverse
 
 

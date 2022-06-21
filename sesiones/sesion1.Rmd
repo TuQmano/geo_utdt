@@ -3,7 +3,7 @@ title: "Instrumentos de An&aacute;lisis Urbanos II"
 subtitle: "Maestría en Economía Urbana"
 author: ""
 institute: "Universidad Torcuato Di Tella"
-date: "08/06/2021"
+date: "21/06/2022"
 output:
   xaringan::moon_reader:
     css: ["footer-header.css", "styles.css"]
