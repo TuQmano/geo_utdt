@@ -3,7 +3,7 @@ title: "Instrumentos de An&aacute;lisis Urbanos II"
 subtitle: "Maestría en Economía Urbana"
 author: ""
 institute: "Universidad Torcuato Di Tella"
-date: "15/06/2021"
+date: "28/06/2022"
 output:
   xaringan::moon_reader:
     css: ["footer-header.css", "styles.css"]
@@ -17,8 +17,8 @@ output:
 
 layout: true
   
-  
-<div class="my-footer"><span>Juan Pablo Ruiz Nicolini | @TuQmano | <a href="https://tuqmano.ar/">www.tuqmano.ar</a></span></div> 
+   
+<div class="my-footer"><span>Instrumentos de Análisis Urbanos II - <a href="https://tuqmano.github.io/geo_utdt/">https://tuqmano.github.io/geo_utdt/</a></span></div> 
 
 ---
 
@@ -36,15 +36,24 @@ xaringanExtra::use_extra_styles(
   hover_code_line = TRUE,         
   mute_unhighlighted_code = TRUE  
 )
-
-
-
 ```
 
 ```{r progress, echo = FALSE}
 
 
 xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
+```
+
+```{r xaringan-extra-styles, echo = FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+```
+
+```{r echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(here)
 ```
 
 
@@ -62,47 +71,122 @@ class: left
 
 # Hoja de Ruta
 
-
-+  _Dialectos_: `base` VS _Tidyverse_
++ _Funciones - Paquetes - Mundo `{tidyverse}`_
 
 --
 
-+   Organización: proyectos, `{here}`, *.git*
++  _Dialectos_: `R base` VS _Tidyverse (pipe)_
+
+--
+
++  _Flujos de trabajo: proyectos (.Rproj) + versiones de control (.git)_
 
 --
 
 +  Reproducibilidad y Comunicación (`.R` y `.Rmd`)
 
+
+---
+class: center, middle
+
+
+# Funciones - Paquetes - Mundo `{tidyverse}`
+
+
+---
+
+# Paquetes  
+
+## ¿Qué son?
+
+#### ✔️ Un conjunto funciones, pero también bases de datos y objetos de R en general.
+
+--
+
+## ¿Para qué nos sirven?   
+
+#### ✔️ Ayudan a incorporar funcionalidades al lenguaje para resolver nuevos problemas o alternativas a viejas soluciones
+
+
+
+---
+class: middle, center, inverse
+
+background-image: url(figs/R1.PNG)
+background-size: contain
+
+---
+class: middle, center, inverse
+
+background-image: url(figs/R2.PNG)
+background-size: contain
+
+---
+class: middle, center, inverse
+
+background-image: url(figs/R3.PNG)
+background-size: contain
+
+---
+class: middle, center, inverse
+
+background-image: url(figs/R4.PNG)
+background-size: contain
+
+---
+class: middle, center, inverse
+
+background-image: url(figs/R5.PNG)
+background-size: contain
+  
+---
+
+#Paquetes    
+
+## INSTALACIÓN
+
+- Podemos descargarlos e instalarlos con el siguiente comando: 
+
+```r
+install.packages("nombre_del_paquete") 
+```
+
+- Sólo es necesario instalar el paquete una vez por computadora.
+
+---
+
+#Paquetes  
+
+## INVOCACIÓN
+
+.pull-left[
+
+- Una vez instalado, cada vez que abramos una nueva sesión de R y querramos utilizar el paquete debemos **cargarlo al ambiente de trabajo** mediante la función:    
+
+```r
+library(nombre_del_paquete)
+```
+]
+
+.pull-right[
+
+```{r echo=FALSE, eval=TRUE, out.width= '500px'}
+
+knitr::include_graphics("figs/invocacion.gif")
+
+```
+]
+
+
 ---
 
 class: center, middle
 
-
 background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
-background-position: 95% 5%
+background-position: 70% 50%
 background-size: 10%
 
-# Dialéctos para `R`  
-
-# **R** `base` vs _Tidyverse_
-
---
-
-```{r curso}
-
-curso <- data.frame(nombre= c("Juan", "Pedro", "María", "José", 
-                               "Enzo", "Ariel", "Eva"),
-                    edad= c(25, 32, 21,40, 
-                             30, 28, 37),
-                    nacim= c(1993, 1986, 1997, 1978,
-                              1988, 1990, 1981),
-                    software.primario= c("spss", "stata", "stata", 
-                                         "excel", "R", "stata",
-                                         "spss"),
-                    nivel= c(3, 5,7, 6,
-                              2, 6, 8) 
-                    )
-```
+# [Tidyverse](https://www.tidyverse.org/)
 
 
 ---
@@ -110,141 +194,63 @@ curso <- data.frame(nombre= c("Juan", "Pedro", "María", "José",
 background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
 background-position: 95% 5%
 background-size: 10%
-
-# **R** `base`  vs _Tidyverse_ 
-
-
-## Edad promedio del curso > **`base`**
-
---
-
-```{r base_example}
-
-# BASE
-# 
-sum(curso$edad)/length(curso$edad)
-```
-
----
-
-background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
-background-position: 95% 5%
-background-size: 10%
-
-# **R** `base`  vs _Tidyverse_ 
-
-
-
-## Edad promedio del curso > _**Tidy**_
-
---
-
-```{r tidy_example, warning=FALSE, message=FALSE}
-
-# Tidy / {dplyr}
-
-library(tidyverse) # cargo paqueteS
-
-curso %>% 
-  summarise(promedio = sum(edad)/length(edad))
-```
-
----
-
-background-image: url(https://github.com/politicaargentina/data_warehouse/blob/master/hex/electorAr.png?raw=true)
-background-position: 95% 5%
-background-size: 10%
-
-# Elección Presidencial 2015: 
-
-### ¿Parámetros de la elección?
- 
-```{r JxC, highlight.output=c(8)}
-
-library(electorAr)
-
-show_available_elections(source = "data")
-```
-
-
----
-
-background-image: url(https://github.com/politicaargentina/data_warehouse/blob/master/hex/electorAr.png?raw=true)
-background-position: 95% 5%
-background-size: 10%
-
-## Descarga resultados 
-
-### Presidente 2015 
-
-```{r presi2019}
-
-gral2015 <-  get_election_data(district = 'arg', 
-                  category = 'presi', 
-                  round = 'gral', 
-                  year = 2015, 
-                  level = "departamento") %>% 
-  get_names()
-
-
-gral2015
-
-```
-
----
-
-background-image: url(https://github.com/politicaargentina/data_warehouse/blob/master/hex/electorAr.png?raw=true)
-background-position: 95% 5%
-background-size: 10%
-
-### Dónde cosechó más votos el FIT? 
-
-#### Departamentos con votos `max()` 
-
---
-
-
-```{r}
-
-fit <- gral2015[gral2015$nombre_lista == 'ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES', ] # > BASE
-
-
-fit[fit$votos == max(fit$votos),]
-```
-
---
-
-```{r}
-
-gral2015 %>%  # > TIDY
-  filter(nombre_lista == 'ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES') %>% 
-  ungroup() %>% 
-  slice_max(votos)
-```
-
-
----
-background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
-background-position: 95% 5%
-background-size: 10%
-
-# `r icon::fa("comment-dots")` vs `r icon::fa("laptop-code")`
-
-
-
-```{r pc_human, echo=FALSE, fig.retina=3, out.width= "200%"}
-knitr::include_graphics("https://github.com/TuQmano/MetodosCiPol/raw/master/docs/2020/Clase02/fig/computer_human.png")
-```
-
-
----
-
-background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
-background-position: 95% 5%
-background-size: 10%
-
 
 # Tidyverse
+
+.pull-left[
+#### `Tidyverse` es una colección de paquetes de R, pensados para trabajar en "ciencia de datos". 
+ 
+]
+
+.pull-right[
+
+
+```{r echo=FALSE, fig.align = 'center'}
+knitr::include_graphics("figs/tidyverse.png")
+```
+]
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+# __¿Por qué tidyverse?__
+
+
+- ### Orientado a ser leído y escrito por y para seres humanos
+
+--
+
+- ### Funciones no pensadas para una tarea específica sino para un proceso de trabajo
+
+.pull-left[
+```{r echo=FALSE, fig.align = 'center', out.width='110%'}
+knitr::include_graphics("figs/circuito_del_dato.png")
+```
+]
+
+.pull-right[
+```{r echo=FALSE, fig.align = 'center', out.width='110%'}
+knitr::include_graphics("figs/circuito_del_dato_tidy.png")
+```
+]
+
+--
+
+- ### Su comunidad, basada en los principios del código abierto y trabajo colaborativo 
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+# Manifiesto Tidyverse
 
 1. Reutilizar estructuras de datos existentes
 
@@ -255,8 +261,66 @@ background-size: 10%
 4. Diseñado para humanos!
 
 
- [`r icon::fa("link")` The Manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html)
+ [`r icons::fontawesome("link")` The Manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html)
 
+---
+
+# __Instalación y uso__
+
+* Sólo una vez (por computadora):
+
+```r
+install.packages("tidyverse")
+```
+
+--
+
+* En cada inicio de sesión de R o Rstudio:
+
+```r
+library(tidyverse)
+```
+ 
+--
+
+.pull-left[
+
+_No es necesario esto:_
+
+```r
+install.packages("dplyr")
+install.packages("tidyr")
+install.packages("ggplot2")
+```
+]
+
+.pull-right[
+
+_Ni esto:_
+
+```r
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+]
+
+---
+
+# Dialéctos para `R`  
+
+## **R** `base` vs _Tidyverse_
+
+--
+
+### Creamos una base de trabajo:
+```{r curso}
+curso <- data.frame(nombre     = c("Juan", "Pedro", "María", "José","Enzo", "Ariel", "Eva"),
+                    edad       = c(25, 32, 21,40, 30, 28, 37),
+                    nacimiento = c(1993, 1986, 1997, 1978, 1988, 1990, 1981),
+                    programa   = c("spss", "stata", "stata", "excel", "R", "stata", "spss"),
+                    nivel      = c(3, 5,7, 6, 2, 6, 8))
+```
 
 
 ---
@@ -266,105 +330,205 @@ background-position: 95% 5%
 background-size: 10%
 
 
-## El núcelo _Tidyverse_
+# **R** `base` vs _pipe (%>%) de tidyverse_ 
 
-```{r tidy_hex, echo=FALSE, fig.retina=3, out.width= "60%"}
-knitr::include_graphics("https://github.com/TuQmano/MetodosCiPol/blob/master/docs/2020/Clase02/fig/tidy_hex.PNG?raw=true")
+.pull-left[
+
+## Edad promedio del curso --> **`R base`**
+
+```{r base_example}
+mean(curso$edad)
 ```
-
-Fuente: [https://evamaerey.github.io/little_flipbooks_library/ggtextures/ggtextures#1](https://evamaerey.github.io/little_flipbooks_library/ggtextures/ggtextures#1)
+]
 
 --
 
-```{r, eval=F}
-# Install from CRAN
-install.packages("tidyverse")
+.pull-right[
+
+## Edad promedio del curso --> _**Tidy**_
+
+```{r tidy_example, warning=FALSE, message=FALSE, eval=FALSE}
+library(tidyverse) # cargo paquete
+
+curso$edad `%>%` 
+  mean()
 ```
 
-### [`r icon::fa("link")` The Tidyverse](https://tidyverse.tidyverse.org)
+```{r tidy_example2, warning=FALSE, message=FALSE, echo = FALSE}
+library(tidyverse) # cargo paquete
+
+curso$edad %>% 
+  mean()
+```
+]
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Pipe = tubería de tareas
+
+.pull-left[
+
+## Edad promedio del curso (redondeado) --> **`base`**
+
+```{r}
+round(mean(curso$edad), digits = 1)
+```
+]
+
+.pull-right[
+
+## Edad promedio del curso (redondeado) --> _**Tidy**_
+
+```{r eval=FALSE}
+curso$edad `%>%` 
+  mean() `%>%`
+  round(digits = 1)
+```
+
+```{r echo=FALSE}
+curso$edad %>% 
+  mean() %>%
+  round(digits = 1)
+```
+]
+
+---
+
+# Práctica
+
+Traducir del esquema `R base` al esquema `tidy` la siguiente sentencia que realiza las siguientes operaciones:
+
+- Calcula la cantidad de veces que se menciona cada programa con `table()`
+
+- Calcula la distribución porcentual de dicha frecuencia con `prop.table() * 100`
+
+- Redondea el resultado con `round()`
+
+```{r eval = FALSE}
+round(prop.table(table(curso$programa)) * 100, digits = 1) 
+```
+--
+
+## Solución grupal
+
+
+---
+
+# Lectura / escritura de archivos
+
+## Algunos paquetes para importar archivos (más allá de las funciones de r base):
+
+
+.pull-left[
+
+### Paquete `{readr}`
+
+- `read_csv()`   --> *.csv*
+
+- `read_table()` --> *.txt*
+
+- `read_rds()`   --> *.rds*
+]
+
+.pull-right[
+
+### Paquete `{haven}`
+
+- `read_sav()` --> SPSS
+
+- `read_dta()` --> STATA
+
+- `read_sas()` --> SAS
+
+]
+
+---
+
+# Base de trabajo
+
+En el material de la clase se puso a disposición una base de ejercicio. La informaciuón con la que se cuenta es aquella referida a los **Inmuebles Propios del Estado Nacional y Alquilados**, provista por la Dirección Nacional del Registro de Bienes Inmuebles - Agencia de Administración de Bienes del Estado - Jefatura de Gabinete de Ministros. 
+
+> [Descarga de la base de datos](https://datos.gob.ar/dataset/otros-inmuebles-propios-estado-nacional-alquilados)
+
+--
+
+### Importamos a R:
+
+```r
+base_inmuebles <- read_csv(`file =` "la_ruta_del_archivo/el_nombre_del_archivo.csv",
+                           `col_names =` TRUE)
+```
 
 
 ---
 
 class: center, middle, inverse
 
-background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/img/rstudio-icon.png)
+background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/figs/rstudio-icon.png)
 background-position: 95% 5%
 background-size: 10%
 
 
-## Organización de Proyectos (I)
-
-###  `.Rproj`
-
+# Proyectos de Trabajo (`.Rproj`)
 
 
 ```{r rproj, echo=FALSE, fig.retina=3, out.width= "60%"}
-knitr::include_graphics("http://www.rstudio.com/images/docs/projects_new.png")
+knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/raw/master/rstats-artwork/cracked_setwd.png")
 ```
 
-#### [`r icon::fa("link")` Using Projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+#### [`r icons::fontawesome("link")` Using Projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
 
 
+---
+
+# Proyectos y rutas de trabajo
+
+Intentar correr el siguiente script:
+
+```{r eval = FALSE}
+library(tidyverse)
+
+b_inmuebles <- read_csv("C:/Users/pablo/Documents/Pablo/Cursos R/R+DiTella/geo_utdt_fork/sesiones/data/inmuebles-estado-nacional.csv")
+```
+
+--
+
+### A tener en cuenta respecto a la sentencia para importar el archivo:
+
+
+- Si se la compartimos a otra persona, __se rompe__
+    
+- Si cambiamos de computadora, __se rompe__
+    
+- Si lo cambiamos de lugar, __se rompe__
+   
 
 ---
 
 class: center, middle, inverse
 
-background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/img/rstudio-icon.png)
-background-position: 95% 5%
-background-size: 10%
-
-
-```{r here, echo=FALSE, fig.retina=3, out.width= "60%"}
-knitr::include_graphics("https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/here.png")
-```
-
-#### [`r icon::fa("link")` {here}](https://here.r-lib.org/index.html)
-
-
-## Organización de Proyectos (II)
-
-
----
-
-background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/img/rstudio-icon.png)
-background-position: 95% 5%
-background-size: 10%
-
-
-# {here}
-
-```{r}
-
-here::dr_here()
-
-```
-
-
-
----
-class: center, middle, inverse
-
-## Organización de Proyectos (III)
-
-##  `.git`
+# Proyectos de Trabajo (`.git`)
 
 ---
 
 # `.git `
 
 ```{r, echo=FALSE}
-
-knitr::include_graphics("https://yabellini.netlify.app/img/git_concept_map.png")
-
+knitr::include_graphics("https://yabellini.github.io/Intro_to_Git_with_Rstudio/img/git_concept_map.png")
 ```
+
 **Fuente**: https://yabellini.netlify.app/es/post/githubconr/
+
+
 ---
 
-# `.git `
+# `.git ` por terminal
 
-#### varbos + usados
+#### verbos + usados
 
 * git status
 
@@ -385,13 +549,28 @@ knitr::include_graphics("https://yabellini.netlify.app/img/git_concept_map.png")
 * git push 
 
 --
-#### [`r icon::fa("link")` Happy Git](https://happygitwithr.com/)
+#### [`r icons::fontawesome("link")` Happy Git](https://happygitwithr.com/)
 
+---
+
+# `.git ` por consola
+
+```{r echo=FALSE}
+knitr::include_graphics("figs/consola_git.png")
+```
+
+---
+
+# `.git ` por consola
+
+```{r echo=FALSE}
+knitr::include_graphics("figs/consola_commit.png")
+```
 
 
 ---
 
-background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/img/rstudio-icon.png)
+background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/figs/rstudio-icon.png)
 background-position: 95% 5%
 background-size: 10%
 
@@ -410,7 +589,7 @@ background-size: 10%
 
 ---
 
-background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/img/rstudio-icon.png)
+background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/figs/rstudio-icon.png)
 background-position: 95% 5%
 background-size: 10%
 
@@ -422,6 +601,6 @@ background-size: 10%
 knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/3215c7166555d2ac02ef678fd025c171f90db23c/4e60a/images/bandone.png")
 ```
 
-### [`r icon::fa("link")` Comunicación](https://rmarkdown.rstudio.com/)
+### [`r icons::fontawesome("link")` R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
 
 
