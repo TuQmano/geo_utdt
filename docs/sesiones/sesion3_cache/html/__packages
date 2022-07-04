@@ -1,4 +1,14 @@
-base
 readr
 readxl
 haven
+datapasta
+tidyverse
+ggplot2
+tibble
+tidyr
+purrr
+dplyr
+stringr
+forcats
+googlesheets4
+janitor
