@@ -3,7 +3,7 @@ title: "Instrumentos de An&aacute;lisis Urbanos II"
 subtitle: "Maestría en Economía Urbana"
 author: ""
 institute: "Universidad Torcuato Di Tella"
-date: "22/06/2021"
+date: "05/07/2022"
 output:
   xaringan::moon_reader:
     css: ["footer-header.css", "styles.css"]
@@ -17,7 +17,7 @@ output:
 
 layout: true
   
-<div class="my-footer"><span>Juan Pablo Ruiz Nicolini | @TuQmano | <a href="https://tuqmano.ar/">www.tuqmano.ar</a></span></div> 
+<div class="my-footer"><span>Instrumentos de Análisis Urbanos II - <a href="https://tuqmano.github.io/geo_utdt/">https://tuqmano.github.io/geo_utdt/</a></span></div> 
 
 ---
 
@@ -80,7 +80,7 @@ knitr::include_graphics("https://es.r4ds.hadley.nz/diagrams_w_text_as_path/es/da
 
 ---
 
-## `r icon::fa("book")` Referencias
+## `r icons::fontawesome("book")` Referencias
 
 ### IMPORTAR
 
@@ -117,7 +117,8 @@ class: inverse, center, middle
 
 # no es necesario cargar paquetes para read.csv()
 
-read.csv(file = "data/arg_presi_gral2003.csv")
+read.csv(file = "data/inmuebles-estado-nacional.csv",
+         encoding = "UTF-8")
 ```
 
 ---
@@ -133,7 +134,7 @@ background-size: 10%
 
 library(readr)
 
-read_csv(file = "data/arg_presi_gral2003.csv")
+read_csv(file = "data/inmuebles-estado-nacional.csv")
 ```
 
 #### (Ver `tibble` en sección _Ordenar_)
@@ -153,10 +154,11 @@ knitr::include_graphics("figs/tabular_data.PNG")
 ```
 
 
-#### `r icon::fa("link")` [`{readr}`](https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/data-import-Spanish_translation-2019.pdf) Cheatsheet
+#### `r icons::fontawesome("link")` [`{readr}`](https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/data-import-Spanish_translation-2019.pdf) Cheatsheet
 
 
 ---
+
 background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/readxl.png)
 background-position: 95% 5%
 background-size: 10%
@@ -182,18 +184,20 @@ background-size: 10%
 
 ## Importar (otros)
 
+<br>
+
 Posibilita leer y escribir archivos en formatos utilizados por otros programas estadísticos: 
 
 --
 
-* **SAS**
+* `read_sas()` --> **SAS**
 
-* **SPSS**
+* `read_sav()`  --> **SPSS**
 
-* **STATA** 
+* `read_dta()` --> **STATA** 
 
 
-#### `r icon::fa("link")`[`{haven}`](https://haven.tidyverse.org/)
+#### `r icons::fontawesome("link")`[`{haven}`](https://haven.tidyverse.org/)
 
 ---
 
@@ -249,6 +253,8 @@ background-size: 10%
 
 ## Importar: planillas de _Google_
 
+<br>
+
 ```{r google, eval=F}
 
 library(googlesheets4)
@@ -268,7 +274,7 @@ read_sheet("https://docs.google.com/spreadsheets/d/1J84PviVxVMsCDzupOcD0_s_yc92v
               
 ```
 
-[`r icon::fa("link")` {googlesheets4}](https://googlesheets4.tidyverse.org/)
+[`r icons::fontawesome("link")` {googlesheets4}](https://googlesheets4.tidyverse.org/)
 
 ---
 class: inverse
@@ -294,13 +300,14 @@ background-size: 10%
 
 
 ## Importar con {datapasta}
+
 ### Desde el portapapeles (_clipboard_)
 
 ```{r pasta, out.width="75%", echo = FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/milesmcbain/datapasta/master/inst/media/tribble_paste.gif")
 ```
 
-`r icon::fa("link")` [{datapasta}](https://milesmcbain.github.io/datapasta/)
+`r icons::fontawesome("link")` [{datapasta}](https://milesmcbain.github.io/datapasta/)
 
 ---
 class: inverse, center, middle
@@ -311,7 +318,7 @@ background-size: 10%
 
 ### {datapasta} _live coding_
 
-`r icon::fa("link")` [docs.google.com/spreadsheet](https://docs.google.com/spreadsheets/d/1J84PviVxVMsCDzupOcD0_s_yc92vm4sCB6uoJQtl2mU/)
+`r icons::fontawesome("link")` [docs.google.com/spreadsheet](https://docs.google.com/spreadsheets/d/1J84PviVxVMsCDzupOcD0_s_yc92vm4sCB6uoJQtl2mU/)
 
 ---
 class: inverse, center, middle
@@ -326,7 +333,7 @@ background-position: 95% 5%
 background-size: 10%
 
 
-## Ordenar
+## Ordenar - data.frame --> tibble
 
 
 >una versión de data frame que facilita el trabajo con el *Tidyverse* - [R4DS - ñ](https://es.r4ds.hadley.nz/tibbles.html)
@@ -371,9 +378,9 @@ background-size: 10%
 
 Referencias
 
-`r icon::fa("link")` [R4DS en espaÑol](https://es.r4ds.hadley.nz/datos-ordenados.html)
+`r icons::fontawesome("link")` [R4DS en espaÑol](https://es.r4ds.hadley.nz/datos-ordenados.html)
 
-`r icon::fa("link")` Wickham, H; [_Tidy Data_, Journal of Statistical Software](http://www.jstatsoft.org/v59/i10/paper)
+`r icons::fontawesome("link")` Wickham, H; [_Tidy Data_, Journal of Statistical Software](http://www.jstatsoft.org/v59/i10/paper)
 
 
 ---
@@ -382,7 +389,7 @@ background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/tid
 background-position: 95% 5%
 background-size: 10%
 
-# Datos Ordenados
+## Datos Ordenados
 
 
 ```{r tidy_data, echo = F, out.width='80%'}
@@ -408,7 +415,7 @@ background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/tid
 background-position: 95% 5%
 background-size: 10%
 
-# Datos Ordenados: **_pivotear_**
+## Datos Ordenados: **_pivotear_**
 
 Entre los distintos verbos, se destacan: 
 
@@ -416,15 +423,7 @@ Entre los distintos verbos, se destacan:
 
 * `pivot_wider()`: reduce cantidad de filas y aumenta columnas
 
----
 
-background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/electorAr.png)
-background-position: 95% 5%
-background-size: 10%
-
-class: center, middle, inverse
-
-# **_pivotear_** elecciones
 
 
 ---
@@ -433,26 +432,114 @@ background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/tid
 background-position: 95% 5%
 background-size: 10%
 
-# Datos Ordenados: **_pivotear_**
+## Datos Ordenados: **_pivotear_**
 
-Entre los distintos verbos, se destacan: 
+<br>
 
-* `pivot_longer()`: reduce cantidad de columnas y aumenta las filas
+.pull-left[
 
-* `pivot_wider()`: reduce cantidad de filas y aumenta columnas
+```{r echo=FALSE, out.width = '80%', fig.align = 'center'}
+knitr::include_graphics("figs/dato_ancho.png")
+```
+
+]
+
+.pull-right[
+
+```{r echo=FALSE, out.width = '80%', fig.align = 'center'}
+knitr::include_graphics("figs/dato_largo.png")
+```
+
+]
 
 
-* Más verbos: 
 
-`complete / fill / replace_na / drop_na`,
+---
 
-`nest / unnest`, 
-
-`unite /separate / extract`
-
-`r icon::fa("link")`[`{tidyr}`](https://tidyr.tidyverse.org/)
+background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/tidyr.png)
+background-position: 95% 5%
+background-size: 10%
 
 
+## De ancho a largo
+
+
+```{r}
+library(tidyverse)
+library(janitor)
+
+### Armo base de datos
+b_curso <- tibble::tibble(Apellido.y.Nombre = c("Fasola, Juan Pedro","Soze, Kayser","Bigpear, John Sunday","Tower, JC"),
+                          Profesión = c("Amigo", "Narcotraficanet", "General", "Sociólogo"),
+                          Lugar.de.Nacimiento = c("Hurlingam", "Los Angeles", "Lobos", "Bahía Blanca")) %>% 
+  clean_names()
+
+b_curso
+```
+
+
+---
+
+background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/tidyr.png)
+background-position: 95% 5%
+background-size: 10%
+
+## De ancho a largo
+
+<br>
+
+```{r}
+b_curso_largo <- b_curso %>% 
+  pivot_longer(cols = c(profesion, lugar_de_nacimiento),
+               names_to = "variable",
+               values_to = "valores")
+
+b_curso_largo
+```
+
+
+---
+
+background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/tidyr.png)
+background-position: 95% 5%
+background-size: 10%
+
+## De largo a ancho
+
+<br>
+
+```{r}
+b_curso_ancho <- b_curso_largo %>% 
+  pivot_wider(names_from = variable,
+              values_from = valores)
+
+b_curso_ancho
+```
+
+
+---
+
+background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/tidyr.png)
+background-position: 95% 5%
+background-size: 10%
+
+## Datos Ordenados: **_más verbos_**
+
+<br>
+
+### Más verbos: 
+
+| __Función__     | __Acción__ |
+| :---            | ---:   |
+| `complete()`    | *Hace explícitos valores missing antes implícitos*|
+| `fill()`        | *Cambia el NA por un valor anterior/posterior*    |
+| `replace_na()` | *reemplaza valores NA por otro específico*        |
+| `drop_na()`     | *descarta filas con valores NA en columnas*       |
+
+  
+<br>
+
+`r icons::fontawesome("link")`[`{tidyr}`](https://tidyr.tidyverse.org/)
 
 
 ---
@@ -462,36 +549,32 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/dplyr.png)
-background-position: 95% 5%
-background-size: 10%
-
-
 ## Transformar
 
 ### Una caja de herramientas
 
-#### Uno a uno, verbos principales de `{dplyr}` para manipular la _data_ 
 
-* `filter()`: reduce la cantidad de filas  (observaciones)
+#### Uno a uno, principales verbos de `{dplyr}` para manipular la _data_ 
 
---
 
-* `select()`: reduce la cantidad de columnas (variables)
+  * `filter()`: reduce la cantidad de filas  (observaciones)
 
 --
-
-* `mutate()`: crea o modifica variables 
-
---
-
-* `arrange()`: ordena (sort)
+  
+  * `select()`: reduce la cantidad de columnas (variables)
 
 --
-
-* `group_by()`: agrupa observaciones
+  
+  * `mutate()`: crea o modifica variables 
 
 --
+  
+  * `arrange()`: ordena (sort)
 
-* `summarize()`: reduce múltiples observaciones a un valor
+--
+  
+  * `group_by()`: agrupa observaciones
 
+--
+  
+  * `summarize()`: reduce múltiples observaciones a un valor
