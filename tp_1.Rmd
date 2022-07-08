@@ -1,19 +1,15 @@
 ---
-title: "TP_nro1"
-author: "Instrumentos de Análisis Urbanos II"
-date: '2022-07-06'
-output: html_document
+title: "Trabajo Práctico"
+description: |
+ Consigna Número 1
+site: distill::distill_website
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<br>
 
-## Consigna
-
-<br>
 
 #### 1. Crear un repositorio público en la cuenta personal de Github.
 
