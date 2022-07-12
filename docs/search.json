@@ -31,6 +31,14 @@
       "author": [],
       "contents": "\r\nConfigurar\r\nSlack -\r\nEspacio de trabajo\r\nR -\r\nCRAN (The Comprehensive R Archive Network)\r\nRStudio\r\nIDE (Integrated Development Environment)\r\n.git & Github - Control de\r\nversiones + DEV\r\n\r\n\r\n\r\n",
       "last_modified": "2022-07-11T19:33:03-05:00"
+    },
+    {
+      "path": "tp_1.html",
+      "title": "Trabajo Práctico",
+      "description": "Consigna Número 1\n",
+      "author": [],
+      "contents": "\r\n1. Crear un repositorio público en la cuenta personal de Github.\r\n\r\n2. Crear un proyecto en la computadora desde Rstudio y vincularlo al repositorio de Github (nota: elegir la opción “versión de control” / “Control version” al crear el proyecto)\r\n\r\n3. Crear un script.R y guardarlo en el proyecto\r\n\r\n4. Importar una base de datos (acá opción 1, opción 2 para descargar diferentes tipos de bases), sea guardando el archivo en la carpeta del proyecto, sea a través de un link, directo de la web (ver ejemplo)\r\n\r\n5. Sobre esta base, ejecutar al menos una sentencia para cada una de las siguientes funciones:\r\npivot_longer() / pivot_vider() (sólo si es necesario)\r\nfilter()\r\nselect()\r\nmutate()\r\n\r\n6. Al finalizar, guardar el script.R y subir los cambios en el proyecto local al repositorio remoto de Github.\r\nRecordar la secuencia (por terminal o por la pestaña GIT del panel de control de Rstudio):\r\ngit add -A\r\ngit commit -m \"acá el mensaje\"\r\ngit push\r\n\r\n\r\nEntrega\r\nUna vez realizado los puntos anteriores, copiar el link del repositorio en la columna TP 1 del siguiente archivo.\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2022-07-08T10:35:58-03:00"
     }
   ],
   "collections": []

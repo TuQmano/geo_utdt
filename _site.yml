@@ -2,7 +2,7 @@ name: "utdt_geo"
 title: "Inicio"
 description: "MEU - UTDT"
 output_dir: "docs"
-include: ["sesiones/"]
+include: ["sesiones/", "/tps"]
 navbar:
   logo:
     image: https://www.utdt.edu/Images/ui2014/logo.png
@@ -41,7 +41,7 @@ navbar:
     - text: "TPs"
       menu:
         - text: "TP 1"
-          href: https://tuqmano.github.io/geo_utdt/tps/tp_1.html
+          href: https://tuqmano.github.io/geo_utdt/tp_1.html
   right:
     - text: "Ediciones Anteriores"
       menu:
