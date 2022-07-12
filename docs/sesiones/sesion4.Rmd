@@ -175,20 +175,21 @@ background-image: url(https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/dplyr.p
 background-position: 95% 5%
 background-size: 10%
 
+# Datos relacionales
 
-## Datos relacionales 
+## 3 tipos: 
 
-* Uniones de transformación (del inglés _mutating joins_), que agregan nuevas variables a un data frame a partir de las observaciones coincidentes en otra tabla (*vg* `left_join()`)
-
---
-
-* Uniones de filtro (del inglés _filtering joins_), que filtran observaciones en un _data frame_ con base en si coinciden o no con una observación de otra tabla (*vg* `anti_join()`).
-
+* Uniones de **transformación** (del inglés _mutating joins_), que agregan nuevas variables a un data frame a partir de las observaciones coincidentes en otra tabla (*vg* `left_join()`)
 
 --
 
+* Uniones de **filtro** (del inglés _filtering joins_), que filtran observaciones en un _data frame_ con base en si coinciden o no con una observación de otra tabla (*vg* `anti_join()`).
 
-* Operaciones de conjuntos (del inglés _set operations_), que tratan las observaciones como elementos de un conjunto (*vg* `set_diff()`).
+
+--
+
+
+* Operaciones de **conjuntos** (del inglés _set operations_), que tratan las observaciones como elementos de un conjunto (*vg* `set_diff()`).
 
 
 `r icons::fontawesome("link")` [Datos Relacionales - R4DS](https://es.r4ds.hadley.nz/datos-relacionales.html)
@@ -255,6 +256,11 @@ str_sub(string = texto_ejemplo2,
 
 ---
 
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/stringr.png)
+background-position: 95% 5%
+background-size: 10%
+
 # Espacios en blanco
 
 ### Completar texto: 
@@ -293,6 +299,10 @@ str_sub(string = texto_con_pad,
 
 ---
 
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/stringr.png)
+background-position: 95% 5%
+background-size: 10%
+
 # Espacios en blanco
 
 ### Eliminar espacios en blanco
@@ -321,6 +331,10 @@ str_length(texto_resultado)
 
 
 ---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/stringr.png)
+background-position: 95% 5%
+background-size: 10%
 
 # Detección de patrones
 
