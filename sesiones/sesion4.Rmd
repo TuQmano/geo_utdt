@@ -3,7 +3,7 @@ title: "Instrumentos de An&aacute;lisis Urbanos II"
 subtitle: "Maestría en Economía Urbana"
 author: ""
 institute: "Universidad Torcuato Di Tella"
-date: "29/06/2021"
+date: "12/07/2022"
 output:
   xaringan::moon_reader:
     css: ["footer-header.css", "styles.css"]
@@ -17,7 +17,7 @@ output:
 
 layout: true
   
-<div class="my-footer"><span>Juan Pablo Ruiz Nicolini | @TuQmano | <a href="https://tuqmano.ar/">www.tuqmano.ar</a></span></div> 
+<div class="my-footer"><span>Instrumentos de Análisis Urbanos II - <a href="https://tuqmano.github.io/geo_utdt/">https://tuqmano.github.io/geo_utdt/</a></span></div> 
 
 ---
 class: inverse, center, middle
@@ -55,10 +55,8 @@ xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
 ```
 
 
+# [EJERCITACION](https://docs.google.com/spreadsheets/d/1fVHW2ROCfIZDUNU0Xz-Eo2qCwKKSb2_SppN_nZz13_A/edit#gid=0)
 
-# EJERCITACION
-
-## https://bit.ly/2ThjWEj
 
 ---
 
@@ -74,14 +72,14 @@ class: inverse, center, middle
 
 class: inverse, center, middle
 
-# Datos provistos por <a href='https://www.properati.com.ar'>Properati</a>
+# Importar datos de inmuebles:
 
 
 
-```{r, eval = F}
+```{r, eval = T}
 
    
-  datos <- vroom::vroom("https://storage.googleapis.com/properati-data-public/ar_properties.csv.gz")
+  datos <- vroom::vroom("https://infra.datos.gob.ar/catalog/otros/dataset/6/distribution/6.1/download/inmuebles-estado-nacional.csv")
    
 
 
@@ -144,7 +142,7 @@ background-position: 95% 5%, 95% 50%
 background-size: 10%, 10%
 
 
-## [*nuevo* `{dplyr}` `r icon::fa("link")`](https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/) 
+## [*nuevo* `{dplyr}` `r icons::fontawesome("link")`](https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/) 
 
 * `across()` 
 
@@ -168,7 +166,7 @@ knitr::include_graphics("https://www.garrickadenbuie.com/project/tidyexplain/ima
 ```
 
 
-[`r icon::fa("link")` Tidy Explain, Garrick Aden‑Buie](https://www.garrickadenbuie.com/project/tidyexplain/)
+[`r icons::fontawesome("link")` Tidy Explain, Garrick Aden‑Buie](https://www.garrickadenbuie.com/project/tidyexplain/)
 
 
 ---
@@ -193,13 +191,14 @@ background-size: 10%
 * Operaciones de conjuntos (del inglés _set operations_), que tratan las observaciones como elementos de un conjunto (*vg* `set_diff()`).
 
 
-`r icon::fa("link")` [Datos Relacionales - R4DS](https://es.r4ds.hadley.nz/datos-relacionales.html)
+`r icons::fontawesome("link")` [Datos Relacionales - R4DS](https://es.r4ds.hadley.nz/datos-relacionales.html)
 
 
 ---
 class: inverse, middle, center
 
 # Domar los Datos
+
 ### (II Parte) 
 
 ---
@@ -209,60 +208,147 @@ background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/str
 background-position: 95% 5%
 background-size: 10%
 
-# Domar los datos II
-
-## Caracteres 
+# Extracción de texto 
 
 --
 
-* Funciones que permiten manipular caracteres individuales dentro de las cadenas en vectores de caracteres (_vg_ : **`str_sub(string = x, start = 1, end = 4)`**).
+
+### Extraer caracteres según la posición en el texto:
+
+```r
+str_sub(string = `texto`, 
+        start = `posicion_inicial`, 
+        end = `posicion_final`)
+```
 
 --
 
-* Herramientas para agregar, eliminar y manipular espacios en blanco (_vg_ : **`str_pad(string = x , width = 2 , side = "left" , pad = 0)`**).
+#### Ejemplo 1:
+
+```{r}
+texto_ejemplo1 <- "año 1"
+
+str_sub(string = texto_ejemplo1, 
+        start = 5, 
+        end = 5)
+```
 
 --
 
-* Funciones que detectan coincidencia de patrones como  las _expresiones regulares_ -[_regex_ `r icon::fa("link")`](https://stringr.tidyverse.org/articles/regular-expressions.html): 
+#### Ejemplo 2:
+
+```{r}
+texto_ejemplo2 <- c("año 1", "año 2", "año 3")
+
+str_sub(string = texto_ejemplo2, 
+        start = 5, 
+        end = 5)
+```
+
+--
+
+¿Y al revés?
+
+
+
+
+
+---
+
+# Espacios en blanco
+
+### Completar texto: 
+
+```r
+str_pad(string = `texto`, 
+        width =  `ancho ideal del texto`, 
+        side = `donde agregar`, 
+        pad = `qué agregar`)
+```
+
+#### Ejemplo: 
+
+```{r}
+texto_ejemplo <- c("1", "011", "01", "0111")
+
+str_pad(string = texto_ejemplo, 
+        width = 4, 
+        side = "left", 
+        pad = "0")
+```
+--
+
+```{r}
+texto_con_pad <- str_pad(string = texto_ejemplo,
+                         width = 4, 
+                         side = "left", 
+                         pad = "0")
+
+str_sub(string = texto_con_pad, 
+        start = 1,
+        end = 3)
+```
+
+
+
+---
+
+# Espacios en blanco
+
+### Eliminar espacios en blanco
+
+```r
+str_trim(string = `texto`, 
+         side = `lado sobre el que trabaja`)
+```
+
+--
+
+#### Ejemplo:
+
+```{r}
+texto_ejemplo <- c("acá no debería haber espacio a la derecha    ")
+
+str_length(texto_ejemplo)
+```
+
+```{r}
+texto_resultado <- str_trim(string = texto_ejemplo,
+                            side = "right")
+
+str_length(texto_resultado)
+```
+
+
+---
+
+# Detección de patrones
+
+
+### Funciones que detectan coincidencia de patrones:
+
+--
+
+#### Ejemplo:
+
+### Me quiero quedar con todos los inmuebles que se encuentran sobre avenidas
+
+```{r}
+b_inm_avenidas <- datos %>% 
+  filter(str_detect(string = calle, 
+                    pattern = "Av"))
+
+head(b_inm_avenidas$calle)
+```
+--
+
+Ver uso de _expresiones regulares_ -[_regex_ `r icons::fontawesome("link")`](https://stringr.tidyverse.org/articles/regular-expressions.html): 
 **`str_detect(string = x, pattern = ":digits:")`**
 
 
 --
 
-[`r icon::fa("link")``{stringr}`](https://stringr.tidyverse.org/articles/stringr.html)
-
----
-background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/lubridate.png)
-background-position: 95% 5%
-background-size: 10%
-
-# Domar los datos II
-
-## Días y horas
-
-`{lubridate}` incluye una gran variedad de funciones para **(a) *paresear* días y horas**; **(b) crear y extraer información**; (c) manejar zonas horarias (_tz_); y hasta calcular intervalos de tiempo y _aritmética de tiempo_
-
---
-
-
-
-```{r, echo = TRUE}
-library(lubridate) # (a)
-dmy("6 de octubre de 2020")
-```
-
---
-
-
-
-```{r, echo = TRUE}
-library(lubridate) # (b)
-today() + 365
-```
-
---
-
-[`r icon::fa("link")``{lubridate}`](https://lubridate.tidyverse.org/index.html)
+[`r icons::fontawesome("link")``{stringr}`](https://stringr.tidyverse.org/articles/stringr.html)
 
 
 ---
@@ -276,9 +362,16 @@ background-size: 10%
 ## Variables categóricas
 
 
-> *Los factores son útiles cuando se tiene datos categóricos, variables que tienen un conjunto de valores fijo y conocido, y cuando se desea mostrar los vectores de caracteres en orden no alfabético* **R4DS - <https://es.r4ds.hadley.nz/factores.html>**
+> *Los factores son útiles cuando se tiene datos categóricos, variables que tienen un conjunto de valores fijo y conocido, y cuando se desea mostrar los vectores de caracteres en un orden específico* **R4DS - <https://es.r4ds.hadley.nz/factores.html>**
 --
 
+```r
+factor(x = `variable a transformar a factor`, 
+       levels = `niveles de la variable`, 
+       labels = `etiquetas de los niveles`)
+```
+
+--
 
 * `fct_reorder()` > modifica el orden
 
