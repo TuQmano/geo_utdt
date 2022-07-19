@@ -1,0 +1,511 @@
+---
+title: "Instrumentos de An&aacute;lisis Urbanos II"
+subtitle: "Maestría en Economía Urbana"
+author: ""
+institute: "Universidad Torcuato Di Tella"
+date: "06/07/2021"
+output:
+  xaringan::moon_reader:
+    css: ["footer-header.css", "styles.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+---
+
+layout: true
+  
+<div class="my-footer"><span>Juan Pablo Ruiz Nicolini | @TuQmano | <a href="https://tuqmano.ar/">www.tuqmano.ar</a></span></div> 
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.retina = 3,
+                      out.width = 300, ### control plot size
+                      cache = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+
+```
+
+
+```{r xaringan, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "extra_styles", "scribble", "editable", "broadcast", "webcam"))
+
+
+```
+
+```{r extrasXaringan, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+
+xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
+
+
+
+
+```
+---
+
+class: inverse
+
+
+# DUDAS SLACK
+
+### (1)  ¿ Se pueden levnatar `SHP` desde _GitHub_ ? 
+
+--
+
+### **NI** -> `"scripts/leer_shp_online.R"`
+
+
+---
+class: inverse
+
+# DUDAS SLACK
+
+### (2)  ¿Cómo lidiar con archivos muy pesados en control de versiones _GitHub_ ? 
+
+--
+
+### `-> .gitignore`
+ 
+--
+ 
+### `zip`
+
+--
+
+### `.rds` -> 
+
+<https://roelandtn.frama.io/post/saverds-vs-write-csv>
+
+---
+
+class: inverse
+
+# DUDAS SLACK
+
+### (3) _Output_ de `st_intesection()`
+
+--
+
+#### HOY : <https://geocompr.robinlovelace.net/spatial-operations.html>
+
+---
+
+class: inverse, center, middle
+
+# Sesion 5
+
+## Domar los Datos III
+
+###  `geo`
+
+
+
+---
+
+class: inverse
+
+## `r icon::fa("book")` Referencias
+
+* R - Spatial:  <https://www.r-spatial.org/>
+
+* [Geocomputation with R](https://geocompr.robinlovelace.net/), Robin Lovelace, Jakub Nowosad, Jannes Muenchow (2019)
+
+* [Spatial Data Science](https://keen-swartz-3146c4.netlify.app/), Edzer Pebesma y Roger Bivand.
+
+---
+class: inverse, middle
+
+# _useR 2021_: Pebesma
+
+* Video: https://youtu.be/O8V4QJ13Gjc
+
+* Slides: https://edzer.github.io/UseR2021/#1
+
+
+---
+
+## Universo _geo_ (desde `R`)
+
+```{r, echo=FALSE, out.width='80%'}
+
+knitr::include_graphics("https://keen-swartz-3146c4.netlify.app/images/sf_deps.png")
+
+```
+
+Fuente: [_Spatial Data Science_](https://keen-swartz-3146c4.netlify.app/)
+
+---
+
+### Geometrías
+
+```{r, echo = FALSE, out.width='60%'}
+
+library(sf)
+par(mfrow = c(2,4))
+par(mar = c(1,1,1.2,1))
+
+# 1
+p = st_point(0:1)
+plot(p, pch = 16)
+title("point")
+box(col = 'grey')
+
+# 2
+mp = st_multipoint(rbind(c(1,1), c(2, 2), c(4, 1), c(2, 3), c(1,4)))
+plot(mp, pch = 16)
+title("multipoint")
+box(col = 'grey')
+
+# 3
+ls = st_linestring(rbind(c(1,1), c(5,5), c(5, 6), c(4, 6), c(3, 4), c(2, 3)))
+plot(ls, lwd = 2)
+title("linestring")
+box(col = 'grey')
+
+# 4
+mls = st_multilinestring(list(
+  rbind(c(1,1), c(5,5), c(5, 6), c(4, 6), c(3, 4), c(2, 3)),
+  rbind(c(3,0), c(4,1), c(2,1))))
+plot(mls, lwd = 2)
+title("multilinestring")
+box(col = 'grey')
+
+# 5 polygon
+po = st_polygon(list(rbind(c(2,1), c(3,1), c(5,2), c(6,3), c(5,3), c(4,4), c(3,4), c(1,3), c(2,1)),
+    rbind(c(2,2), c(3,3), c(4,3), c(4,2), c(2,2))))
+plot(po, border = 'black', col = '#ff8888', lwd = 2)
+title("polygon")
+box(col = 'grey')
+
+# 6 multipolygon
+mpo = st_multipolygon(list(
+    list(rbind(c(2,1), c(3,1), c(5,2), c(6,3), c(5,3), c(4,4), c(3,4), c(1,3), c(2,1)),
+        rbind(c(2,2), c(3,3), c(4,3), c(4,2), c(2,2))),
+    list(rbind(c(3,7), c(4,7), c(5,8), c(3,9), c(2,8), c(3,7)))))
+plot(mpo, border = 'black', col = '#ff8888', lwd = 2)
+title("multipolygon")
+box(col = 'grey')
+
+# 7 geometrycollection
+gc = st_geometrycollection(list(po, ls + c(0,5), st_point(c(2,5)), st_point(c(5,4))))
+plot(gc, border = 'black', col = '#ff6666', pch = 16, lwd = 2)
+title("geometrycollection")
+box(col = 'grey')
+
+
+```
+
+Fuente: [_Spatial Data Science_](https://keen-swartz-3146c4.netlify.app/geometries.html) (ver detalle)
+
+---
+
+### Operaciones - [Spatial Data Science](https://keen-swartz-3146c4.netlify.app/geometries.html#opgeom)
+
+#### INPUTS
+
+--
+
+* `predicates`: una consulta lógica para determinar si una propiedad es  `TRUE` 
+
+ - `is.empty()`
+--
+
+* `measures`: una cantidad (e.g. un valor númerico con una unidad de medida determinada)
+
+ - `area()`
+--
+
+* `transformations`: generación de nuevas geometrías 
+
+ - `centroid()`
+
+
+
+---
+
+### Operaciones - [Spatial Data Science](https://keen-swartz-3146c4.netlify.app/geometries.html#opgeom)
+
+
+#### SOBRE QUE OPERAN
+
+
+--
+
+
+* `unary`: una única _geometry_
+
+
+
+* `binary`: pares de _geometry_
+
+
+
+* `n-ary`: conjunto de _geometries_
+
+
+<https://keen-swartz-3146c4.netlify.app/geometries.html#opgeom>
+
+---
+
+### Proyecciones
+ 
+
+```{r eval=TRUE,echo=FALSE, out.width= '60%'}
+
+library(rnaturalearth)
+suppressPackageStartupMessages(library(sf))
+map = ne_countries(returnclass = "sf")
+par(mfrow = c(2, 2), mar = c(0,0,2.5,0))
+map = st_geometry(map)
+tissot = function(x = seq(-160, 160, 20), y = seq(-80, 80, 20), radius = units::set_units(300, km)) {
+    xy = expand.grid(x = x, y = y) 
+    s = st_as_sf(xy, coords = c("x", "y"), crs = 4326) 
+    st_buffer(s, radius)
+} 
+ti = tissot()
+g = st_graticule() %>% st_geometry()
+plot(map, graticule = g) # equidistant cylindrical
+title("Equidistant Cylindrical / Plate Carree\n(sf::plot, sp::plot, ggplot2::geom_sf)")
+# sf_use_s2(FALSE)
+assign(".sf.use_s2", FALSE, envir = sf:::.sf_cache) # hack!
+bb = st_as_sfc(st_bbox(c(xmin = -180,xmax=180,ymin=-71,ymax=85.06), crs = st_crs(map)))
+i = suppressMessages(st_intersection(bb, map[-7]))
+g0 = suppressMessages(st_intersection(g, bb))
+plot(st_transform(i, "EPSG:3857"), 
+	 graticule = st_transform(g0, 3857))
+title("Web Mercator\n(leaflet / mapview)")
+plot(st_transform(map, "+proj=eqearth"), 
+	 graticule = st_transform(g, "+proj=eqearth"))
+title("Equal Earth")
+plot(st_transform(map, "+proj=eck4"), 
+	 graticule = st_transform(g, "+proj=eck4"))
+title("Eckhart-IV (tmap)")
+```
+
+Fuente: Pebezma - useR (2021)
+
+---
+
+### Proyecciones
+
+```{r eval=TRUE,echo=FALSE, out.width= '60%'}
+par(mfrow = c(2, 2), mar = c(0,0,2.5,0))
+plot(map, graticule = g) # equidistant cylindrical
+plot(ti, add = TRUE, border = 'red', col = NA)
+title("Equidistant Cylindrical / Plate Carree\n(sf::plot, sp::plot, ggplot2::geom_sf)")
+assign(".sf.use_s2", FALSE, envir = sf:::.sf_cache) # hack!
+bb = st_as_sfc(st_bbox(c(xmin = -180,xmax=180,ymin=-71,ymax=85.06), crs = st_crs(map)))
+i = suppressMessages(st_intersection(bb, map[-7]))
+g0 = suppressMessages(st_intersection(g, bb))
+plot(st_transform(i, "EPSG:3857"), 
+	 graticule = st_transform(g0, 3857))
+plot(st_transform(ti, 3857), add = TRUE, border = 'red', col = NA)
+title("Web Mercator\n(leaflet / mapview)")
+plot(st_transform(map, "+proj=eqearth"), 
+	 graticule = st_transform(g, "+proj=eqearth"))
+plot(st_transform(ti, "+proj=eqearth"), add = TRUE, border = 'red', col = NA)
+title("Equal Earth")
+plot(st_transform(map, "+proj=eck4"), 
+	 graticule = st_transform(g, "+proj=eck4"))
+plot(st_transform(ti, "+proj=eck4"), add = TRUE, border = 'red', col = NA)
+title("Eckhart-IV (tmap)")
+```
+
+Fuente: Pebezma - useR (2021)
+
+
+---
+
+class: inverse, middle
+
+# Hoja de ruta
+
+1. `{sf}` / _RSpatial_
+
+--
+
+2. `{geoAr}`
+
+--
+
+3. `{rmapshaper}`
+
+
+---
+
+
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+background-position: 95% 5%
+background-size: 10%
+
+
+
+### Datos Espaciales Simplificados
+
+```{r, echo=F, out.width="80%"}
+knitr::include_graphics("https://user-images.githubusercontent.com/520851/50280460-e35c1880-044c-11e9-9ed7-cc46754e49db.jpg")
+```
+
+---
+
+
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+background-position: 95% 5%
+background-size: 10%
+
+
+## _Simple Features_ 
+
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("https://keen-swartz-3146c4.netlify.app/images/sf_obj.png")
+```
+
+
+
+
+[`r icon::fa("link")``{sf}`](https://r-spatial.github.io/sf/)
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+class: inverse, center, middle
+
+## Geometrías Argentinas
+
+```{r, eval=FALSE}
+
+# install.packages('devtools') si no tiene instalado devtools
+
+devtools::install_github("politicaargentina/geoAr")
+
+```
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## Geometrías Argentinas
+
+### Diccionario  - [show_arg_codes()](https://politicaargentina.github.io/geoAr/index.html)
+
+
+--
+
+```{r}
+library(geoAr)
+
+show_arg_codes()
+
+```
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## Geometrías Argentinas 
+
+### Diccionario (**departamentos**) - [show_arg_codes()](https://politicaargentina.github.io/geoAr/index.html)
+
+--
+
+```{r}
+library(geoAr)
+
+show_arg_codes(nivel = "departamentos")
+
+```
+
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## Geometrías Argentinas 
+
+### Obtener poligonos  - [get_geo()](https://politicaargentina.github.io/geoAr/index.html)
+
+--
+
+```{r}
+
+get_geo(geo = "TUCUMAN")
+
+```
+
+
+
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## Geometrías Argentinas  **raw**
+
+### Obtener poligonos  - [get_geo()](https://politicaargentina.github.io/geoAr/index.html)
+
+--
+
+```{r}
+
+(TUCUMAN <- get_geo(geo = "TUCUMAN", 
+                    simplified = FALSE)) #<<
+
+```
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+## Geometrías Argentinas 
+
+### Aumentar data - [add_geo_codes()](https://politicaargentina.github.io/geoAr/index.html)
+
+
+```{r}
+
+add_geo_codes(TUCUMAN)
+
+```
+
+---
+
+class: center, inverse, middle
+
+# [`{rmapshaper}`](https://github.com/ateucher/rmapshaper)
+
+
+
+
