@@ -8,7 +8,7 @@
     <script src="libs/tile-view/tile-view.js"></script>
     <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
     <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x251143a285a4d52a50b24df5b9e89ac","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x235755ecccf41fa8e18de20723f3382","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -86,9 +86,11 @@ layout: true
 
 
 ---
-# FUNCIONES
+# FUNCIONES + LOOPS (*for*)
 
 ## HOJA DE RUTA
+
+&lt;br&gt;&lt;br&gt;
 
 - ¿Para qué sirven las funciones?
 
@@ -96,8 +98,448 @@ layout: true
 
 - "Si se repite más de tres veces, merece ser una función"
 
+- Iterar (*for*)
 
 ---
+# ¿Cuándo necesitamos crear una función?
+
+&lt;img src="figs/funcion_drake.png" width="800" height="450" style="display: block; margin: auto;" /&gt;
+
+
+---
+# ¿Cómo armamos una función?
+
+
+&lt;img src="figs/funcion.png" width="800" height="300" style="display: block; margin: auto;" /&gt;
+
+---
+# ¿Cómo armamos una función?
+
+
+### Quiero armar una función que le sume `2` a un número cualquiera:
+
+
+```r
+le_sumo_dos_a &lt;- function(numero) {
+  
+  numero + 2
+
+}
+```
+
+--
+
+
+```r
+le_sumo_dos_a(2)
+## [1] 4
+```
+
+--
+
+
+```r
+le_sumo_dos_a(5)
+## [1] 7
+```
+
+
+
+
+---
+# ¿Cómo armamos una función?
+
+### En este ejemplo, el argumento `numero` es un genérico. Lo puedo llamar como desee, siempre y cuando respete ese nombre en todo el cuerpo de la función.
+
+```r
+le_sumo_dos_a &lt;- function(numero) {
+  
+  numero + 2
+
+}
+```
+
+```r
+le_sumo_dos_a &lt;- function(pepito) {
+  
+  pepito + 2
+
+}
+```
+
+
+---
+class: inverse, middle, center
+
+# Práctica
+
+
+- Diseñar una función que multiplique por 4 a cualquier valor que le indique
+
+
+---
+# Ejemplo
+
+### Quiero una función que tome un nombre de varón y devuelva un texto
+
+
+```r
+pongo_nombre &lt;- function(texto) {
+  
+  paste("el", texto, "está en cualquiera", sep = " ")
+
+}
+
+pongo_nombre("Pablo")
+## [1] "el Pablo está en cualquiera"
+```
+
+
+
+---
+# Ejemplo
+
+### Quiero aplicar siempre un formato de salida de valores numéricos para que el separador de decimales sea la `,` y el de miles el `.`:
+
+
+```r
+formateo &lt;- function(valor) {
+  
+  format(valor, 
+         big.mark = ".", 
+         decimal.mark = ",", 
+         digits = 2, nsmall = 2)}
+```
+--
+
+
+```r
+formateo(2349382.456)
+## [1] "2.349.382,46"
+```
+
+--
+
+
+```r
+formateo(3/4)
+## [1] "0,75"
+```
+
+---
+# Recomendaciones
+
+&lt;br&gt;
+
+### Para construir una función suele ser útil comenzar por lo simple:
+
+&lt;br&gt;
+
+💡 Primero escribo la línea de código que necesito automatizar
+
+&lt;br&gt;
+
+💡 Luego la hago función
+
+---
+# Armando una función
+
+### Supongamos que suelo tener que calcular la __tasa de empleo__, por lo que una función nos vendría bien para evitar tantas líneas de código:
+
+--
+
+#### Tal como se sugirió, vamos a generar el resultado deseado para luego pasar a pensar la función:
+
+```r
+library(eph)
+base_eph_ind &lt;- toybase_individual_2016_04
+
+base_eph_ind %&gt;% 
+  summarise(pob_tot = sum(PONDERA),
+            pob_ocupada = sum(PONDERA[ESTADO == 1]),
+            tasa_empleo = pob_ocupada / pob_tot * 100) %&gt;% 
+  select(tasa_empleo)
+##   tasa_empleo
+## 1    43.78169
+```
+
+
+---
+# Armando una función
+
+### Lo transformo en una función:
+
+
+```r
+tasa_empleo &lt;- function(base){
+  
+  base %&gt;% 
+    summarise(pob_tot = sum(PONDERA),
+              pob_ocupada = sum(PONDERA[ESTADO == 1]),
+              tasa_empleo = pob_ocupada / pob_tot * 100)  %&gt;% 
+    select(tasa_empleo)
+  
+}
+```
+
+--
+
+
+```r
+tasa_empleo(base_eph_ind)
+##   tasa_empleo
+## 1    43.78169
+```
+
+---
+class: inverse, middle, center
+
+# Práctica
+
+
+- Diseñar una función que estime la tasa de desocupación
+
+
+---
+# Se picó
+
+## Necesito una única función que estime las principales tasas del mercado de trabajo y devuelva el resultado en función de cuál de ellas quiero en particular
+
+
+---
+# Se picó (primer paso)
+
+
+```r
+tasa &lt;- function(base, tasa = NULL) {
+  
+  ## Armo la tabla
+  
+  tabla &lt;- base %&gt;% 
+    summarise(pob_tot = sum(PONDERA),
+              pob_activa = sum(PONDERA[ESTADO %in% c(1,2)]),
+              pob_ocupada = sum(PONDERA[ESTADO == 1]),
+              pob_desocupada = sum(PONDERA[ESTADO == 2]),
+              pob_inactiva = sum(PONDERA[ESTADO %in% c(3,4)]),
+              tasa_empleo = pob_ocupada / pob_tot * 100,
+              tasa_desempleo = pob_desocupada / pob_activa * 100,
+              tasa_inactividad = pob_inactiva / pob_tot * 100)
+  
+  
+  ## Defino la salida
+  
+  if(tasa == "empleo") { # &lt;-- Si se cumple esta condición
+    
+    select(tabla, tasa_empleo) # &lt;-- Quiero que pase esto
+    
+  } else { # &lt;-- ¿Y si no?
+    
+    if(tasa == "desempleo"){ # &lt;-- Chequeo si se cumple esta condición
+      
+      select(tabla, tasa_desempleo) # &lt;-- Y que pase esto
+      
+    }
+  }
+}
+```
+
+--
+
+
+```r
+tasa(base_eph_ind, tasa = "empleo")
+##   tasa_empleo
+## 1    43.78169
+```
+
+
+
+
+---
+# Se picó (final)
+
+
+```r
+tasa &lt;- function(base, tasa = NULL) {
+  
+  tabla &lt;- base %&gt;% 
+    summarise(pob_tot = sum(PONDERA),
+              pob_activa = sum(PONDERA[ESTADO %in% c(1,2)]),
+              pob_ocupada = sum(PONDERA[ESTADO == 1]),
+              pob_desocupada = sum(PONDERA[ESTADO == 2]),
+              pob_inactiva = sum(PONDERA[ESTADO %in% c(3,4)]),
+              tasa_empleo = pob_ocupada / pob_tot * 100,
+              tasa_desempleo = pob_desocupada / pob_activa * 100,
+              tasa_inactividad = pob_inactiva / pob_tot * 100)
+  
+  if(tasa == "empleo") { # &lt;-- Si se cumple esta condición
+    
+    select(tabla, tasa_empleo) # &lt;-- Quiero que pase esto
+    
+  } else { # &lt;-- ¿Y si no?
+    
+    if(tasa == "desempleo"){ # &lt;-- Chequeo si se cumple esta condición
+      
+      select(tabla, tasa_desempleo) # &lt;-- Y que pase esto
+      
+    } else { 
+      
+      if(tasa == "inactividad"){ 
+        
+        select(tabla, tasa_inactividad)
+        
+      } else { 
+        
+        if(tasa == "todas"){
+          
+          select(tabla, contains("tasa"))
+          
+        }
+      }
+      
+    }
+  }
+}
+```
+
+---
+# Iterar (*for*)
+
+- ¿Cuándo? Necesitamos realizar una operación donde cambia un valor pero no la estructura de la sentencia
+
+### Ejemplo
+
+
+```r
+1 + 1
+## [1] 2
+1 + 2
+## [1] 3
+1 + 3
+## [1] 4
+1 + 4
+## [1] 5
+1 + 5
+## [1] 6
+```
+
+
+---
+# Solución
+
+
+```r
+for (i in 1:5) {
+  print(1 + i)
+}
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+```
+
+---
+# Caso de uso
+
+- Necesito calcular la tasa de empleo para todas las REGIONES de la Encuesta Permanente de Hogares
+
+--
+
+- Descargo la base de juguete y reviso las categorías de la variable `REGION`
+
+
+```r
+library(eph)
+library(tidyverse)
+
+b_eph &lt;- toybase_individual_2016_03
+
+unique(b_eph$REGION)
+## [1]  1 44 43 40 41 42
+```
+
+---
+# Caso de uso
+
+### Calculo la tasa, para la **primera** región:
+
+
+```r
+b_eph %&gt;%
+  filter(REGION == 1) %&gt;% 
+  group_by(REGION) %&gt;% 
+  summarise(pob_tot = sum(PONDERA),
+            pob_ocupada = sum(PONDERA[ESTADO == 1]),
+            tasa_empleo = round(pob_ocupada / pob_tot * 100, digits = 1)) %&gt;%
+  select(REGION, tasa_empleo)
+## # A tibble: 1 x 2
+##   REGION     tasa_empleo
+##   &lt;labelled&gt;       &lt;dbl&gt;
+## 1 1                   46
+```
+
+--
+
+### Calculo la tasa, para la **segunda** región:
+
+```r
+b_eph %&gt;%
+  filter(REGION == 44) %&gt;% 
+  group_by(REGION) %&gt;% 
+  summarise(pob_tot = sum(PONDERA),
+            pob_ocupada = sum(PONDERA[ESTADO == 1]),
+            tasa_empleo = round(pob_ocupada / pob_tot * 100, digits = 1)) %&gt;%
+  select(REGION, tasa_empleo)
+## # A tibble: 1 x 2
+##   REGION     tasa_empleo
+##   &lt;labelled&gt;       &lt;dbl&gt;
+## 1 44                  39
+```
+
+---
+# Caso de uso (con _for_)
+
+
+```r
+for (i in unique(b_eph$REGION)) {
+  
+  tasa &lt;- b_eph %&gt;%
+    filter(REGION == i) %&gt;% 
+    group_by(REGION) %&gt;% 
+    summarise(pob_tot = sum(PONDERA),
+              pob_ocupada = sum(PONDERA[ESTADO == 1]),
+              tasa_empleo = pob_ocupada / pob_tot * 100) %&gt;%
+    select(REGION, tasa_empleo)
+  
+  print(tasa)
+}
+## # A tibble: 1 x 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1      1        46.0
+## # A tibble: 1 x 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1     44        39.0
+## # A tibble: 1 x 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1     43        39.3
+## # A tibble: 1 x 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1     40        42.7
+## # A tibble: 1 x 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1     41        45.1
+## # A tibble: 1 x 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1     42        43.0
+```
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
