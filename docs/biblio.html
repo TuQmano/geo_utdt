@@ -50,17 +50,16 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { color: #00769e; background-color: #f1f3f5; }
+  {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #657422; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #00769e; } /* ControlFlow */
+code span.cf { color: #007ba5; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -74,9 +73,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #00769e; } /* Keyword */
+code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #00769e; } /* Other */
+code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -1031,6 +1030,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1.5em;
   }
 
+  .figure img {
+    width: 100%;
+  }
+
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1860,12 +1863,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
-          $(this).html(fn.shadowRoot.querySelector("sup"))
-          $(this).id = fn.id
-          fn.remove()
-        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1880,31 +1877,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
-
-      // fix footnotes in tables (#411)
-      // replacing broken distill.pub feature
-      $('table d-footnote').each(function() {
-        // we replace internal showAtNode methode which is triggered when hovering a footnote
-        this.hoverBox.showAtNode = function(node) {
-          // ported from https://github.com/distillpub/template/pull/105/files
-          calcOffset = function(elem) {
-              let x = elem.offsetLeft;
-              let y = elem.offsetTop;
-              // Traverse upwards until an `absolute` element is found or `elem`
-              // becomes null.
-              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
-                  x += elem.offsetLeft;
-                  y += elem.offsetTop;
-              }
-
-              return { left: x, top: y };
-          }
-          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
-          const bbox = node.getBoundingClientRect();
-          const offset = calcOffset(node);
-          this.show([offset.left + bbox.width, offset.top + bbox.height]);
-        }
-      })
 
       // clear polling timer
       clearInterval(tid);
@@ -2004,8 +1976,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
-      // ignore leaflet img layers (#106)
-      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2028,7 +1998,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
       });
     }
 
@@ -2115,6 +2085,7 @@ Sesiones
 <a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion3.html">Clase 3</a>
 <a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion4.html">Clase 4</a>
 <a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion5.html">Clase 5</a>
+<a href="https://tuqmano.github.io/geo_utdt/sesiones/sesion6.html">Clase 6</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2160,61 +2131,35 @@ Ediciones Anteriores
 
 <div class="d-article">
 <h3 id="principal">PRINCIPAL</h3>
-<p><strong>Fundamentos</strong>: <a
-href="https://colinfay.me/intro-to-r/statistical-models-in-r.html"><em>An
-Intro to R</em></a>, Collin Fay.</p>
-<p><strong>Programación</strong>: <a href="https://es.r4ds.hadley.nz/">R
-para Ciencia de Datos</a> (Traducción de <a
-href="https://r4ds.had.co.nz/">R for Data Science</a>), Garrett
-Grolemund, Hadley Wickham.</p>
-<p><strong>Visualización</strong>: <a
-href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data
-Analysis</a>, Hadley Wickham.</p>
-<p><strong>Geocomputación</strong>: <a
-href="https://geocompr.robinlovelace.net/"><em>Geocomputation with
-R</em></a>; Robin Lovelace, Jakub Nowosad &amp; Jannes Muenchow.</p>
+<p><strong>Fundamentos</strong>: <a href="https://colinfay.me/intro-to-r/statistical-models-in-r.html"><em>An Intro to R</em></a>, Collin Fay.</p>
+<p><strong>Programación</strong>: <a href="https://es.r4ds.hadley.nz/">R para Ciencia de Datos</a> (Traducción de <a href="https://r4ds.had.co.nz/">R for Data Science</a>), Garrett Grolemund, Hadley Wickham.</p>
+<p><strong>Visualización</strong>: <a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis</a>, Hadley Wickham.</p>
+<p><strong>Geocomputación</strong>: <a href="https://geocompr.robinlovelace.net/"><em>Geocomputation with R</em></a>; Robin Lovelace, Jakub Nowosad &amp; Jannes Muenchow.</p>
 <hr />
 <h3 id="consulta">CONSULTA</h3>
 <h4 id="general">GENERAL</h4>
 <ul>
-<li><p><a href="https://arcruz0.github.io/libroadp/">AnalizaR Datos
-Políticos</a>, Francisco Urdinez y Andrés Cruz Labrín
-(Editores).</p></li>
-<li><p><a
-href="https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/">Ciencia
-de Datos para Gente Sociable</a>, Antonio Vazquez Brust.</p></li>
-<li><p><a
-href="https://bookdown.org/martinmontaneb/CienciaDeDatosParaCuriosos/">Ciencia
-de datos para curiosos</a>, Martín Montané.</p></li>
+<li><p><a href="https://arcruz0.github.io/libroadp/">AnalizaR Datos Políticos</a>, Francisco Urdinez y Andrés Cruz Labrín (Editores).</p></li>
+<li><p><a href="https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/">Ciencia de Datos para Gente Sociable</a>, Antonio Vazquez Brust.</p></li>
+<li><p><a href="https://bookdown.org/martinmontaneb/CienciaDeDatosParaCuriosos/">Ciencia de datos para curiosos</a>, Martín Montané.</p></li>
 </ul>
 <h4 id="data-viz">DATA VIZ</h4>
 <ul>
-<li><p><a href="https://socviz.co/index.html#preface">Data
-Visualizaction: A Practival Introduction</a>, Kieran Healey.</p></li>
-<li><p><a href="https://clauswilke.com/dataviz/">Fundamentals of Data
-Visualization</a>, Claus Wilke.</p></li>
+<li><p><a href="https://socviz.co/index.html#preface">Data Visualizaction: A Practival Introduction</a>, Kieran Healey.</p></li>
+<li><p><a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization</a>, Claus Wilke.</p></li>
 </ul>
 <h4 id="geo">GEO</h4>
 <ul>
-<li><p><a href="https://www.r-spatial.org/book">Spatial Data Science
-(<em>with applications in R</em>)</a>, Edzer Pebesma y Roger
-Bivand.</p></li>
-<li><p><a
-href="https://martinmontane.github.io/AnalisisEspacialEnR/">Herramientas
-de análisis espacial en R</a>, Martín Montané.</p></li>
+<li><p><a href="https://www.r-spatial.org/book">Spatial Data Science (<em>with applications in R</em>)</a>, Edzer Pebesma y Roger Bivand.</p></li>
+<li><p><a href="https://martinmontane.github.io/AnalisisEspacialEnR/">Herramientas de análisis espacial en R</a>, Martín Montané.</p></li>
 </ul>
 <h4 id="software-programación">SOFTWARE / PROGRAMACIÓN</h4>
 <ul>
-<li><p><a href="https://rstats.wtf/">What They Forgot to Teach You About
-R</a>, Jennifer Bryan &amp; Jim Hester.</p></li>
-<li><p><a href="https://happygitwithr.com/">Happy Git and GitHub for the
-useR</a>, Jennifer Bryan, STAT 545 TAs &amp; Jim Hester.</p></li>
-<li><p><a href="https://rstudio4edu.github.io/rstudio4edu-book/">A
-Handbook for Teaching and Learning with R and RStudio</a>, Desirée De
-Leon &amp; Alison Hill.</p></li>
+<li><p><a href="https://rstats.wtf/">What They Forgot to Teach You About R</a>, Jennifer Bryan &amp; Jim Hester.</p></li>
+<li><p><a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a>, Jennifer Bryan, STAT 545 TAs &amp; Jim Hester.</p></li>
+<li><p><a href="https://rstudio4edu.github.io/rstudio4edu-book/">A Handbook for Teaching and Learning with R and RStudio</a>, Desirée De Leon &amp; Alison Hill.</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
