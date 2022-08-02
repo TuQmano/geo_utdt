@@ -3,7 +3,7 @@ title: "Instrumentos de An&aacute;lisis Urbanos II"
 subtitle: "Maestría en Economía Urbana"
 author: ""
 institute: "Universidad Torcuato Di Tella"
-date: "06/07/2021"
+date: "02/08/2022"
 output:
   xaringan::moon_reader:
     css: ["footer-header.css", "styles.css"]
@@ -17,7 +17,7 @@ output:
 
 layout: true
   
-<div class="my-footer"><span>Juan Pablo Ruiz Nicolini | @TuQmano | <a href="https://tuqmano.ar/">www.tuqmano.ar</a></span></div> 
+<div class="my-footer"><span>Instrumentos de Análisis Urbanos II - <a href="https://tuqmano.github.io/geo_utdt/">https://tuqmano.github.io/geo_utdt/</a></span></div> 
 
 
 ```{r setup, include=FALSE}
