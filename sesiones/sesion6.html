@@ -3,12 +3,13 @@
   <head>
     <title>Instrumentos de Análisis Urbanos II</title>
     <meta charset="utf-8" />
+    <meta name="date" content="2022-02-08" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view/tile-view.js"></script>
     <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
     <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xec87329cecb46c397ca164002ebde76","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xd698e6c01cd46618773d6da6f187422","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -23,8 +24,8 @@
     <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-scribble/scribble.js"></script>
     <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="footer-header.css" type="text/css" />
     <link rel="stylesheet" href="styles.css" type="text/css" />
   </head>
@@ -32,18 +33,28 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Instrumentos de Análisis Urbanos II
+]
+.subtitle[
 ## Maestría en Economía Urbana
+]
+.author[
 ### 
+]
+.institute[
 ### Universidad Torcuato Di Tella
-### 20/07/2021
+]
+.date[
+### 02/08/2022
+]
 
 ---
 
 
 layout: true
   
-&lt;div class="my-footer"&gt;&lt;span&gt;Juan Pablo Ruiz Nicolini | @TuQmano | &lt;a href="https://tuqmano.ar/"&gt;www.tuqmano.ar&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
+&lt;div class="my-footer"&gt;&lt;span&gt;Instrumentos de Análisis Urbanos II - &lt;a href="https://tuqmano.github.io/geo_utdt/"&gt;https://tuqmano.github.io/geo_utdt/&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
 
 
 
@@ -72,444 +83,408 @@ layout: true
   100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
 }</style>
 
----
-
-class:  middle, center, inverse
-
-
-# Programación (Intro)
 
 ---
 
-## <i class="fas  fa-book "></i> Referencias
-
-* [_Pipes_, Funciones, Vectores e Iteración](https://es.r4ds.hadley.nz/programar-intro.html), en **Wickham y Grolemnud**
-
-
---
-
-&lt;img src="https://es.r4ds.hadley.nz/diagrams_w_text_as_path/es/data-science-program.svg" width="90%" /&gt;
+class: inverse, center, middle
 
 
 
----
-background-image: url(https://github.com/tidyverse/magrittr/raw/master/man/figures/logo.png)
-background-position: 95% 5%
-background-size: 10%
+## Domar los Datos III
 
-# "*Esto no es una pipa*"
-
-### Una receta
-
-```r
-the_data &lt;-  read.csv('/path/to/data/file.csv') %&gt;%
-  subset(variable_a &gt; x) %&gt;%
-  transform(variable_c = variable_a/variable_b) %&gt;%
-  head(100)
-```
---
-* Secuencia de comandos u ordenes
-
---
-
-* Lectura de izquierda a derecha
-
---
-
-* Minimizar (i) funciones anidadas y (ii)
-creación de objetos intermedios
-
---
-
-* Facilita posibiidad de modificar secuencia y agregar pasos en el medio de la misma
-
-[<i class="fas  fa-link "></i>{magrittr}](https://magrittr.tidyverse.org/)
-
----
-
-background-image: url(https://github.com/tidyverse/glue/raw/master/man/figures/logo.png)
-background-position: 95% 5%
-background-size: 10%
-
-# Facilitando el _pegado_
-
-
-
-```
-## Mi nombre es TuQmano. 
-## Trabajo de Cientista de Datos. 
-## Nací el jueves 15 de septiembre de 1983
-```
-
-
-[<i class="fas  fa-link "></i>{glue}](https://glue.tidyverse.org/) 
-[y <i class="fas  fa-link "></i> alternativas](https://trinkerrstuff.wordpress.com/2013/09/15/paste-paste0-and-sprintf-2/) como `paste()`, `paste0()` y `sprintf()`. 
-
-
---
-
-```r
-
-glue("Mi nombre es {nombre}. 
-     Trabajo de {ocupacion}.
-     Nací el {format(aniversario, '%A, %d de %B de %Y')}")
-```
-
---
-
-```r
-
-library(glue)
-
-nombre &lt;- "TuQmano"
-ocupacion &lt;- "Cientista de Datos"
-aniversario &lt;- as.Date("1983-09-15")
-```
-
----
-class: middle, center, inverse
-
-# Repaso 
-
-`scripts/repaso_geo.R` 
+###  `geo`
 
 
 
 ---
 
-# Programando con `R base`
+class: inverse
 
+## &lt;svg viewBox="0 0 448 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#fdbd15;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"&gt;&lt;/path&gt;&lt;/svg&gt; Referencias
 
-```r
+* R - Spatial:  &lt;https://www.r-spatial.org/&gt;
 
-df &lt;- tibble::tibble(
- a = rnorm(10),
- b = rnorm(10),
- c = rnorm(10),
- d = rnorm(10)
-)
+* [Geocomputation with R](https://geocompr.robinlovelace.net/), Robin Lovelace, Jakub Nowosad, Jannes Muenchow (2019)
 
+* [Spatial Data Science](https://keen-swartz-3146c4.netlify.app/), Edzer Pebesma y Roger Bivand.
 
-df
-## # A tibble: 10 x 4
-##         a       b      c       d
-##     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-##  1 -0.976 -0.201   1.75  -0.372 
-##  2 -0.467 -0.0148 -0.828 -1.13  
-##  3  1.59  -0.559   1.75  -0.888 
-##  4  0.732 -1.23    1.51  -0.704 
-##  5 -0.449 -0.853   1.41   0.390 
-##  6  1.21   0.856  -0.260 -0.678 
-##  7 -0.644  0.651   2.31  -0.424 
-##  8 -0.733  0.458  -0.361  1.26  
-##  9  1.58   0.347   0.586 -0.0995
-## 10 -0.202 -0.0462  1.52   1.23
-```
+---
+class: inverse, middle
+
+# _useR 2021_: Pebesma
+
+* Video: https://youtu.be/O8V4QJ13Gjc
+
+* Slides: https://edzer.github.io/UseR2021/#1
+
 
 ---
 
-# Programando con `R base`
+## Universo _geo_ (desde `R`)
 
+&lt;img src="https://keen-swartz-3146c4.netlify.app/images/sf_deps.png" width="80%" /&gt;
 
-
-```r
-
-df$a &lt;- (df$a - min(df$a)) /
- (max(df$a) - min(df$a))
-
-df$b &lt;- (df$b - min(df$b)) /
- (max(df$b) - min(df$a))
-
-df$c &lt;- (df$c - min(df$c)) /
- (max(df$c) - min(df$c))
-
-df$d &lt;- (df$d - min(df$d)) /
- (max(df$d) - min(df$d))
-```
-
---
-* Qué estamos calculando? 
-
---
-* Dónde está el error?
-
---
-
-&gt; **Deberías considerar escribir una función cuando has copiado y pegado un bloque de código más de dos veces** - [**<i class="fas  fa-link "></i> R4DS**](https://es.r4ds.hadley.nz/funciones.html#cu%C3%A1ndo-deber%C3%ADas-escribir-una-funci%C3%B3n)
+Fuente: [_Spatial Data Science_](https://keen-swartz-3146c4.netlify.app/)
 
 ---
 
-# Progrmando con `R base` 
+### Geometrías
 
+&lt;img src="sesion6_files/figure-html/unnamed-chunk-2-1.png" width="60%" /&gt;
 
-```r
-
-x &lt;- df$a
-
-(x - min(x)) / (max(x) - min(x))
-##  [1] 0.0000000 0.1983681 1.0000000 0.6650333 0.2054174 0.8524678 0.1292794
-##  [8] 0.0947813 0.9968177 0.3015350
-```
-
---
-
-
-```r
-
-rng &lt;- range(x)
-
-(x - rng[1]) / (rng[2] - rng[1])
-##  [1] 0.0000000 0.1983681 1.0000000 0.6650333 0.2054174 0.8524678 0.1292794
-##  [8] 0.0947813 0.9968177 0.3015350
-```
-
---
-
-
-```r
-
-rescale01 &lt;- function(x) {
- rng &lt;- range(x, na.rm = TRUE)
- (x - rng[1]) / (rng[2] - rng[1])
-}
-
-
-rescale01(c(22, 50, 10, 32))
-## [1] 0.30 1.00 0.00 0.55
-```
+Fuente: [_Spatial Data Science_](https://keen-swartz-3146c4.netlify.app/geometries.html) (ver detalle)
 
 ---
-background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/electorAr.png)
+
+### Operaciones - [Spatial Data Science](https://keen-swartz-3146c4.netlify.app/geometries.html#opgeom)
+
+#### INPUTS
+
+--
+
+* `predicates`: una consulta lógica para determinar si una propiedad es  `TRUE` 
+
+ - `is.empty()`
+--
+
+* `measures`: una cantidad (e.g. un valor númerico con una unidad de medida determinada)
+
+ - `area()`
+--
+
+* `transformations`: generación de nuevas geometrías 
+
+ - `centroid()`
+
+
+
+---
+
+### Operaciones - [Spatial Data Science](https://keen-swartz-3146c4.netlify.app/geometries.html#opgeom)
+
+
+#### SOBRE QUE OPERAN
+
+
+--
+
+
+* `unary`: una única _geometry_
+
+
+
+* `binary`: pares de _geometry_
+
+
+
+* `n-ary`: conjunto de _geometries_
+
+
+&lt;https://keen-swartz-3146c4.netlify.app/geometries.html#opgeom&gt;
+
+---
+
+### Proyecciones
+ 
+
+&lt;img src="sesion6_files/figure-html/unnamed-chunk-3-1.png" width="60%" /&gt;
+
+Fuente: Pebezma - useR (2021)
+
+---
+
+### Proyecciones
+
+&lt;img src="sesion6_files/figure-html/unnamed-chunk-4-1.png" width="60%" /&gt;
+
+Fuente: Pebezma - useR (2021)
+
+
+---
+
+class: inverse, middle
+
+# Hoja de ruta
+
+1. `{sf}` / _RSpatial_
+
+--
+
+2. `{geoAr}`
+
+--
+
+3. `{rmapshaper}`
+
+
+---
+
+
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
 background-position: 95% 5%
 background-size: 10%
 
 
 
-## Datos `{electorAr}`
+### Datos Espaciales Simplificados
+
+&lt;img src="https://user-images.githubusercontent.com/520851/50280460-e35c1880-044c-11e9-9ed7-cc46754e49db.jpg" width="80%" /&gt;
+
+---
+
+
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+background-position: 95% 5%
+background-size: 10%
+
+
+## _Simple Features_ 
+
+
+&lt;img src="https://keen-swartz-3146c4.netlify.app/images/sf_obj.png" width="80%" /&gt;
+
+
+
+
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt;`{sf}`](https://r-spatial.github.io/sf/)
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+class: inverse, center, middle
+
+## Geometrías Argentinas
 
 
 ```r
 
-library(electorAr)
+# install.packages('devtools') si no tiene instalado devtools
 
-tucuman_dip_gral_2017 %&gt;% 
-  get_names()
-## # A tibble: 6 x 9
-## # Groups:   codprov [1]
-##   category round  year codprov name_prov electores listas   votos nombre_lista  
-##   &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;         
-## 1 dip      gral   2017 23      TUCUMAN     1217274 0180    154930 FUERZA REPUBL~
-## 2 dip      gral   2017 23      TUCUMAN     1217274 0503     46609 FRENTE DE IZQ~
-## 3 dip      gral   2017 23      TUCUMAN     1217274 0521    319221 CAMBIEMOS PAR~
-## 4 dip      gral   2017 23      TUCUMAN     1217274 0548    459257 FRENTE JUSTIC~
-## 5 dip      gral   2017 23      TUCUMAN     1217274 blancos   5920 blancos       
-## 6 dip      gral   2017 23      TUCUMAN     1217274 nulos    12947 nulos
+devtools::install_github("politicaargentina/geoAr")
+
 ```
 
 ---
 
-background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/electorAr.png)
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
 background-position: 95% 5%
 background-size: 10%
 
 
-## % votos 
+## Geometrías Argentinas
 
-
-```r
-
-library(electorAr)
-library(dplyr)
-
-tucuman_dip_gral_2017 %&gt;% 
-  get_names() %&gt;% 
-  transmute(nombre_lista, votos, 
-*           pct = round(votos/sum(votos)*100,1))
-## # A tibble: 6 x 4
-## # Groups:   codprov [1]
-##   codprov nombre_lista                               votos   pct
-##   &lt;chr&gt;   &lt;chr&gt;                                      &lt;dbl&gt; &lt;dbl&gt;
-## 1 23      FUERZA REPUBLICANA                        154930  15.5
-## 2 23      FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES  46609   4.7
-## 3 23      CAMBIEMOS PARA EL BICENTENARIO            319221  32  
-## 4 23      FRENTE JUSTICIALISTA POR TUCUMAN          459257  46  
-## 5 23      blancos                                     5920   0.6
-## 6 23      nulos                                      12947   1.3
-```
-
-
-
----
-
-background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/electorAr.png)
-background-position: 95% 5%
-background-size: 10%
-
-## `function()` 
-### generalizar cálculo de % para un vector
-
-
-
-```r
-
-calcular_pct &lt;- function(data){
-  
-* round(data/sum(data)*100,1)
-  
-}
-```
-
-
----
-
-background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/electorAr.png)
-background-position: 95% 5%
-background-size: 10%
-
-## % votos 
-###  `calcular_pct(data)` 
-
-
-```r
-datos &lt;- electorAr::tucuman_dip_gral_2017
-
-datos %&gt;% 
-  electorAr::get_names() %&gt;% 
-  dplyr::transmute(nombre_lista,
-*                  pct = calcular_pct(data = votos))
-## # A tibble: 6 x 3
-## # Groups:   codprov [1]
-##   codprov nombre_lista                                pct
-##   &lt;chr&gt;   &lt;chr&gt;                                     &lt;dbl&gt;
-## 1 23      FUERZA REPUBLICANA                         15.5
-## 2 23      FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES   4.7
-## 3 23      CAMBIEMOS PARA EL BICENTENARIO             32  
-## 4 23      FRENTE JUSTICIALISTA POR TUCUMAN           46  
-## 5 23      blancos                                     0.6
-## 6 23      nulos                                       1.3
-```
-
-
----
-
-background-image: url(https://github.com/tidyverse/purrr/raw/master/man/figures/logo.png)
-background-position: 95% 5%
-background-size: 10%
-
-# Iteración 
-
-
-[<i class="fas  fa-link "></i>{purrr}](https://purrr.tidyverse.org/)
-
-&lt;img src="https://www.gerkelab.com/blog/2018-09-20-import-a-directory-of-csv-files-at-once-using-purrr-and-readr_files/map_dfr-csv_files-read_csv.png" width="70%" /&gt;
-
-
-<i class="fas  fa-link "></i> **&lt;https://www.gerkelab.com/blog/2018/09/import-directory-csv-purrr-readr/&gt;**
-
-
-
----
-
-
-background-image: url(https://github.com/tidyverse/purrr/raw/master/man/figures/logo.png)
-background-position: 95% 5%
-background-size: 10%
-
-# Iteración 
-## Ejemplo: guardar múltiples archivos
-
+### Diccionario  - [show_arg_codes()](https://politicaargentina.github.io/geoAr/index.html)
 
 
 --
 
+
+```r
+library(geoAr)
+
+show_arg_codes()
+## # A tibble: 26 x 5
+##    id           codprov codprov_censo codprov_iso name_iso                      
+##    &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;                         
+##  1 ARGENTINA    " "     " "           AR          Argentina                     
+##  2 CABA         "01"    "02"          AR-C        Ciudad Autónoma de Buenos Air~
+##  3 BUENOS AIRES "02"    "06"          AR-B        Buenos Aires                  
+##  4 CATAMARCA    "03"    "10"          AR-K        Catamarca                     
+##  5 CORDOBA      "04"    "14"          AR-X        Córdoba                       
+##  6 CORRIENTES   "05"    "18"          AR-W        Corrientes                    
+##  7 CHACO        "06"    "22"          AR-H        Chaco                         
+##  8 CHUBUT       "07"    "26"          AR-U        Chubut                        
+##  9 ENTRE RIOS   "08"    "30"          AR-E        Entre Ríos                    
+## 10 FORMOSA      "09"    "34"          AR-P        Formosa                       
+## # ... with 16 more rows
+```
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## Geometrías Argentinas 
+
+### Diccionario (**departamentos**) - [show_arg_codes()](https://politicaargentina.github.io/geoAr/index.html)
+
+--
+
+
+```r
+library(geoAr)
+
+show_arg_codes(nivel = "departamentos")
+## # A tibble: 527 x 6
+##    id        codprov coddepto codprov_censo coddepto_censo nomdepto_censo
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;         
+##  1 ARGENTINA " "     " "      " "           " "            " "           
+##  2 CABA      "01"    "001"    "02"          "001"          "COMUNA 01"   
+##  3 CABA      "01"    "002"    "02"          "002"          "COMUNA 02"   
+##  4 CABA      "01"    "003"    "02"          "003"          "COMUNA 03"   
+##  5 CABA      "01"    "004"    "02"          "004"          "COMUNA 04"   
+##  6 CABA      "01"    "005"    "02"          "005"          "COMUNA 05"   
+##  7 CABA      "01"    "006"    "02"          "006"          "COMUNA 06"   
+##  8 CABA      "01"    "007"    "02"          "007"          "COMUNA 07"   
+##  9 CABA      "01"    "008"    "02"          "008"          "COMUNA 08"   
+## 10 CABA      "01"    "009"    "02"          "009"          "COMUNA 09"   
+## # ... with 517 more rows
+```
+
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## Geometrías Argentinas 
+
+### Obtener poligonos  - [get_geo()](https://politicaargentina.github.io/geoAr/index.html)
+
+--
+
+
 ```r
 
-
-library(geoAr)  # para geometrías
-
-
-geo &lt;- get_geo("ARGENTINA") %&gt;% 
-  add_geo_codes()
-  
-
-geo
-## Simple feature collection with 526 features and 8 fields
+get_geo(geo = "TUCUMAN")
+## Simple feature collection with 17 features and 2 fields
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
-## Bounding box:  xmin: -73.57219 ymin: -55.05624 xmax: -53.64276 ymax: -21.74531
+## Bounding box:  xmin: -66.18101 ymin: -28.01575 xmax: -64.48315 ymax: -26.06037
 ## Geodetic CRS:  WGS 84
-## # A tibble: 526 x 9
-##    codprov_censo coddepto_censo codprov coddepto nomdepto_censo name_prov   
-##    &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;       
-##  1 02            001            01      001      COMUNA 01      CABA        
-##  2 02            002            01      002      COMUNA 02      CABA        
-##  3 02            003            01      003      COMUNA 03      CABA        
-##  4 02            004            01      004      COMUNA 04      CABA        
-##  5 06            091            02      011      BERAZATEGUI    BUENOS AIRES
-##  6 74            056            19      001      LA CAPITAL     SAN LUIS    
-##  7 02            005            01      005      COMUNA 05      CABA        
-##  8 02            006            01      006      COMUNA 06      CABA        
-##  9 06            147            02      019      CARLOS CASARES BUENOS AIRES
-## 10 02            007            01      007      COMUNA 07      CABA        
-## # ... with 516 more rows, and 3 more variables: codprov_iso &lt;chr&gt;,
-## #   name_iso &lt;chr&gt;, geometry &lt;MULTIPOLYGON [°]&gt;
+## # A tibble: 17 x 3
+##    codprov_censo coddepto_censo                                         geometry
+##  * &lt;chr&gt;         &lt;chr&gt;                                        &lt;MULTIPOLYGON [°]&gt;
+##  1 90            007            (((-64.49919 -26.23353, -64.49857 -26.26325, -6~
+##  2 90            014            (((-65.13782 -26.74975, -65.10095 -26.75771, -6~
+##  3 90            021            (((-65.94729 -27.08444, -65.93885 -27.0989, -65~
+##  4 90            028            (((-65.62733 -26.87134, -65.62598 -26.84177, -6~
+##  5 90            035            (((-65.47532 -27.53838, -65.43503 -27.5425, -65~
+##  6 90            042            (((-65.51768 -27.54528, -65.53685 -27.62278, -6~
+##  7 90            049            (((-65.51348 -27.62978, -65.52091 -27.66553, -6~
+##  8 90            056            (((-65.12933 -27.02488, -65.12589 -27.01659, -6~
+##  9 90            063            (((-65.43583 -26.83751, -65.38124 -26.84196, -6~
+## 10 90            070            (((-65.86853 -26.99852, -65.85796 -27.01388, -6~
+## 11 90            077            (((-65.93481 -27.39544, -65.89887 -27.3702, -65~
+## 12 90            084            (((-65.16293 -26.82289, -65.18562 -26.86204, -6~
+## 13 90            091            (((-65.33499 -27.20478, -65.33462 -27.21948, -6~
+## 14 90            098            (((-66.08361 -26.23547, -66.06621 -26.23792, -6~
+## 15 90            105            (((-65.70111 -26.52317, -65.65078 -26.5263, -65~
+## 16 90            112            (((-65.52483 -26.09667, -65.4682 -26.09253, -65~
+## 17 90            119            (((-65.27025 -26.84087, -65.28587 -26.83549, -6~
+```
+
+
+
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## Geometrías Argentinas  **raw**
+
+### Obtener poligonos  - [get_geo()](https://politicaargentina.github.io/geoAr/index.html)
+
+--
+
+
+```r
+
+(TUCUMAN &lt;- get_geo(geo = "TUCUMAN", 
+*                   simplified = FALSE))
+## Simple feature collection with 17 features and 2 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -66.18101 ymin: -28.01579 xmax: -64.48315 ymax: -26.05908
+## Geodetic CRS:  WGS 84
+## # A tibble: 17 x 3
+##    codprov_censo coddepto_censo                                         geometry
+##  * &lt;chr&gt;         &lt;chr&gt;                                        &lt;MULTIPOLYGON [°]&gt;
+##  1 90            007            (((-64.49901 -26.21797, -64.49802 -26.21785, -6~
+##  2 90            014            (((-65.15839 -26.75995, -65.15823 -26.75983, -6~
+##  3 90            021            (((-65.97171 -27.06826, -65.96785 -27.07572, -6~
+##  4 90            028            (((-65.63634 -26.89105, -65.63651 -26.88802, -6~
+##  5 90            035            (((-65.51768 -27.54528, -65.51643 -27.54505, -6~
+##  6 90            042            (((-65.69166 -27.53619, -65.69142 -27.53633, -6~
+##  7 90            049            (((-65.56105 -27.61559, -65.56011 -27.61536, -6~
+##  8 90            056            (((-65.24617 -26.99868, -65.22815 -27.00267, -6~
+##  9 90            063            (((-65.43325 -26.81063, -65.43241 -26.81151, -6~
+## 10 90            070            (((-65.92069 -26.98053, -65.9161 -26.98135, -65~
+## 11 90            077            (((-65.9636 -27.40235, -65.96164 -27.40343, -65~
+## 12 90            084            (((-65.1627 -26.79866, -65.16266 -26.79888, -65~
+## 13 90            091            (((-65.35637 -27.18297, -65.35391 -27.18319, -6~
+## 14 90            098            (((-66.10172 -26.21991, -66.08361 -26.23547, -6~
+## 15 90            105            (((-65.71564 -26.51466, -65.71181 -26.51591, -6~
+## 16 90            112            (((-65.54407 -26.09089, -65.54315 -26.09155, -6~
+## 17 90            119            (((-65.25443 -26.78508, -65.25646 -26.78906, -6~
 ```
 
 
 ---
 
-
-background-image: url(https://github.com/tidyverse/purrr/raw/master/man/figures/logo.png)
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
 background-position: 95% 5%
 background-size: 10%
 
-# Iteración 
-## Ejemplo: guardar múltiples archivos
+## Geometrías Argentinas 
 
+### Aumentar data - [add_geo_codes()](https://politicaargentina.github.io/geoAr/index.html)
 
 
 
 ```r
 
-# CORRER EN VERSION LOCAL / para evitar guardado 
-
-data &lt;- geo %&gt;% 
-  group_by(name_prov) %&gt;%
-  nest() 
-
-
-
-dir.create("geo_arg")
-
-data %&gt;% 
-  mutate(salida = walk2(.x = data, .y = name_prov,
-                     ~ st_write(obj = .x, 
-                                dsn = glue::glue("geo_arg/{.y}.shp")))) 
-
+add_geo_codes(TUCUMAN)
+## Simple feature collection with 17 features and 8 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -66.18101 ymin: -28.01579 xmax: -64.48315 ymax: -26.05908
+## Geodetic CRS:  WGS 84
+## # A tibble: 17 x 9
+##    codprov_censo coddepto_censo codprov coddepto nomdepto_censo  name_prov
+##    &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt;    
+##  1 90            007            23      013      BURRUYACU       TUCUMAN  
+##  2 90            014            23      012      CRUZ ALTA       TUCUMAN  
+##  3 90            021            23      005      CHICLIGASTA     TUCUMAN  
+##  4 90            028            23      003      FAMAILLA        TUCUMAN  
+##  5 90            035            23      009      GRANEROS        TUCUMAN  
+##  6 90            042            23      007      JUAN B. ALBERDI TUCUMAN  
+##  7 90            049            23      008      LA COCHA        TUCUMAN  
+##  8 90            056            23      011      LEALES          TUCUMAN  
+##  9 90            063            23      002      LULES           TUCUMAN  
+## 10 90            070            23      004      MONTEROS        TUCUMAN  
+## 11 90            077            23      006      RIO CHICO       TUCUMAN  
+## 12 90            084            23      001      CAPITAL         TUCUMAN  
+## 13 90            091            23      010      SIMOCA          TUCUMAN  
+## 14 90            098            23      017      TAFI DEL VALLE  TUCUMAN  
+## 15 90            105            23      016      TAFI VIEJO      TUCUMAN  
+## 16 90            112            23      014      TRANCAS         TUCUMAN  
+## 17 90            119            23      015      YERBA BUENA     TUCUMAN  
+## # ... with 3 more variables: codprov_iso &lt;chr&gt;, name_iso &lt;chr&gt;,
+## #   geometry &lt;MULTIPOLYGON [°]&gt;
 ```
-
-
-
-
 
 ---
 
 
-background-image: url(https://github.com/tidyverse/purrr/raw/master/man/figures/logo.png)
-background-position: 95% 5%
-background-size: 10%
+class: center, inverse, middle
 
-class: invese, center, middle
-
-# Iteración 
-
-'scripts/genero.R' 
-
-
-
-
-
-
+# Bonus 
+## [`{rmapshaper}`](https://github.com/ateucher/rmapshaper)
 
 
 
@@ -562,6 +537,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
