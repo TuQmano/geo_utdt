@@ -82,7 +82,7 @@ skimr::skim(properati_tuc)
  
 (plot <-  datos_plot %>% 
    ungroup() %>% 
-   mutate( localidad2 = fct_lump(f = localidad,  n = 3)) %>%  
+   mutate( localidad2 = fct_lump(f = localidad,  n = 3, other_level = "Otras")) %>%  
    ggplot() + 
    geom_jitter(mapping = aes(x = fecha, y = localidad2, size = n,   color = n)) +
    scale_color_continuous(guide = "legend"))  # COMBINAMOS DOS LEYENDAS (scale parameter)
