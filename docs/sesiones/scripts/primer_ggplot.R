@@ -1,6 +1,6 @@
 ### geo_utdt
 ### Juan Pablo Ruiz Nicolini
-### 2 de agostro de 2021
+### 9 de agosto de 2022
 
 # LIBRERIAS
 
@@ -58,7 +58,7 @@ skimr::skim(properati_tuc)
  
  datos_plot %>% 
    ungroup() %>% 
-   mutate(localidad2 = fct_lump(f = localidad,  n = 3)) %>%  # GENERAMOS NUEVA VARIABLES LOCALIDAD COLAPSANDO MENOS FRECUENTES EN ' OTROS' 
+   mutate(localidad2 = fct_lump(f = localidad,  n = 3, other_level = "Otros")) %>%  # GENERAMOS NUEVA VARIABLES LOCALIDAD COLAPSANDO MENOS FRECUENTES EN ' OTROS' 
    ggplot() + 
    geom_point(mapping = aes(x = fecha, y = localidad2, 
                             size = n))
@@ -108,13 +108,13 @@ skimr::skim(properati_tuc)
 
  
  plot3 + # CUSTOMIZACION DE CAPAS: muevo leyenda
-    theme(legend.position = "bottom")
+    theme(legend.position = "top")
  
 
  
  plot3 + # CUSTOMIZACION DE CAPAS: recupero texto de x y le doy color
     theme(legend.position = "bottom", 
-          axis.text.x = element_text(color = "red", angle = 45))
+          axis.text.x = element_text(color = "red", angle = 85))
  
  
 (plot4 <-  plot3 + # CUSTOMIZACION DE CAPAS: recupero texto de x y le doy color
@@ -137,4 +137,5 @@ summary(plot4)
  
  
  
+  plot4$data
   

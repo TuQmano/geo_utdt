@@ -1,0 +1,51 @@
+---
+title: "Trabajo Práctico"
+description: |
+ Consigna Número 2
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### **1. Crear un repositorio público en la cuenta personal de Github para el *TP2* (no re utilizar el del *TP1*, aunque pueden seguir con el mismo tema y recursos allí generados)**
+
+<br>
+
+#### **2. Crear un proyecto en la computadora desde Rstudio y vincularlo al repositorio de *Github* (*nota: elegir la opción "versión de control" / "Control version" al crear el proyecto*)**
+
+<br>
+
+#### **3. Crear un sistema de carpetas para ordenar los archivos (por ejemplo: `scripts, datos`)** 
+
+<br>
+
+#### **4. Importar, limpiar, transformar los datos (puede ser lo hecho en *TP1*) en un archvio tipo `1.datos.R`** 
+
+<br>
+
+#### **5.  En un nuevo archivo, realizar un análisis exploratrio de los datos (trabajados en el punto anterior) a partir de la visualización de la información utilizando la receta de `ggplot2`**  (ir modificando desde la receta básica agregando capas, *mappeando* información de variables o *setando* parámetros)
+
+-   **`ggplot(data, aes())`**
+-   **`geom_*(aes())`**
+-   **`theme()`**
+-   `scale_*`
+
+<br>
+
+#### **6. Al finalizar, guardar un segundo archivo `analisis_visual.R` y subir los cambios en el proyecto *local* al repositorio *remoto* de Github.**
+
+-   **Recordar la secuencia (por terminal o por la pestaña *GIT* del panel de control de Rstudio):**
+
+    -   **`git add -A`**
+    -   **`git commit -m "acá el mensaje"`**
+    -   **`git push`**
+
+<br>
+
+## **Entrega**
+
+**Una vez realizado los puntos anteriores, copiar el link del repositorio en la columna TP 2 del [siguiente archivo](https://docs.google.com/spreadsheets/d/1fVHW2ROCfIZDUNU0Xz-Eo2qCwKKSb2_SppN_nZz13_A/edit#gid=0).**
+
+<br>
