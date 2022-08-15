@@ -258,15 +258,27 @@ class: center, middle
 # _Tilemaps_
 
 
-`r icon_style(fontawesome("link"), fill = '#fdbd15')` Código: HEX [ARGENTINA](https://github.com/TuQmano/arg_bins_map)
-
-
 ```{r, echo= FALSE,out.width='80%'}
 
 knitr::include_graphics("figs/tilemap.png")
 
 ```
 
+---
+
+class: center, middle
+
+# _Tilemaps_
+
+
+`r icon_style(fontawesome("link"), fill = '#fdbd15')` Código: HEX [ARGENTINA](https://github.com/TuQmano/arg_bins_map)
+
+
+```{r, echo= FALSE, out.width='60%'}
+
+knitr::include_graphics("https://github.com/TuQmano/arg_bins_map/raw/master/provs.gif")
+
+```
 
 ---
 
