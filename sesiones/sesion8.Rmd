@@ -258,7 +258,7 @@ class: center, middle
 # _Tilemaps_
 
 
-`r icon_style(fontawesome("link"), fill = '#fdbd15')`[Código: HEX ARGENTINA](https://github.com/TuQmano/arg_bins_map)
+`r icon_style(fontawesome("link"), fill = '#fdbd15')` Código: HEX [ARGENTINA](https://github.com/TuQmano/arg_bins_map)
 
 
 ```{r, echo= FALSE,out.width='80%'}
@@ -681,7 +681,7 @@ tucgrid
 ---
 
 background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
-background-position: 95% 25%
+background-position: 95% 45%
 background-size: 10%
 
 
@@ -751,7 +751,7 @@ cow_plot <- resultados_plot +
   
 ```
 
-```{r, out.width='75%'}
+```{r, out.width='50%'}
 library(cowplot)
 logo_file <- "https://github.com/electorArg/polAr/blob/master/hex/hex-polAr.png?raw=true"
 ggdraw(cow_plot) +
