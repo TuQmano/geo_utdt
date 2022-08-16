@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Instrumentos de Análisis Urbanos II</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"fc15858c68194c689e8f01a271f5fa1a","expires":14}</script>
+    <script src="libs/himalaya/himalaya.js"></script>
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <link href="libs/editable/editable.css" rel="stylesheet" />
+    <script src="libs/editable/editable.js"></script>
+    <script src="libs/xaringanExtra-webcam/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <script src="libs/peerjs/peerjs.min.js"></script>
+    <script src="libs/tiny.toast/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast/broadcast.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link rel="stylesheet" href="footer-header.css" type="text/css" />
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Instrumentos de Análisis Urbanos II
+]
+.subtitle[
+## Maestría en Economía Urbana
+]
+.author[
+### 
+]
+.institute[
+### Universidad Torcuato Di Tella
+]
+.date[
+### 16/08/2022
+]
+
+---
+
+
+layout: true
+  
+  
+&lt;div class="my-footer"&gt;&lt;span&gt;Instrumentos de Análisis Urbanos II - &lt;a href="https://tuqmano.github.io/geo_utdt/"&gt;https://tuqmano.github.io/geo_utdt/&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
+
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #fdbd15;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+---
+class: inverse, center, middle
+
+# Intro DataViz
+
+---
+
+class: center
+
+# Elegir el gráfico correcto para nuestros datos
+
+
+
+
+
+&lt;img src="sesion8_files/figure-html/unnamed-chunk-2-1.png" width="504" /&gt;
+
+
+---
+class: center
+
+## Elegir el gráfico correcto para nuestros datos
+
+&lt;img src="sesion8_files/figure-html/unnamed-chunk-3-1.png" width="50%" /&gt;
+
+#### FUENTE: 
+**https://www.data-to-viz.com/caveat/pie.html#**
+
+
+
+---
+
+## _Único caso útil para un gráfico de tortas_
+&lt;img src="figs/piramide.png" width="80%" /&gt;
+
+
+
+--
+
+## Tampoco para tanto 
+
+### _A case for pie charts_ - [Fundamentals of Data Visualization, Claus Wilke](https://clauswilke.com/dataviz/visualizing-proportions.html#a-case-for-pie-charts)
+
+---
+
+class: inverse, center, middle
+
+## El problema de los mapas coropléticos
+
+
+---
+class:inverse
+
+
+### #Election2020 
+
+#### &gt; **"_Trump loves this 2016 election map because it suggests the majority of the country supports him (...)_"** **([NYT](https://www.nytimes.com/interactive/2020/10/30/opinion/election-results-maps.html))**
+
+&lt;img src="figs/nyt.png" width="100%" /&gt;
+
+---
+
+# El problema de los mapas coropléticos
+
+
+
+&lt;img src="https://github.com/TuQmano/votemapARG/blob/main/output/001.png?raw=true" width="90%" /&gt;
+
+
+---
+
+## ARGENTINA 2015 ([repo](https://github.com/TuQmano/votemapARG/))
+
+&lt;img src="https://github.com/TuQmano/votemapARG/raw/main/animacion.gif" width="90%" /&gt;
+
+
+
+---
+
+class: inverse, center, middle
+
+# Alternativas de visualización _geo_
+
+
+---
+
+class: center, middle
+
+# Mapa Coroplético
+
+&lt;img src="figs/choroplet.png" width="80%" /&gt;
+
+
+
+---
+
+
+class: center, middle
+
+# Cartogramas
+
+&lt;img src="figs/cartogramas.png" width="80%" /&gt;
+
+
+---
+
+class: center, middle
+
+# _Tilemaps_
+
+
+&lt;img src="figs/tilemap.png" width="80%" /&gt;
+
+---
+
+class: center, middle
+
+# _Tilemaps_
+
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#fdbd15;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; Código: HEX [ARGENTINA](https://github.com/TuQmano/arg_bins_map)
+
+
+&lt;img src="https://github.com/TuQmano/arg_bins_map/raw/master/provs.gif" width="60%" /&gt;
+
+---
+
+
+class: center, middle
+
+# _Faceted tilemaps_
+
+&lt;img src="figs/faceted_tilemap.png" width="80%" /&gt;
+
+
+
+---
+
+
+class: center, middle
+
+# Tilegrams
+
+&lt;img src="figs/tilegrams.png" width="80%" /&gt;
+
+---
+
+class: inverse , middle
+
+# Limitaciones varias
+
+* Visualizar una variable / valor por unidad geográfica
+
+--
+
+* Solo hace uso del color para codificación visual (dificultad para calcular diferencias)
+
+--
+
+* Sesgo a favor de grandes unidades geográficas
+
+
+
+---
+
+background-image: url(https://hafen.github.io/geofacet/reference/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+class: inverse 
+
+# Grillas como (si fueran) mapas
+
+**[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#fdbd15;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt;`{geofacet}`](https://ryanhafen.com/blog/geofacet/)**
+
+
+&lt;img src="sesion8_files/figure-html/unnamed-chunk-14-1.png" width="100%" /&gt;
+
+
+
+---
+
+class: inverse
+
+
+## Ventajas de `{geofacet}`
+
+
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#fdbd15;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; _Voto Popular_ vs _Colegio Electoral_](https://github.com/TuQmano/popular_vote)
+
+&lt;img src="https://raw.githubusercontent.com/TuQmano/popular_vote/master/plots/turnount_ts.png" width="75%" /&gt;
+
+
+
+* se pueden graficar múltiples variables para cada unidad geográfica
+
+--
+
+* se pueden aplicar otros esquemas de codificación visual más allá del color
+
+--
+
+* cada unidad geográfica tiene asignada la misma proporción espacial
+
+
+---
+background-image: url(https://hafen.github.io/geofacet/reference/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# `geofacet::grid_design()`
+
+### &lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; [Grillas colaborativas](https://github.com/hafen/geofacet/issues/102)
+
+
+
+```r
+library(geofacet)
+grid_preview(argentina_grid2)
+```
+
+&lt;img src="sesion8_files/figure-html/unnamed-chunk-16-1.png" width="35%" /&gt;
+
+
+
+---
+
+background-image: url(https://hafen.github.io/geofacet/reference/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+class: inverse, middle
+
+
+## **EJERCICIO**:  
+
+
+
+### Comunas de C.A.B.A
+
++ &lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#fdbd15;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; [App](https://hafen.github.io/grid-designer/#data=)
+
++ &lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#fdbd15;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; [DATA](https://gist.githubusercontent.com/TuQmano/2fb70e11c6500176427bb3b60604b79d/raw/ebe2889269d403dd05ab1db9e6ad624fa02a6e63/comunas.csv)
+
+
+---
+
+background-image: url(https://github.com/electorArg/geofaceteAR/blob/master/hex/ggplot2.png?raw=true)
+background-position: 95% 5%
+background-size: 10%
+
+# Las grillas de Argentina
+
+.pull-left[
+### **LatinR 2018** - [Abstract](https://github.com/TuQmano/geofacet_ARG/blob/master/.LatinR/Geofaceting_Argentina_RuizNicolini.pdf) 
+
+#### [📊 Slides](https://www.researchgate.net/publication/327382101_Geofaceting_Argentina_LatinR_2018) 
+
+#### [📦 {geofaceteAR}](https://electorarg.github.io/geofaceteAR/) 
+
+#### [⌨️ blogpost](https://www.tuqmano.com/2020/05/22/empaquetar/)
+]
+
+.pull-right[
+
+&lt;img src="sesion8_files/figure-html/unnamed-chunk-17-1.png" width="504" style="display: block; margin: auto auto auto 0;" /&gt;
+]
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/geoAr/raw/main/man/figures/logo.png)
+background-position: 95% 2%
+background-size: 15%
+
+
+## **_geofaceteAr_** en
+## `{geoAr}`
+
+#### Para descargar grillas: `get_grid()`
+
+
+
+```r
+
+
+(tucuman &lt;- geoAr::get_grid(district = "TUCUMAN"))
+##    name_provincia            name row col code
+## 1         TUCUMAN       BURRUYACU   1   4  013
+## 2         TUCUMAN         CAPITAL   2   4  001
+## 3         TUCUMAN     CHICLIGASTA   4   2  005
+## 4         TUCUMAN       CRUZ ALTA   2   5  012
+## 5         TUCUMAN        FAMAILLA   3   3  003
+## 6         TUCUMAN        GRANEROS   5   4  009
+## 7         TUCUMAN JUAN B. ALBERDI   5   3  007
+## 8         TUCUMAN        LA COCHA   6   3  008
+## 9         TUCUMAN          LEALES   3   5  011
+## 10        TUCUMAN           LULES   3   4  002
+## 11        TUCUMAN        MONTEROS   3   2  004
+## 12        TUCUMAN       RIO CHICO   4   3  006
+## 13        TUCUMAN          SIMOCA   4   4  010
+## 14        TUCUMAN  TAFI DEL VALLE   2   1  017
+## 15        TUCUMAN      TAFI VIEJO   2   2  016
+## 16        TUCUMAN         TRANCAS   1   3  014
+## 17        TUCUMAN     YERBA BUENA   2   3  015
+```
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/geoAr/raw/main/man/figures/logo.png)
+background-position: 95% 2%
+background-size: 15%
+
+
+## **_geofaceteAr_** en
+## `{geoAr}`
+ 
+
+```r
+
+
+geofacet::grid_preview(tucuman)
+```
+
+&lt;img src="sesion8_files/figure-html/unnamed-chunk-19-1.png" width="504" /&gt;
+
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/geoAr/raw/main/man/figures/logo.png)
+background-position: 95% 2%
+background-size: 15%
+
+## **_geofaceteAr_** en
+## `{geoAr}`
+
+#### Para recodificar distritos: `recode_grid()`
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; Ejemplo [ARGENTINA](https://electorarg.github.io/geofaceteAR/articles/recodificacion.html)
+
+
+.pull-left[
+
+
+
+
+```r
+
+tucuman %&gt;% 
+geofacet::grid_preview() 
+```
+
+&lt;img src="sesion8_files/figure-html/unnamed-chunk-20-1.png" width="504" height="70%" /&gt;
+
+
+
+]
+--
+
+.pull-right[
+
+```r
+
+tucuman %&gt;% 
+* recode_grid(type = "indec") %&gt;%
+geofacet::grid_preview()
+```
+
+&lt;img src="sesion8_files/figure-html/unnamed-chunk-21-1.png" width="504" height="70%" /&gt;
+]
+
+
+---
+
+class:  middle, center, inverse
+
+
+## Data Viz (II)
+
+### Las muchas capas de `ggplot2 +` extensiones
+
+
+
+---
+
+class:  middle
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+background-position: 95% 5%
+background-size: 10%
+
+
+### GEOM integrado
+.pull-left[
+
+```r
+library(tidyverse)
+
+p &lt;- geoAr::get_geo(geo = "TUCUMAN") %&gt;% 
+   ggplot2::ggplot() + #  SETTING color
+*  ggplot2::geom_sf(color = "blue")
+
+p   
+```
+
+&lt;img src="sesion8_files/figure-html/unnamed-chunk-22-1.png" width="504" /&gt;
+
+]
+
+.pull-right[
+
+
+&lt;img src="https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png" width="20%" /&gt;
+
+
+]
+
+---
+
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+background-position: 95% 5%
+background-size: 10%
+
+
+
+## `aes()` 
+
+**Estéticas como capas**
+
+* Extraemos valores de variable desde el objeto `ggplot2`
+
+
+```r
+
+p + 
+* aes(fill = p$data$coddepto_censo)
+```
+
+&lt;img src="sesion8_files/figure-html/unnamed-chunk-24-1.png" width="504" /&gt;
+
+
+
+
+---
+class: inverse, center, middle
+
+
+# Galería de extensiones a `ggplot2` 
+
+&lt;https://exts.ggplot2.tidyverse.org/gallery/&gt; 
+
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 5%
+background-size: 10%
+
+# Composición de gráficos
+
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; `{patchwork}`](https://patchwork.data-imaginist.com/)
+
+
+
+```r
+library(ggplot2)
+*library(patchwork)
+p1 &lt;- ggplot(mtcars) + geom_point(aes(mpg, disp))
+p2 &lt;- ggplot(mtcars) + geom_boxplot(aes(gear, disp, group = gear))
+*p1 + p2
+```
+
+&lt;img src="sesion8_files/figure-html/unnamed-chunk-25-1.png" width="50%" /&gt;
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 5%
+background-size: 10%
+
+
+# Composición de gráficos
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; [`{patchwork}`](https://patchwork.data-imaginist.com/)
+
+
+
+```r
+p3 &lt;- ggplot(mtcars) + geom_smooth(aes(disp, qsec))
+p4 &lt;- ggplot(mtcars) + geom_bar(aes(carb))
+*(p1 | p2 | p3) /
+*     p4
+```
+
+&lt;img src="sesion8_files/figure-html/unnamed-chunk-26-1.png" width="50%" /&gt;
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 5%
+background-size: 10%
+
+
+# Composición de gráficos
+
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; `{patchwork}`](https://patchwork.data-imaginist.com/)
+
+
+```r
+
+mapa &lt;- p + 
+  ggplot2::geom_sf_label(data = p$data %&gt;% geoAr::add_geo_codes(), 
+                         aes(label = nomdepto_censo))
+mapa
+```
+
+&lt;img src="sesion8_files/figure-html/objetos-1.png" width="50%" /&gt;
+
+
+
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 5%
+background-size: 10%
+
+
+# Composición de gráficos
+
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; `{patchwork}`](https://patchwork.data-imaginist.com/)
+
+
+```r
+
+library(geoAr)
+tucgrid &lt;- geoAr::get_grid("TUCUMAN") %&gt;% geofacet::grid_preview(label = "name")
+```
+
+&lt;img src="sesion8_files/figure-html/objetos geoar -1.png" width="50%" /&gt;
+
+```r
+
+tucgrid
+```
+
+&lt;img src="sesion8_files/figure-html/objetos geoar -2.png" width="50%" /&gt;
+
+
+
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 45%
+background-size: 10%
+
+
+# Composición de gráficos
+
+
+
+
+```r
+
+library(patchwork)
+
+mapa + tucgrid
+```
+
+&lt;img src="sesion8_files/figure-html/combine-1.png" width="50%" /&gt;
+
+
+
+---
+
+background-image: url(https://wilkelab.org/cowplot/reference/figures/logo.png) 
+background-position: 95% 3%
+background-size: 10%
+
+
+# Composición de gráficos
+
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; `{cowplot}`](https://wilkelab.org/cowplot/index.html)
+
+
+
+
+
+```r
+library(cowplot)
+logo_file &lt;- "https://github.com/electorArg/polAr/blob/master/hex/hex-polAr.png?raw=true"
+ggdraw(cow_plot) +
+  draw_label(label = "HECHO CON", color = "blue", size = 40, angle = 45 , alpha = .5) +
+  draw_image(logo_file, x = 1, y = 1.1, hjust = 1, vjust = 1, width = 0.15)
+```
+
+&lt;img src="sesion8_files/figure-html/unnamed-chunk-28-1.png" width="50%" /&gt;
+
+
+---
+
+background-image: url(https://dreamrs.github.io/esquisse/reference/figures/esquisse.gif) 
+background-size: 60%
+
+
+# [&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; `{esquisse}`](https://dreamrs.github.io/esquisse/)
+
+
+---
+class: inverse 
+
+## &lt;svg viewBox="0 0 448 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#fdbd15;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"&gt;&lt;/path&gt;&lt;/svg&gt; Referencias
+
+### Themes
+
+* `{ggthemes}` &lt;https://jrnold.github.io/ggthemes/index.html&gt;
+
+
+* `{hrbthemes}` &lt;https://cinc.rud.is/web/packages/hrbrthemes/&gt;
+
+--
+
+### Fonts
+
+* `{extrafont}` &lt;https://github.com/wch/extrafont&gt;
+* `{ggtext}` &lt;https://wilkelab.org/ggtext/&gt;
+
+--
+
+### `+` 
+
+
+* `{plotly}` &lt;https://plotly-r.com/&gt;
+
+* **The `R` Graph Gallery** &lt;https://www.r-graph-gallery.com/&gt;
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

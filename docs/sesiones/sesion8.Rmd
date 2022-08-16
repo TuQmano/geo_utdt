@@ -1,0 +1,811 @@
+---
+title: "Instrumentos de An&aacute;lisis Urbanos II"
+subtitle: "Maestría en Economía Urbana"
+author: ""
+institute: "Universidad Torcuato Di Tella"
+date: "16/08/2022"
+output:
+  xaringan::moon_reader:
+    css: ["footer-header.css", "styles.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+---
+
+layout: true
+  
+  
+<div class="my-footer"><span>Instrumentos de Análisis Urbanos II - <a href="https://tuqmano.github.io/geo_utdt/">https://tuqmano.github.io/geo_utdt/</a></span></div> 
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.retina = 3,
+                      #out.width = 300, ### control plot size
+                      cache = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+library(icons)
+```
+
+
+```{r xaringan, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "extra_styles", "scribble", "editable", "broadcast", "webcam"))
+
+
+```
+
+```{r extrasXaringan, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+)
+
+xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
+
+
+
+
+```
+
+---
+class: inverse, center, middle
+
+# Intro DataViz
+
+---
+
+class: center
+
+# Elegir el gráfico correcto para nuestros datos
+
+
+```{r include=FALSE}
+# Libraries
+library(tidyverse)
+library(hrbrthemes)
+library(viridis)
+library(patchwork)
+
+# create 3 data frame:
+data1 <- data.frame( name=letters[1:5], value=c(17,18,20,22,24) )
+data2 <- data.frame( name=letters[1:5], value=c(20,18,21,20,20) )
+data3 <- data.frame( name=letters[1:5], value=c(24,23,21,19,18) )
+
+# Plot
+plot_pie <- function(data, vec){
+
+ggplot(data, aes(x="name", y=value, fill=name)) +
+  geom_bar(width = 1, stat = "identity") +
+  coord_polar("y", start=0, direction = -1) +
+  scale_fill_viridis(discrete = TRUE,  direction=-1) + 
+  geom_text(aes(y = vec, label = rev(name), size=4, color=c( "white", rep("black", 4)))) +
+  scale_color_manual(values=c("black", "white")) +
+  theme_ipsum() +
+  theme(
+    legend.position="none",
+    plot.title = element_text(size=14),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    legend.margin=unit(0, "null")
+  ) +
+  xlab("") +
+  ylab("")
+  
+}
+
+
+# A function to make barplots
+plot_bar <- function(data){
+  ggplot(data, aes(x=name, y=value, fill=name)) +
+    geom_bar( stat = "identity") +
+    scale_fill_viridis(discrete = TRUE, direction=-1) + 
+    scale_color_manual(values=c("black", "white")) +
+    theme_ipsum() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=14),
+      panel.grid = element_blank(),
+    ) +
+    ylim(0,25) +
+    xlab("") +
+    ylab("")
+}
+
+
+```
+
+
+```{r, echo=FALSE}
+a <- plot_pie(data1, c(10,35,55,75,93))  + theme_void() + theme(legend.position = "none")
+b <- plot_pie(data2, c(10,35,53,75,93))  + theme_void() + theme(legend.position = "none")
+c <- plot_pie(data3, c(10,29,50,75,93)) + theme_void() + theme(legend.position = "none")
+a + b + c
+```
+
+
+---
+class: center
+
+## Elegir el gráfico correcto para nuestros datos
+
+```{r, echo=FALSE, out.width='50%'}
+
+
+a <- plot_pie(data1, c(10,35,55,75,93))  + theme_void() + theme(legend.position = "none")
+b <- plot_pie(data2, c(10,35,53,75,93))  + theme_void() + theme(legend.position = "none")
+c <- plot_pie(data3, c(10,29,50,75,93)) + theme_void() + theme(legend.position = "none")
+
+
+d <- plot_bar(data1)  + theme_minimal() + theme(legend.position = "none")
+e <- plot_bar(data2)  + theme_minimal() + theme(legend.position = "none")
+f <- plot_bar(data3)  + theme_minimal() + theme(legend.position = "none")
+
+
+
+(a + b + c) / (d + e + f )
+```
+
+#### FUENTE: 
+**https://www.data-to-viz.com/caveat/pie.html#**
+
+
+
+---
+
+## _Único caso útil para un gráfico de tortas_
+```{r, echo=FALSE, out.width='80%'}
+
+knitr::include_graphics("figs/piramide.png")
+
+```
+
+
+
+--
+
+## Tampoco para tanto 
+
+### _A case for pie charts_ - [Fundamentals of Data Visualization, Claus Wilke](https://clauswilke.com/dataviz/visualizing-proportions.html#a-case-for-pie-charts)
+
+---
+
+class: inverse, center, middle
+
+## El problema de los mapas coropléticos
+
+
+---
+class:inverse
+
+
+### #Election2020 
+
+#### > **"_Trump loves this 2016 election map because it suggests the majority of the country supports him (...)_"** **([NYT](https://www.nytimes.com/interactive/2020/10/30/opinion/election-results-maps.html))**
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("figs/nyt.png")
+```
+
+---
+
+# El problema de los mapas coropléticos
+
+
+
+```{r, echo= FALSE, out.width='90%'}
+
+knitr::include_graphics("https://github.com/TuQmano/votemapARG/blob/main/output/001.png?raw=true")
+
+```
+
+
+---
+
+## ARGENTINA 2015 ([repo](https://github.com/TuQmano/votemapARG/))
+
+```{r, echo= FALSE, out.width='90%'}
+
+knitr::include_graphics("https://github.com/TuQmano/votemapARG/raw/main/animacion.gif")
+
+```
+
+
+
+---
+
+class: inverse, center, middle
+
+# Alternativas de visualización _geo_
+
+
+---
+
+class: center, middle
+
+# Mapa Coroplético
+
+```{r, echo= FALSE,out.width='80%'}
+
+knitr::include_graphics("figs/choroplet.png")
+
+```
+
+
+
+---
+
+
+class: center, middle
+
+# Cartogramas
+
+```{r, echo= FALSE,out.width='80%'}
+
+knitr::include_graphics("figs/cartogramas.png")
+
+```
+
+
+---
+
+class: center, middle
+
+# _Tilemaps_
+
+
+```{r, echo= FALSE,out.width='80%'}
+
+knitr::include_graphics("figs/tilemap.png")
+
+```
+
+---
+
+class: center, middle
+
+# _Tilemaps_
+
+
+`r icon_style(fontawesome("link"), fill = '#fdbd15')` Código: HEX [ARGENTINA](https://github.com/TuQmano/arg_bins_map)
+
+
+```{r, echo= FALSE, out.width='60%'}
+
+knitr::include_graphics("https://github.com/TuQmano/arg_bins_map/raw/master/provs.gif")
+
+```
+
+---
+
+
+class: center, middle
+
+# _Faceted tilemaps_
+
+```{r, echo= FALSE,out.width='80%'}
+
+knitr::include_graphics("figs/faceted_tilemap.png")
+
+```
+
+
+
+---
+
+
+class: center, middle
+
+# Tilegrams
+
+```{r, echo= FALSE,out.width='80%'}
+
+knitr::include_graphics("figs/tilegrams.png")
+
+```
+
+---
+
+class: inverse , middle
+
+# Limitaciones varias
+
+* Visualizar una variable / valor por unidad geográfica
+
+--
+
+* Solo hace uso del color para codificación visual (dificultad para calcular diferencias)
+
+--
+
+* Sesgo a favor de grandes unidades geográficas
+
+
+
+---
+
+background-image: url(https://hafen.github.io/geofacet/reference/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+class: inverse 
+
+# Grillas como (si fueran) mapas
+
+**[`r icon_style(fontawesome("link"), fill = '#fdbd15')``{geofacet}`](https://ryanhafen.com/blog/geofacet/)**
+
+
+```{r, echo=FALSE, fig.asp=1/2, out.width="100%"}
+library(geofacet)
+grid_preview(us_state_grid1)
+```
+
+
+
+---
+
+class: inverse
+
+
+## Ventajas de `{geofacet}`
+
+
+[`r icon_style(fontawesome("link"), fill = '#fdbd15')` _Voto Popular_ vs _Colegio Electoral_](https://github.com/TuQmano/popular_vote)
+
+```{r, echo = FALSE, out.width='75%'}
+knitr::include_graphics("https://raw.githubusercontent.com/TuQmano/popular_vote/master/plots/turnount_ts.png")
+
+```
+
+
+
+* se pueden graficar múltiples variables para cada unidad geográfica
+
+--
+
+* se pueden aplicar otros esquemas de codificación visual más allá del color
+
+--
+
+* cada unidad geográfica tiene asignada la misma proporción espacial
+
+
+---
+background-image: url(https://hafen.github.io/geofacet/reference/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+# `geofacet::grid_design()`
+
+### `r fontawesome("link")` [Grillas colaborativas](https://github.com/hafen/geofacet/issues/102)
+
+
+```{r, out.width="35%", fig.asp=3/2}
+library(geofacet)
+grid_preview(argentina_grid2)
+```
+
+
+
+---
+
+background-image: url(https://hafen.github.io/geofacet/reference/figures/logo.png)
+background-position: 95% 5%
+background-size: 10%
+
+class: inverse, middle
+
+
+## **EJERCICIO**:  
+
+
+
+### Comunas de C.A.B.A
+
++ `r icon_style(fontawesome("link"), fill = '#fdbd15')` [App](https://hafen.github.io/grid-designer/#data=)
+
++ `r icon_style(fontawesome("link"), fill = '#fdbd15')` [DATA](https://gist.githubusercontent.com/TuQmano/2fb70e11c6500176427bb3b60604b79d/raw/ebe2889269d403dd05ab1db9e6ad624fa02a6e63/comunas.csv)
+
+
+---
+
+background-image: url(https://github.com/electorArg/geofaceteAR/blob/master/hex/ggplot2.png?raw=true)
+background-position: 95% 5%
+background-size: 10%
+
+# Las grillas de Argentina
+
+.pull-left[
+### **LatinR 2018** - [Abstract](https://github.com/TuQmano/geofacet_ARG/blob/master/.LatinR/Geofaceting_Argentina_RuizNicolini.pdf) 
+
+#### [`r emojifont::emoji("bar_chart")` Slides](https://www.researchgate.net/publication/327382101_Geofaceting_Argentina_LatinR_2018) 
+
+#### [`r emojifont::emoji("package")` {geofaceteAR}](https://electorarg.github.io/geofaceteAR/) 
+
+#### [`r emojifont::emoji("keyboard")` blogpost](https://www.tuqmano.com/2020/05/22/empaquetar/)
+]
+
+.pull-right[
+
+```{r, fig.align='left', echo=FALSE}
+library(geoAr)
+tucgrid <- geoAr::get_grid("TUCUMAN")
+geofacet::grid_preview(tucgrid)
+```
+]
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/geoAr/raw/main/man/figures/logo.png)
+background-position: 95% 2%
+background-size: 15%
+
+
+## **_geofaceteAr_** en
+## `{geoAr}`
+
+#### Para descargar grillas: `get_grid()`
+
+
+```{r}
+
+
+(tucuman <- geoAr::get_grid(district = "TUCUMAN"))
+
+
+```
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/geoAr/raw/main/man/figures/logo.png)
+background-position: 95% 2%
+background-size: 15%
+
+
+## **_geofaceteAr_** en
+## `{geoAr}`
+ 
+```{r}
+
+
+geofacet::grid_preview(tucuman)
+
+
+```
+
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/geoAr/raw/main/man/figures/logo.png)
+background-position: 95% 2%
+background-size: 15%
+
+## **_geofaceteAr_** en
+## `{geoAr}`
+
+#### Para recodificar distritos: `recode_grid()`
+
+`r icon_style(fontawesome("link"))` Ejemplo [ARGENTINA](https://electorarg.github.io/geofaceteAR/articles/recodificacion.html)
+
+
+.pull-left[
+
+
+
+```{r, out.height='70%'}
+
+tucuman %>% 
+geofacet::grid_preview() 
+
+
+```
+
+
+
+]
+--
+
+.pull-right[
+```{r, out.height='70%'}
+
+tucuman %>% 
+  recode_grid(type = "indec") %>% #<<
+geofacet::grid_preview()
+
+
+```
+]
+
+
+---
+
+class:  middle, center, inverse
+
+
+## Data Viz (II)
+
+### Las muchas capas de `ggplot2 +` extensiones
+
+
+
+---
+
+class:  middle
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+background-position: 95% 5%
+background-size: 10%
+
+
+### GEOM integrado
+.pull-left[
+```{r}
+library(tidyverse)
+
+p <- geoAr::get_geo(geo = "TUCUMAN") %>% 
+   ggplot2::ggplot() + #  SETTING color
+   ggplot2::geom_sf(color = "blue")   #<<
+
+p   
+   
+```
+
+]
+
+.pull-right[
+
+
+```{r, echo=FALSE, out.width= '20%'}
+knitr::include_graphics("https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png")
+
+```
+
+
+]
+
+---
+
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+background-position: 95% 5%
+background-size: 10%
+
+
+
+## `aes()` 
+
+**Estéticas como capas**
+
+* Extraemos valores de variable desde el objeto `ggplot2`
+
+```{r}
+
+p + 
+  aes(fill = p$data$coddepto_censo) #<<
+
+```
+
+
+
+
+---
+class: inverse, center, middle
+
+
+# Galería de extensiones a `ggplot2` 
+
+<https://exts.ggplot2.tidyverse.org/gallery/> 
+
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 5%
+background-size: 10%
+
+# Composición de gráficos
+
+[`r icons::fontawesome("link")` `{patchwork}`](https://patchwork.data-imaginist.com/)
+
+
+```{r ,  out.width= '50%'}
+library(ggplot2)
+library(patchwork) #<<
+p1 <- ggplot(mtcars) + geom_point(aes(mpg, disp))
+p2 <- ggplot(mtcars) + geom_boxplot(aes(gear, disp, group = gear))
+p1 + p2 #<<
+```
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 5%
+background-size: 10%
+
+
+# Composición de gráficos
+
+`r icons::fontawesome("link")` [`{patchwork}`](https://patchwork.data-imaginist.com/)
+
+
+```{r, out.width= '50%'}
+p3 <- ggplot(mtcars) + geom_smooth(aes(disp, qsec))
+p4 <- ggplot(mtcars) + geom_bar(aes(carb))
+(p1 | p2 | p3) / #<<
+      p4         #<<
+```
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 5%
+background-size: 10%
+
+
+# Composición de gráficos
+
+[`r icons::fontawesome("link")` `{patchwork}`](https://patchwork.data-imaginist.com/)
+
+```{r objetos, out.width='50%'}
+
+mapa <- p + 
+  ggplot2::geom_sf_label(data = p$data %>% geoAr::add_geo_codes(), 
+                         aes(label = nomdepto_censo))
+mapa
+
+```
+
+
+
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 5%
+background-size: 10%
+
+
+# Composición de gráficos
+
+[`r icons::fontawesome("link")` `{patchwork}`](https://patchwork.data-imaginist.com/)
+
+```{r objetos geoar ,  out.width='50%'}
+
+library(geoAr)
+tucgrid <- geoAr::get_grid("TUCUMAN") %>% geofacet::grid_preview(label = "name")
+
+tucgrid
+
+```
+
+
+
+
+
+---
+
+background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
+background-position: 95% 45%
+background-size: 10%
+
+
+# Composición de gráficos
+
+
+
+```{r combine, out.width='50%'}
+
+library(patchwork)
+
+mapa + tucgrid
+
+
+```
+
+
+
+---
+
+background-image: url(https://wilkelab.org/cowplot/reference/figures/logo.png) 
+background-position: 95% 3%
+background-size: 10%
+
+
+# Composición de gráficos
+
+[`r icons::fontawesome("link")` `{cowplot}`](https://wilkelab.org/cowplot/index.html)
+
+
+```{r include=FALSE}
+
+library(cowplot)
+library(tidyverse)
+library(electorAr)
+
+eleccion03 <- get_election_data("arg", "presi", "gral", 2003)
+
+electores_provincias <- eleccion03 %>% 
+  select(name_prov, electores) %>% 
+  distinct() 
+
+resultados <- eleccion03 %>% 
+  get_names() %>% 
+  select(nombre_lista, name_prov, votos) %>% 
+  mutate(pct = round(votos/sum(votos)*100,1)) %>% 
+  group_by(name_prov) %>% 
+  slice_max(order_by = pct, n = 2) %>% 
+  mutate(dif = abs(pct - lead(pct))) %>% 
+  fill(dif,  .direction = "down") 
+  
+#### GRAFICOS
+electores_plot <- ggplot(electores_provincias) +
+  geom_col(aes(x = electores/1000, 
+                  y = fct_reorder(name_prov, electores)))
+resultados_plot <- ggplot(resultados) +
+  geom_point(aes(x = pct,
+                 y = fct_reorder(name_prov, dif), 
+                 color = nombre_lista)) +
+  theme(legend.position = "bottom")
+
+
+
+cow_plot <- resultados_plot +
+  theme_cowplot() +
+  theme(legend.position = "bottom")
+  
+```
+
+```{r, out.width='50%'}
+library(cowplot)
+logo_file <- "https://github.com/electorArg/polAr/blob/master/hex/hex-polAr.png?raw=true"
+ggdraw(cow_plot) +
+  draw_label(label = "HECHO CON", color = "blue", size = 40, angle = 45 , alpha = .5) +
+  draw_image(logo_file, x = 1, y = 1.1, hjust = 1, vjust = 1, width = 0.15)
+```
+
+
+---
+
+background-image: url(https://dreamrs.github.io/esquisse/reference/figures/esquisse.gif) 
+background-size: 60%
+
+
+# [`r icons::fontawesome("link")` `{esquisse}`](https://dreamrs.github.io/esquisse/)
+
+
+---
+class: inverse 
+
+## `r icon_style(fontawesome("book"), fill = '#fdbd15')` Referencias
+
+### Themes
+
+* `{ggthemes}` <https://jrnold.github.io/ggthemes/index.html>
+
+
+* `{hrbthemes}` <https://cinc.rud.is/web/packages/hrbrthemes/>
+
+--
+
+### Fonts
+
+* `{extrafont}` <https://github.com/wch/extrafont>
+* `{ggtext}` <https://wilkelab.org/ggtext/>
+
+--
+
+### `+` 
+
+
+* `{plotly}` <https://plotly-r.com/>
+
+* **The `R` Graph Gallery** <https://www.r-graph-gallery.com/>
+
