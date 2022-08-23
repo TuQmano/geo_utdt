@@ -3,13 +3,12 @@
   <head>
     <title>Instrumentos de Análisis Urbanos II</title>
     <meta charset="utf-8" />
-    <meta name="date" content="2021-10-08" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view/tile-view.js"></script>
     <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
     <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x3e5667ce68b463bb9bcd7631fe9df14","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xf2d6515c1b642b2a09393eb1d0ec7d5","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -25,7 +24,6 @@
     <script src="libs/xaringanExtra-scribble/scribble.js"></script>
     <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="footer-header.css" type="text/css" />
     <link rel="stylesheet" href="styles.css" type="text/css" />
   </head>
@@ -33,18 +31,29 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Instrumentos de Análisis Urbanos II
+]
+.subtitle[
 ## Maestría en Economía Urbana
+]
+.author[
 ### 
+]
+.institute[
 ### Universidad Torcuato Di Tella
-### 10/08/2021
+]
+.date[
+### 23/08/2022
+]
 
 ---
 
 
 layout: true
   
-&lt;div class="my-footer"&gt;&lt;span&gt;Juan Pablo Ruiz Nicolini | @TuQmano | &lt;a href="https://tuqmano.ar/"&gt;www.tuqmano.ar&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
+  
+&lt;div class="my-footer"&gt;&lt;span&gt;Instrumentos de Análisis Urbanos II - &lt;a href="https://tuqmano.github.io/geo_utdt/"&gt;https://tuqmano.github.io/geo_utdt/&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
 
 
 
@@ -74,217 +83,46 @@ layout: true
 }</style>
 
 
----
-
-class:  middle, center, inverse
-
-
-### Data Viz (II)
-
-#### Las muchas capas de `ggplot2 +` extensiones
-
-
-
----
-
-class:  middle
-background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
-background-position: 95% 5%
-background-size: 10%
-
-
-### GEOM integrado
-.pull-left[
-
-```r
-library(tidyverse)
-
-p &lt;- geoAr::get_geo(geo = "TUCUMAN") %&gt;% 
-   ggplot2::ggplot() + #  SETTING color
-*  ggplot2::geom_sf(color = "blue")
-
-p   
-```
-
-&lt;img src="sesion9_files/figure-html/unnamed-chunk-1-1.png" width="300" /&gt;
-
-]
-
-.pull-right[
-
-
-&lt;img src="https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png" width="20%" /&gt;
-
-
-]
-
----
-
-background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
-background-position: 95% 5%
-background-size: 10%
-
-
-
-## `aes()`
-
-### **Estéticas como capas**
-
-
-
-
-```r
-
-p + 
-* aes(fill = p$data$coddepto_censo)
-```
-
-&lt;img src="sesion9_files/figure-html/unnamed-chunk-3-1.png" width="300" /&gt;
-
-* Extraemos valores de variable desde el objeto `ggplot2`
-
-
----
-class: inverse, center, middle
-
-
-# Galería de extensiones a `ggplot2` 
-
-&lt;https://exts.ggplot2.tidyverse.org/gallery/&gt; 
-
-
-
----
-
-background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
-background-position: 95% 5%
-background-size: 10%
-
-# Composición de gráficos
-
-[<i class="fas  fa-link "></i>`{patchwork}`](https://patchwork.data-imaginist.com/)
-
-
-
-```r
-library(ggplot2)
-*library(patchwork)
-p1 &lt;- ggplot(mtcars) + geom_point(aes(mpg, disp))
-p2 &lt;- ggplot(mtcars) + geom_boxplot(aes(gear, disp, group = gear))
-*p1 + p2
-```
-
-&lt;img src="sesion9_files/figure-html/unnamed-chunk-4-1.png" width="300" /&gt;
-
-
----
-
-background-image: url(https://patchwork.data-imaginist.com/reference/figures/logo.png) 
-background-position: 95% 5%
-background-size: 10%
-
-
-# Composición de gráficos
-
-.pull-left[
-[<i class="fas  fa-link "></i>`{patchwork}`](https://patchwork.data-imaginist.com/)
-
-
-
-```r
-p3 &lt;- ggplot(mtcars) + geom_smooth(aes(disp, qsec))
-p4 &lt;- ggplot(mtcars) + geom_bar(aes(carb))
-*(p1 | p2 | p3) /
-*     p4
-```
-
-&lt;img src="sesion9_files/figure-html/unnamed-chunk-5-1.png" width="300" /&gt;
-
-]
---
- .pull-right[
-### Alternativa 
-
-
-&lt;img src="https://wilkelab.org/cowplot/reference/figures/logo.png" width="20%" /&gt;
-
-[<i class="fas  fa-link "></i>`{cowplot}`](https://wilkelab.org/cowplot/index.html)
-
-]
-
----
-
-background-image: url(https://wilkelab.org/cowplot/reference/figures/logo.png) 
-background-position: 95% 3%
-background-size: 10%
-
-
-# Composición de gráficos
-
-
-
-
-
-
-
-```r
-library(cowplot)
-logo_file &lt;- "https://github.com/electorArg/polAr/blob/master/hex/hex-polAr.png?raw=true"
-ggdraw(cow_plot) +
-  draw_label(label = "HECHO CON", color = "blue", size = 40, angle = 45 , alpha = .5) +
-  draw_image(logo_file, x = 1, y = 1.1, hjust = 1, vjust = 1, width = 0.15)
-```
-
-&lt;img src="sesion9_files/figure-html/unnamed-chunk-8-1.png" width="300" /&gt;
-
-
----
-
-background-image: url(https://dreamrs.github.io/esquisse/reference/figures/esquisse.gif) 
-background-size: 70%
-
-
-# [<i class="fas  fa-link "></i>`{esquisse}`](https://dreamrs.github.io/esquisse/)
-
-
----
-class: inverse 
-
-## <i class="fas  fa-book "></i> Referencias
-
-### Themes
-
-* `{ggthemes}` &lt;https://jrnold.github.io/ggthemes/index.html&gt;
-
-
-* `{hrbthemes}` &lt;https://cinc.rud.is/web/packages/hrbrthemes/&gt;
-
---
-
-### Fonts
-
-* `{extrafont}` &lt;https://github.com/wch/extrafont&gt;
-* `{ggtext}` &lt;https://wilkelab.org/ggtext/&gt;
-
---
-
-### `+` 
-
-
-* `{plotly}` &lt;https://plotly-r.com/&gt;
-
-* **The `R` Graph Gallery** &lt;https://www.r-graph-gallery.com/&gt;
-
 
 ---
 
 class: center, middle, inverse
 
-# Mapas con {sf} y {mapsf} 
+# (1) _Live Coding_ {sf} 
 
-`scripts/mapsf.r` 
 
-`srcipts/get_tiles.r`
+---
+class:inverse
+
+# (2) `{mapsf}`
+
+&lt;img src="sesion9_files/figure-html/unnamed-chunk-1-1.png" width="60%" /&gt;
+
+
+
+[scripts/mapsf.r](https://github.com/TuQmano/geo_utdt/blob/master/sesiones/scripts/mapsf.R) 
+
+
+
+---
+class:inverse, center, middle
+
+# (3) Desarga capa base (_Tiles_)
+
+[srcipts/get_tiles.r](https://github.com/TuQmano/geo_utdt/blob/master/sesiones/scripts/get_tiles.R)
+
+---
+class:inverse, middle
+
+# (4) EXTRAS: 
+
+## Ejemplos de usos _GIS_ vía interfaz (_Shiny apps_)
+
+### &lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#fdbd15;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; [A. Mapas estáticos (_mapeAr_)](https://tableros.yvera.tur.ar/mapeAr) 
+
+
+### &lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#fdbd15;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; [B. Mapas interactivos (_Indice Socioeconómico_)](http://socioeconomico.mentacomunicacion.com.ar/)
+
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
@@ -334,6 +172,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

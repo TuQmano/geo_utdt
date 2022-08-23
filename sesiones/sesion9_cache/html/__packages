@@ -1,5 +1,6 @@
-base
-polAr
+geoAr
+mapsf
+electorAr
 tidyverse
 ggplot2
 tibble
@@ -9,7 +10,4 @@ purrr
 dplyr
 stringr
 forcats
-patchwork
-cowplot
-usethis
-devtools
+icons
