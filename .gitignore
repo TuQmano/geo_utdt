@@ -7,3 +7,4 @@
 .DS_Store
 **/*.csv
 data/*.csv
+script_nuevo.R
