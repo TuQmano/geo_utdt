@@ -52,6 +52,17 @@ xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
 ```
 
 ---
+class: inverse middle
+
+## HOJA DE RUTA
+
+1. Trabajo final (y ejemplo)
+
+2. {leaflet}
+
+3. ¿Cómo compartir un mapa interactivo?
+
+---
 class: inverse
 
 ```{r, echo=FALSE, out.width='100%'}
@@ -70,7 +81,7 @@ class: inverse
 # TRABAJO FINAL
 
 ## Contenido del trabajo:
-* Un informe en Rmarkdown (.Rmd) o Script (.R) con comentarios, en donde se pueda evidenciar el armado de un proyecto, recorriendo las siguientes etapas:
+* Un informe - puede ser un sitio web (distill), un Rmarkdown (.Rmd) o Script (.R) con comentarios, en donde se pueda evidenciar el armado de un proyecto, recorriendo las siguientes etapas:
 
 * Planteo de la pregunta y mínima presentación del tema.
 
@@ -86,31 +97,43 @@ class: inverse
 
 **Formato de entrega:**  Repositorio en Github cuyo contenido sea el proyecto, estructurado y ordenado para el análisis.
 
+
 ---
 
-class:  middle, center, inverse
+class: inverse
 
 
-## Data Viz (III)
+### Data Viz (III) - Mapas interactivos  [`r icons::fontawesome("link")``{leaflet}`](https://rstudio.github.io/leaflet/)
 
-### Mapas interactivos 
-
-[`r icon::fa("link")``{leaflet}`](https://rstudio.github.io/leaflet/)
-
-```{r, echo = FALSE, out.width="100%", cache=FALSE}
+```{r, echo = FALSE, out.width=="100%", cache=FALSE}
 library(leaflet)
+
 library(geoAr)
+
 tucson <- get_geo("TUCUMAN") 
+
+bb <- sf::st_bbox(tucson)
+
+longitud <- mean(c(bb[1], bb[3]))
+
+latitud <- mean(c(bb[2], bb[4]))
+
+
+
 map_leaflet <- leaflet(tucson) %>% 
-  addPolygons() %>% 
+  addPolygons(color = "red")%>% 
   addProviderTiles(providers$Stamen.Toner)
-map_leaflet
+
+map_leaflet %>%
+  leaflet::setView(zoom = 2, lng = longitud, lat = latitud ) 
+
+
 ```
 ---
 
 ### Mapas interactivos 
 
-[`r icon::fa("link")``{leaflet}`](https://rstudio.github.io/leaflet/)
+[`r icons::fontawesome("link")``{leaflet}`](https://rstudio.github.io/leaflet/)
 
 ```{r, echo = T, eval=F}
 library(geoAr)
@@ -179,4 +202,20 @@ leaflet() %>%
 ```
 
 
+---
 
+class: inverse, center, middle
+
+# Un poco de código... 
+
+[tuqmano/geo_utdt/sesiones/clase10.Rmd](https://github.com/TuQmano/geo_utdt/blob/master/sesiones/sesion10.Rmd)
+
+
+---
+class: inverse
+
+## Contenido en línea con RStudio y Github 
+
+#### **Recetas simples para desplegar mapas, código, artículos, TPs y hasta TRABAJOS FINALES DE LA MEU en línea**
+
+**_rstudio4edu_** https://rstudio4edu.github.io/rstudio4edu-book/intro-distill.html
