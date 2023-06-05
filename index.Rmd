@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ### **Maestría en Economía Urbana \| Universidad Torcuato Di Tella**
 
-**21 de junio - 30 de agosto de 2022 \| 19.15hs \| VIRTUAL**
+**13 de junio - 29 de agosto de 2023 \| 19.15hs \| VIRTUAL**
 
 #### **Descripción del curso:**
 *Instrumentos de Análisis Urbano II* está pensado como un curso aplicado de Ciencia de Datos para ciudades. Para ello nos valdremos de herramientas computacionales que, en conjunto, tienen como objetivo la elaboración de un proyecto de análisis urbano desde la obtención de los datos (de diversas fuentes y formatos); su curaduría, limpieza, procesamiento, análisis, hasta la comunicación de los mismos.
@@ -47,7 +47,7 @@ El formato de entrega esperado es un proyecto de trabajo en RStudio vinculado a 
 
 ## Módulo 1
 
-### Sesión 1: Presentación
+### Sesión 1: Presentación 
 
 -   Configuración de herramientas y puesta en marcha
 
@@ -118,7 +118,7 @@ El formato de entrega esperado es un proyecto de trabajo en RStudio vinculado a 
 
 - Las muchas capas de `ggplot2`
 
-- Facet con `geoAr` para grillas como si fueran mapas
+- Facetado con `geoAr` para grillas como si fueran mapas
 
 - Composición de gráficos con `patchwork`, `cowplot` , entre otros.
 
