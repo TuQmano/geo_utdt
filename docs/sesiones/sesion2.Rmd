@@ -3,7 +3,7 @@ title: "Instrumentos de An&aacute;lisis Urbanos II"
 subtitle: "Maestría en Economía Urbana"
 author: ""
 institute: "Universidad Torcuato Di Tella"
-date: "28/06/2023"
+date: "27/06/2023"
 output:
   xaringan::moon_reader:
     css: ["footer-header.css", "styles.css"]
@@ -112,25 +112,25 @@ class: center, middle
 ---
 class: middle, center, inverse
 
-background-image: url(figs/R1.PNG)
+background-image: url(../figs/R1.PNG)
 background-size: contain
 
 ---
 class: middle, center, inverse
 
-background-image: url(figs/R2.PNG)
+background-image: url(../figs/R2.PNG)
 background-size: contain
 
 ---
 class: middle, center, inverse
 
-background-image: url(figs/R3.PNG)
+background-image: url(../figs/R3.PNG)
 background-size: contain
 
 ---
 class: middle, center, inverse
 
-background-image: url(figs/R4.PNG)
+background-image: url(../figs/R4.PNG)
 background-size: contain
 
 ---
@@ -172,7 +172,7 @@ library(nombre_del_paquete)
 
 ```{r echo=FALSE, eval=TRUE, out.width= '500px'}
 
-knitr::include_graphics("figs/invocacion.gif")
+knitr::include_graphics("../figs/invocacion.gif")
 
 ```
 ]
@@ -206,7 +206,7 @@ background-size: 10%
 
 
 ```{r echo=FALSE, fig.align = 'center'}
-knitr::include_graphics("figs/tidyverse.png")
+knitr::include_graphics("../figs/tidyverse.png")
 ```
 ]
 
@@ -228,13 +228,13 @@ background-size: 10%
 
 .pull-left[
 ```{r echo=FALSE, fig.align = 'center', out.width='110%'}
-knitr::include_graphics("figs/circuito_del_dato.png")
+knitr::include_graphics("../figs/circuito_del_dato.png")
 ```
 ]
 
 .pull-right[
 ```{r echo=FALSE, fig.align = 'center', out.width='110%'}
-knitr::include_graphics("figs/circuito_del_dato_tidy.png")
+knitr::include_graphics("../figs/circuito_del_dato_tidy.png")
 ```
 ]
 
@@ -556,7 +556,7 @@ knitr::include_graphics("https://yabellini.github.io/Intro_to_Git_with_Rstudio/i
 # `.git ` por consola
 
 ```{r echo=FALSE}
-knitr::include_graphics("figs/consola_git.png")
+knitr::include_graphics("../figs/consola_git.png")
 ```
 
 ---
@@ -564,7 +564,7 @@ knitr::include_graphics("figs/consola_git.png")
 # `.git ` por consola
 
 ```{r echo=FALSE}
-knitr::include_graphics("figs/consola_commit.png")
+knitr::include_graphics("../figs/consola_commit.png")
 ```
 
 
