@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Instrumentos de Análisis Urbanos II</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <link href="libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"e74723b60eb7415e8b5f085af9f2a9af","expires":14}</script>
+    <script src="libs/himalaya-1.1.0/himalaya.js"></script>
+    <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
+    <link href="libs/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="libs/editable-0.2.6/editable.js"></script>
+    <script src="libs/xaringanExtra-webcam-0.0.1/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <script src="libs/peerjs-1.3.1/peerjs.min.js"></script>
+    <script src="libs/tiny.toast-1.0.0/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
+    <script src="libs/fabric-4.3.1/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link href="libs/xaringanExtra-extra-styles-0.2.6/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
+    <link rel="stylesheet" href="footer-header.css" type="text/css" />
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Instrumentos de Análisis Urbanos II
+]
+.subtitle[
+## Maestría en Economía Urbana
+]
+.author[
+### 
+]
+.institute[
+### Universidad Torcuato Di Tella
+]
+.date[
+### 28/06/2022
+]
+
+---
+
+
+layout: true
+  
+   
+&lt;div class="my-footer"&gt;&lt;span&gt;Instrumentos de Análisis Urbanos II - &lt;a href="https://tuqmano.github.io/geo_utdt/"&gt;https://tuqmano.github.io/geo_utdt/&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+exclude: true
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #fdbd15;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+
+---
+class: center, middle
+
+
+# Sesión II 
+
+### Intro a `R` 
+
+---
+
+class: left
+
+# Hoja de Ruta
+
++ _Funciones - Paquetes - Mundo `{tidyverse}`_
+
+--
+
++  _Dialectos_: `R base` VS _Tidyverse (pipe)_
+
+--
+
++  _Flujos de trabajo: proyectos (.Rproj) + versiones de control (.git)_
+
+--
+
++  Reproducibilidad y Comunicación (`.R` y `.Rmd`)
+
+
+---
+class: center, middle
+
+
+# Funciones - Paquetes - Mundo `{tidyverse}`
+
+
+---
+
+# Paquetes  
+
+## ¿Qué son?
+
+#### ✔️ Un conjunto funciones, pero también bases de datos y objetos de R en general.
+
+--
+
+## ¿Para qué nos sirven?   
+
+#### ✔️ Ayudan a incorporar funcionalidades al lenguaje para resolver nuevos problemas o alternativas a viejas soluciones
+
+
+
+---
+class: middle, center, inverse
+
+background-image: url(figs/R1.PNG)
+background-size: contain
+
+---
+class: middle, center, inverse
+
+background-image: url(figs/R2.PNG)
+background-size: contain
+
+---
+class: middle, center, inverse
+
+background-image: url(figs/R3.PNG)
+background-size: contain
+
+---
+class: middle, center, inverse
+
+background-image: url(figs/R4.PNG)
+background-size: contain
+
+---
+class: middle, center, inverse
+
+background-image: url(figs/R5.PNG)
+background-size: contain
+  
+---
+
+#Paquetes    
+
+## INSTALACIÓN
+
+- Podemos descargarlos e instalarlos con el siguiente comando: 
+
+```r
+install.packages("nombre_del_paquete") 
+```
+
+- Sólo es necesario instalar el paquete una vez por computadora.
+
+---
+
+#Paquetes  
+
+## INVOCACIÓN
+
+.pull-left[
+
+- Una vez instalado, cada vez que abramos una nueva sesión de R y querramos utilizar el paquete debemos **cargarlo al ambiente de trabajo** mediante la función:    
+
+```r
+library(nombre_del_paquete)
+```
+]
+
+.pull-right[
+
+&lt;img src="figs/invocacion.gif" width="500px" /&gt;
+]
+
+
+---
+
+class: center, middle
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 70% 50%
+background-size: 10%
+
+# [Tidyverse](https://www.tidyverse.org/)
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Tidyverse
+
+.pull-left[
+#### `Tidyverse` es una colección de paquetes de R, pensados para trabajar en "ciencia de datos". 
+ 
+]
+
+.pull-right[
+
+
+&lt;img src="figs/tidyverse.png" width="781" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+# __¿Por qué tidyverse?__
+
+
+- ### Orientado a ser leído y escrito por y para seres humanos
+
+--
+
+- ### Funciones no pensadas para una tarea específica sino para un proceso de trabajo
+
+.pull-left[
+&lt;img src="figs/circuito_del_dato.png" width="110%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="figs/circuito_del_dato_tidy.png" width="110%" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+- ### Su comunidad, basada en los principios del código abierto y trabajo colaborativo 
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+# Manifiesto Tidyverse
+
+1. Reutilizar estructuras de datos existentes
+
+2. Armar funciones simples con la _pipa_ (`%&lt;%`)
+
+3. Adoptar la programación funcional
+
+4. Diseñado para humanos!
+
+
+ [&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; The Manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html)
+
+---
+
+# __Instalación y uso__
+
+* Sólo una vez (por computadora):
+
+```r
+install.packages("tidyverse")
+```
+
+--
+
+* En cada inicio de sesión de R o Rstudio:
+
+```r
+library(tidyverse)
+```
+ 
+--
+
+.pull-left[
+
+_No es necesario esto:_
+
+```r
+install.packages("dplyr")
+install.packages("tidyr")
+install.packages("ggplot2")
+```
+]
+
+.pull-right[
+
+_Ni esto:_
+
+```r
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+]
+
+---
+
+# Dialéctos para `R`  
+
+## **R** `base` vs _Tidyverse_
+
+--
+
+### Creamos una base de trabajo:
+
+```r
+curso &lt;- data.frame(nombre     = c("Juan", "Pedro", "María", "José","Enzo", "Ariel", "Eva"),
+                    edad       = c(25, 32, 21,40, 30, 28, 37),
+                    nacimiento = c(1993, 1986, 1997, 1978, 1988, 1990, 1981),
+                    programa   = c("spss", "stata", "stata", "excel", "R", "stata", "spss"),
+                    nivel      = c(3, 5,7, 6, 2, 6, 8))
+```
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+# **R** `base` vs _pipe (%&gt;%) de tidyverse_ 
+
+.pull-left[
+
+## Edad promedio del curso --&gt; **`R base`**
+
+
+```r
+mean(curso$edad)
+```
+
+```
+## [1] 30.42857
+```
+]
+
+--
+
+.pull-right[
+
+## Edad promedio del curso --&gt; _**Tidy**_
+
+
+```r
+library(tidyverse) # cargo paquete
+
+curso$edad `%&gt;%` 
+  mean()
+```
+
+
+```
+## [1] 30.42857
+```
+]
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Pipe = tubería de tareas
+
+.pull-left[
+
+## Edad promedio del curso (redondeado) --&gt; **`base`**
+
+
+```r
+round(mean(curso$edad), digits = 1)
+```
+
+```
+## [1] 30.4
+```
+]
+
+.pull-right[
+
+## Edad promedio del curso (redondeado) --&gt; _**Tidy**_
+
+
+```r
+curso$edad `%&gt;%` 
+  mean() `%&gt;%`
+  round(digits = 1)
+```
+
+
+```
+## [1] 30.4
+```
+]
+
+---
+
+# Práctica
+
+Traducir del esquema `R base` al esquema `tidy` la siguiente sentencia que realiza las siguientes operaciones:
+
+- Calcula la cantidad de veces que se menciona cada programa con `table()`
+
+- Calcula la distribución porcentual de dicha frecuencia con `prop.table() * 100`
+
+- Redondea el resultado con `round()`
+
+
+```r
+round(prop.table(table(curso$programa)) * 100, digits = 1) 
+```
+--
+
+## Solución grupal
+
+
+---
+
+# Lectura / escritura de archivos
+
+## Algunos paquetes para importar archivos (más allá de las funciones de r base):
+
+
+.pull-left[
+
+### Paquete `{readr}`
+
+- `read_csv()`   --&gt; *.csv*
+
+- `read_table()` --&gt; *.txt*
+
+- `read_rds()`   --&gt; *.rds*
+]
+
+.pull-right[
+
+### Paquete `{haven}`
+
+- `read_sav()` --&gt; SPSS
+
+- `read_dta()` --&gt; STATA
+
+- `read_sas()` --&gt; SAS
+
+]
+
+---
+
+# Base de trabajo
+
+En el material de la clase se puso a disposición una base de ejercicio. La informaciuón con la que se cuenta es aquella referida a los **Inmuebles Propios del Estado Nacional y Alquilados**, provista por la Dirección Nacional del Registro de Bienes Inmuebles - Agencia de Administración de Bienes del Estado - Jefatura de Gabinete de Ministros. 
+
+&gt; [Descarga de la base de datos](https://datos.gob.ar/dataset/otros-inmuebles-propios-estado-nacional-alquilados)
+
+--
+
+### Importamos a R:
+
+```r
+base_inmuebles &lt;- read_csv(`file =` "la_ruta_del_archivo/el_nombre_del_archivo.csv",
+                           `col_names =` TRUE)
+```
+
+
+---
+
+class: center, middle, inverse
+
+background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/figs/rstudio-icon.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+# Proyectos de Trabajo (`.Rproj`)
+
+
+&lt;img src="https://github.com/allisonhorst/stats-illustrations/raw/master/rstats-artwork/cracked_setwd.png" width="60%" /&gt;
+
+#### [&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; Using Projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+
+
+---
+
+# Proyectos y rutas de trabajo
+
+Intentar correr el siguiente script:
+
+
+```r
+library(tidyverse)
+
+b_inmuebles &lt;- read_csv("C:/Users/pablo/Documents/Pablo/Cursos R/R+DiTella/geo_utdt_fork/sesiones/data/inmuebles-estado-nacional.csv")
+```
+
+--
+
+### A tener en cuenta respecto a la sentencia para importar el archivo:
+
+
+- Si se la compartimos a otra persona, __se rompe__
+    
+- Si cambiamos de computadora, __se rompe__
+    
+- Si lo cambiamos de lugar, __se rompe__
+   
+
+---
+
+class: center, middle, inverse
+
+# Proyectos de Trabajo (`.git`)
+
+---
+
+# `.git `
+
+![](https://yabellini.github.io/Intro_to_Git_with_Rstudio/img/git_concept_map.png)&lt;!-- --&gt;
+
+**Fuente**: https://yabellini.netlify.app/es/post/githubconr/
+
+
+---
+
+# `.git ` por terminal
+
+#### verbos + usados
+
+* git status
+
+--
+
+* git pull 
+
+--
+
+* git add &lt;file&gt;  /  git add -A (para agregar todos)
+
+--
+
+* git commit -m 'agregar mensaje'
+
+--
+
+* git push 
+
+--
+#### [&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; Happy Git](https://happygitwithr.com/)
+
+---
+
+# `.git ` por consola
+
+&lt;img src="figs/consola_git.png" width="1815" /&gt;
+
+---
+
+# `.git ` por consola
+
+&lt;img src="figs/consola_commit.png" width="1819" /&gt;
+
+
+---
+
+background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/figs/rstudio-icon.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+# `R`  vs  `.Rmd`
+
+
+
+```r
+"scripts/archivos.R"
+
+"scripts/archivos.Rmd"
+```
+
+
+---
+
+background-image: url(https://d33wubrfki0l68.cloudfront.net/521a038ed009b97bf73eb0a653b1cb7e66645231/8e3fd/assets/figs/rstudio-icon.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+# R Markdown
+
+
+&lt;img src="https://d33wubrfki0l68.cloudfront.net/3215c7166555d2ac02ef678fd025c171f90db23c/4e60a/images/bandone.png" width="60%" /&gt;
+
+### [&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
