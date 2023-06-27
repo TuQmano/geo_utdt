@@ -476,8 +476,8 @@ background-size: 10%
 # Proyectos de Trabajo (`.Rproj`)
 
 
-```{r rproj, echo=FALSE, fig.retina=3, out.width= "60%"}
-knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/raw/master/rstats-artwork/cracked_setwd.png")
+```{r rproj, echo=FALSE, fig.retina=3, out.width= "15%"}
+knitr::include_graphics("../figs/r_proj.png")
 ```
 
 #### [`r icons::fontawesome("link")` Using Projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
