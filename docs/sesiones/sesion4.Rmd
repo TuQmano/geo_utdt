@@ -1,0 +1,402 @@
+---
+title: "Instrumentos de An&aacute;lisis Urbanos II"
+subtitle: "Maestría en Economía Urbana"
+author: ""
+institute: "Universidad Torcuato Di Tella"
+date: "12/07/2022"
+output:
+  xaringan::moon_reader:
+    css: ["footer-header.css", "styles.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+---
+
+layout: true
+  
+<div class="my-footer"><span>Instrumentos de Análisis Urbanos II - <a href="https://tuqmano.github.io/geo_utdt/">https://tuqmano.github.io/geo_utdt/</a></span></div> 
+
+---
+class: inverse, center, middle
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.retina = 3,
+                      out.width = 300, ### control plot size
+                      cache = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+
+```
+
+
+```{r xaringan, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "extra_styles", "scribble", "editable", "broadcast", "webcam"))
+
+
+```
+
+```{r extrasXaringan, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+
+xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
+
+
+
+
+```
+
+
+# [EJERCITACION](https://docs.google.com/spreadsheets/d/1fVHW2ROCfIZDUNU0Xz-Eo2qCwKKSb2_SppN_nZz13_A/edit#gid=0)
+
+
+---
+
+class: inverse, center, middle
+
+# Sesion 4
+
+## Domar los Datos II
+
+### + [`{dplyr}`](https://dplyr.tidyverse.org/)
+
+---
+
+class: inverse, center, middle
+
+# Importar datos de inmuebles:
+
+
+
+```{r, eval = T}
+
+   
+  datos <- vroom::vroom("https://infra.datos.gob.ar/catalog/otros/dataset/6/distribution/6.1/download/inmuebles-estado-nacional.csv")
+   
+
+
+```
+
+
+---
+
+# Inspeccionamos dataset
+
+```{r, eval=F}
+
+skimr::skim(datos)
+
+```
+
+
+
+```{r, echo=FALSE, out.width= '100%'}
+
+knitr::include_graphics("figs/skimr.png")
+
+
+```
+
+
+---
+
+background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/dplyr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## + verbos de `{dplyr}`
+
+--
+
+* `n()`
+
+--
+
+* `slice()` (y variantes:  `slice_*()`)
+
+--
+
+* `rename()`
+
+--
+
+* `case_when()` (re versión de `ifelse()`)
+
+--
+
+* Variantes de `mutate_*()` y `summarise_*()`
+
+--
+
+background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/dplyr.png), url(https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/dplyr.png)
+background-position: 95% 5%, 95% 50%
+background-size: 10%, 10%
+
+
+## [*nuevo* `{dplyr}` `r icons::fontawesome("link")`](https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/) 
+
+* `across()` 
+
+--
+
+* grupos por filas con `rowwise()`
+
+
+---
+
+background-image: url(https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/dplyr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## Datos relacionales 
+
+
+```{r joinsGIF, echo = FALSE}
+knitr::include_graphics("https://www.garrickadenbuie.com/project/tidyexplain/images/left-join-extra.gif")
+```
+
+
+[`r icons::fontawesome("link")` Tidy Explain, Garrick Aden‑Buie](https://www.garrickadenbuie.com/project/tidyexplain/)
+
+
+---
+
+background-image: url(https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/dplyr.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Datos relacionales
+
+## 3 tipos: 
+
+* Uniones de **transformación** (del inglés _mutating joins_), que agregan nuevas variables a un data frame a partir de las observaciones coincidentes en otra tabla (*vg* `left_join()`)
+
+--
+
+* Uniones de **filtro** (del inglés _filtering joins_), que filtran observaciones en un _data frame_ con base en si coinciden o no con una observación de otra tabla (*vg* `anti_join()`).
+
+
+--
+
+
+* Operaciones de **conjuntos** (del inglés _set operations_), que tratan las observaciones como elementos de un conjunto (*vg* `set_diff()`).
+
+
+`r icons::fontawesome("link")` [Datos Relacionales - R4DS](https://es.r4ds.hadley.nz/datos-relacionales.html)
+
+
+---
+class: inverse, middle, center
+
+# Domar los Datos
+
+### (II Parte) 
+
+---
+
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/stringr.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Extracción de texto 
+
+--
+
+
+### Extraer caracteres según la posición en el texto:
+
+```r
+str_sub(string = `texto`, 
+        start = `posicion_inicial`, 
+        end = `posicion_final`)
+```
+
+--
+
+#### Ejemplo 1:
+
+```{r}
+texto_ejemplo1 <- "año 1"
+
+str_sub(string = texto_ejemplo1, 
+        start = 5, 
+        end = 5)
+```
+
+--
+
+#### Ejemplo 2:
+
+```{r}
+texto_ejemplo2 <- c("año 1", "año 2", "año 3")
+
+str_sub(string = texto_ejemplo2, 
+        start = 5, 
+        end = 5)
+```
+
+--
+
+¿Y al revés?
+
+
+
+
+
+---
+
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/stringr.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Espacios en blanco
+
+### Completar texto: 
+
+```r
+str_pad(string = `texto`, 
+        width =  `ancho ideal del texto`, 
+        side = `donde agregar`, 
+        pad = `qué agregar`)
+```
+
+#### Ejemplo: 
+
+```{r}
+texto_ejemplo <- c("1", "011", "01", "0111")
+
+str_pad(string = texto_ejemplo, 
+        width = 4, 
+        side = "left", 
+        pad = "0")
+```
+--
+
+```{r}
+texto_con_pad <- str_pad(string = texto_ejemplo,
+                         width = 4, 
+                         side = "left", 
+                         pad = "0")
+
+str_sub(string = texto_con_pad, 
+        start = 1,
+        end = 3)
+```
+
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/stringr.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Espacios en blanco
+
+### Eliminar espacios en blanco
+
+```r
+str_trim(string = `texto`, 
+         side = `lado sobre el que trabaja`)
+```
+
+--
+
+#### Ejemplo:
+
+```{r}
+texto_ejemplo <- c("acá no debería haber espacio a la derecha    ")
+
+str_length(texto_ejemplo)
+```
+
+```{r}
+texto_resultado <- str_trim(string = texto_ejemplo,
+                            side = "right")
+
+str_length(texto_resultado)
+```
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/stringr.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Detección de patrones
+
+
+### Funciones que detectan coincidencia de patrones:
+
+--
+
+#### Ejemplo:
+
+### Me quiero quedar con todos los inmuebles que se encuentran sobre avenidas
+
+```{r}
+b_inm_avenidas <- datos %>% 
+  filter(str_detect(string = calle, 
+                    pattern = "Av"))
+
+head(b_inm_avenidas$calle)
+```
+--
+
+Ver uso de _expresiones regulares_ -[_regex_ `r icons::fontawesome("link")`](https://stringr.tidyverse.org/articles/regular-expressions.html): 
+**`str_detect(string = x, pattern = ":digits:")`**
+
+
+--
+
+[`r icons::fontawesome("link")``{stringr}`](https://stringr.tidyverse.org/articles/stringr.html)
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/forcats.png)
+background-position: 95% 5%
+background-size: 10%
+
+# Domar los datos II
+
+## Variables categóricas
+
+
+> *Los factores son útiles cuando se tiene datos categóricos, variables que tienen un conjunto de valores fijo y conocido, y cuando se desea mostrar los vectores de caracteres en un orden específico* **R4DS - <https://es.r4ds.hadley.nz/factores.html>**
+--
+
+```r
+factor(x = `variable a transformar a factor`, 
+       levels = `niveles de la variable`, 
+       labels = `etiquetas de los niveles`)
+```
+
+--
+
+* `fct_reorder()` > modifica el orden
+
+--
+
+* `fct_recode()` > modifica valores (no niveles)
+
+--
+
+* `fct_collapse()`> colapsar es útil para re codificar muchos niveles 
+--
+
+* `fct_lump()` > agrupa 
+
