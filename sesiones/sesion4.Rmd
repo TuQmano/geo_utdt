@@ -3,7 +3,7 @@ title: "Instrumentos de An&aacute;lisis Urbanos II"
 subtitle: "Maestría en Economía Urbana"
 author: ""
 institute: "Universidad Torcuato Di Tella"
-date: "12/07/2022"
+date: "11/07/2023"
 output:
   xaringan::moon_reader:
     css: ["footer-header.css", "styles.css"]
@@ -54,8 +54,10 @@ xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
 
 ```
 
-
+```{r eval=FALSE, echo = FALSE}
+### Es texto pero lo silencio hasta definir qué hacer con el trabajo
 # [EJERCITACION](https://docs.google.com/spreadsheets/d/1fVHW2ROCfIZDUNU0Xz-Eo2qCwKKSb2_SppN_nZz13_A/edit#gid=0)
+```
 
 
 ---
@@ -100,7 +102,7 @@ skimr::skim(datos)
 
 ```{r, echo=FALSE, out.width= '100%'}
 
-knitr::include_graphics("figs/skimr.png")
+knitr::include_graphics("../figs/skimr.png")
 
 
 ```
@@ -162,7 +164,7 @@ background-size: 10%
 
 
 ```{r joinsGIF, echo = FALSE}
-knitr::include_graphics("https://www.garrickadenbuie.com/project/tidyexplain/images/left-join-extra.gif")
+knitr::include_graphics("https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/left-join.gif")
 ```
 
 
@@ -216,7 +218,13 @@ background-size: 10%
 
 ### Extraer caracteres según la posición en el texto:
 
+```{r}
+library(tidyverse)
+```
+
+
 ```r
+library(tidyverse)
 str_sub(string = `texto`, 
         start = `posicion_inicial`, 
         end = `posicion_final`)
