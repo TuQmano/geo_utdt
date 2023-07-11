@@ -328,7 +328,7 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(https://github.com/TuQmano/hex-stickers/raw/master/PNG/tibble.png)
+background-image: url(https://tibble.tidyverse.org/logo.svg)
 background-position: 95% 5%
 background-size: 10%
 
