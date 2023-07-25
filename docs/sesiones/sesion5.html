@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Instrumentos de Análisis Urbanos II</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xfb1a14bdc614b9eafa0f60fddb59128","expires":14}</script>
+    <script src="libs/himalaya/himalaya.js"></script>
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <link href="libs/editable/editable.css" rel="stylesheet" />
+    <script src="libs/editable/editable.js"></script>
+    <script src="libs/xaringanExtra-webcam/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <script src="libs/peerjs/peerjs.min.js"></script>
+    <script src="libs/tiny.toast/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast/broadcast.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link rel="stylesheet" href="footer-header.css" type="text/css" />
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Instrumentos de Análisis Urbanos II
+]
+.subtitle[
+## Maestría en Economía Urbana
+]
+.author[
+### 
+]
+.institute[
+### Universidad Torcuato Di Tella
+]
+.date[
+### 25/07/2023
+]
+
+---
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;&lt;span&gt;Instrumentos de Análisis Urbanos II - &lt;a href="https://tuqmano.github.io/geo_utdt/"&gt;https://tuqmano.github.io/geo_utdt/&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
+
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #fdbd15;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+
+
+---
+# FUNCIONES + LOOPS (*for*)
+
+## HOJA DE RUTA
+
+&lt;br&gt;&lt;br&gt;
+
+- ¿Para qué sirven las funciones?
+
+- Aprender a crear una función propia. 
+
+- "Si se repite más de tres veces, merece ser una función"
+
+- Iterar (*for*)
+
+---
+# ¿Cuándo necesitamos crear una función?
+
+&lt;img src="../figs/funcion_drake.png" width="800" height="450" style="display: block; margin: auto;" /&gt;
+
+
+---
+# ¿Cómo armamos una función?
+
+
+&lt;img src="../figs/funcion.png" width="800" height="300" style="display: block; margin: auto;" /&gt;
+
+---
+# ¿Cómo armamos una función?
+
+
+### Quiero armar una función que le sume `2` a un número cualquiera:
+
+
+```r
+le_sumo_dos_a &lt;- function(numero) {
+  
+  numero + 2
+
+}
+```
+
+--
+
+
+```r
+le_sumo_dos_a(2)
+## [1] 4
+```
+
+--
+
+
+```r
+le_sumo_dos_a(5)
+## [1] 7
+```
+
+
+
+
+---
+# ¿Cómo armamos una función?
+
+### En este ejemplo, el argumento `numero` es un genérico. Lo puedo llamar como desee, siempre y cuando respete ese nombre en todo el cuerpo de la función.
+
+```r
+le_sumo_dos_a &lt;- function(numero) {
+  
+  numero + 2
+
+}
+```
+
+```r
+le_sumo_dos_a &lt;- function(pepito) {
+  
+  pepito + 2
+
+}
+```
+
+
+---
+class: inverse, middle, center
+
+# Práctica
+
+
+- Diseñar una función que multiplique por 4 a cualquier valor que le indique
+
+
+---
+# Ejemplo
+
+### Quiero una función que tome un nombre de varón y devuelva un texto
+
+
+```r
+pongo_nombre &lt;- function(texto) {
+  
+  paste("el", texto, "está en cualquiera", sep = " ")
+
+}
+
+pongo_nombre("Pablo")
+## [1] "el Pablo está en cualquiera"
+```
+
+
+
+---
+# Ejemplo
+
+### Quiero aplicar siempre un formato de salida de valores numéricos para que el separador de decimales sea la `,` y el de miles el `.`:
+
+
+```r
+formateo &lt;- function(valor) {
+  
+  format(valor, 
+         big.mark = ".", 
+         decimal.mark = ",", 
+         digits = 2, nsmall = 2)}
+```
+--
+
+
+```r
+formateo(2349382.456)
+## [1] "2.349.382,46"
+```
+
+--
+
+
+```r
+formateo(3/4)
+## [1] "0,75"
+```
+
+---
+# Recomendaciones
+
+&lt;br&gt;
+
+### Para construir una función suele ser útil comenzar por lo simple:
+
+&lt;br&gt;
+
+💡 Primero escribo la línea de código que necesito automatizar
+
+&lt;br&gt;
+
+💡 Luego la hago función
+
+---
+# Armando una función
+
+### Supongamos que suelo tener que calcular la __tasa de empleo__, por lo que una función nos vendría bien para evitar tantas líneas de código:
+
+--
+
+#### Tal como se sugirió, vamos a generar el resultado deseado para luego pasar a pensar la función:
+
+```r
+library(eph)
+base_eph_ind &lt;- toybase_individual_2016_04
+
+base_eph_ind %&gt;% 
+  summarise(pob_tot = sum(PONDERA),
+            pob_ocupada = sum(PONDERA[ESTADO == 1]),
+            tasa_empleo = pob_ocupada / pob_tot * 100) %&gt;% 
+  select(tasa_empleo)
+##   tasa_empleo
+## 1    43.78169
+```
+
+
+---
+# Armando una función
+
+### Lo transformo en una función:
+
+
+```r
+tasa_empleo &lt;- function(base){
+  
+  base %&gt;% 
+    summarise(pob_tot = sum(PONDERA),
+              pob_ocupada = sum(PONDERA[ESTADO == 1]),
+              tasa_empleo = pob_ocupada / pob_tot * 100)  %&gt;% 
+    select(tasa_empleo)
+  
+}
+```
+
+--
+
+
+```r
+tasa_empleo(base_eph_ind)
+##   tasa_empleo
+## 1    43.78169
+```
+
+---
+class: inverse, middle, center
+
+# Práctica
+
+
+- Diseñar una función que estime la tasa de desocupación
+
+
+---
+# Condicionales - if / if else
+
+## if
+La función *if* sirve para ejecutar una sentencia sólo *si una condición es verdadera*:
+     
+```
+if(condicion){
+
+  codigo a ejecutar si se cumple la condición
+
+}
+```
+
+
+```r
+if( 2+2 == 4){
+
+  print("Todo marcha bien")
+
+}
+## [1] "Todo marcha bien"
+```
+
+
+
+```r
+if( 2+2 == 148.24){
+  
+  print("R, tenemos un problema")
+
+}
+```
+
+---
+## if + else
+
+La función **if** también puede utilizarse para indicar la ejecución de uno u otro fragmentos de código según se cumpla o no una condición. Para ello, agregamos **`else{}`** y el código a ejecutar en caso de NO cumplimiento de la condición, de la siguiente manera:   
+
+
+```r
+if(condicion){
+  
+  codigo a ejecutar si se cumple la condición
+  
+} else {
+  
+  codigo a ejecutar si NO se cumple la condición
+}
+```
+
+---
+# Ejemplo de uso
+
+Creamos una sentencia que verifica si el objeto `base_inmuebles` fue creado y existe en el ambiente de R. Para ello nos ayudamos de la función `exists()`:
+
+
+```r
+base_cargada &lt;- exists("base_inmuebles")
+
+base_cargada
+## [1] FALSE
+```
+
+Luego corremos la siguiente sentencia:
+
+
+```r
+if (exists("base_inmuebles") == TRUE) {
+  
+    print("La base ya se encuentra en el ambiente")
+  
+  } else {
+    
+    print("La base no se encuentra en el ambiente, procedemos a importarla")
+    
+    base_inmuebles &lt;- vroom::vroom("data/inmuebles-estado-nacional.csv")
+    
+    print("ahora sí, base cargada")
+}
+## [1] "La base no se encuentra en el ambiente, procedemos a importarla"
+## [1] "ahora sí, base cargada"
+```
+
+
+---
+# Se picó
+
+## Necesito una única función que estime las principales tasas del mercado de trabajo y devuelva el resultado en función de cuál de ellas quiero en particular
+
+
+---
+# Se picó (primer paso)
+
+
+```r
+tasa &lt;- function(base, tasa = NULL) {
+  
+  ## Armo la tabla
+  
+  tabla &lt;- base %&gt;% 
+    summarise(pob_tot = sum(PONDERA),
+              pob_activa = sum(PONDERA[ESTADO %in% c(1,2)]),
+              pob_ocupada = sum(PONDERA[ESTADO == 1]),
+              pob_desocupada = sum(PONDERA[ESTADO == 2]),
+              pob_inactiva = sum(PONDERA[ESTADO %in% c(3,4)]),
+              tasa_empleo = pob_ocupada / pob_tot * 100,
+              tasa_desempleo = pob_desocupada / pob_activa * 100,
+              tasa_inactividad = pob_inactiva / pob_tot * 100)
+  
+  
+  ## Defino la salida
+  
+  if(tasa == "empleo") { # &lt;-- Si se cumple esta condición
+    
+    select(tabla, tasa_empleo) # &lt;-- Quiero que pase esto
+    
+  } else { # &lt;-- ¿Y si no?
+    
+    if(tasa == "desempleo"){ # &lt;-- Chequeo si se cumple esta condición
+      
+      select(tabla, tasa_desempleo) # &lt;-- Y que pase esto
+      
+    }
+  }
+}
+```
+
+--
+
+
+```r
+tasa(base_eph_ind, tasa = "empleo")
+##   tasa_empleo
+## 1    43.78169
+```
+
+
+
+
+---
+# Se picó (final)
+
+
+```r
+tasa &lt;- function(base, tasa = NULL) {
+  
+  tabla &lt;- base %&gt;% 
+    summarise(pob_tot = sum(PONDERA),
+              pob_activa = sum(PONDERA[ESTADO %in% c(1,2)]),
+              pob_ocupada = sum(PONDERA[ESTADO == 1]),
+              pob_desocupada = sum(PONDERA[ESTADO == 2]),
+              pob_inactiva = sum(PONDERA[ESTADO %in% c(3,4)]),
+              tasa_empleo = pob_ocupada / pob_tot * 100,
+              tasa_desempleo = pob_desocupada / pob_activa * 100,
+              tasa_inactividad = pob_inactiva / pob_tot * 100)
+  
+  if(tasa == "empleo") { # &lt;-- Si se cumple esta condición
+    
+    select(tabla, tasa_empleo) # &lt;-- Quiero que pase esto
+    
+  } else { # &lt;-- ¿Y si no?
+    
+    if(tasa == "desempleo"){ # &lt;-- Chequeo si se cumple esta condición
+      
+      select(tabla, tasa_desempleo) # &lt;-- Y que pase esto
+      
+    } else { 
+      
+      if(tasa == "inactividad"){ 
+        
+        select(tabla, tasa_inactividad)
+        
+      } else { 
+        
+        if(tasa == "todas"){
+          
+          select(tabla, contains("tasa"))
+          
+        }
+      }
+      
+    }
+  }
+}
+```
+
+---
+# Iterar (*for*)
+
+- ¿Cuándo? Necesitamos realizar una operación donde cambia un valor pero no la estructura de la sentencia
+
+### Ejemplo
+
+
+```r
+1 + 1
+## [1] 2
+1 + 2
+## [1] 3
+1 + 3
+## [1] 4
+1 + 4
+## [1] 5
+1 + 5
+## [1] 6
+```
+
+
+---
+# Solución
+
+
+```r
+for (i in 1:5) {
+  print(1 + i)
+}
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+```
+
+---
+# Caso de uso
+
+- Necesito calcular la tasa de empleo para todas las REGIONES de la Encuesta Permanente de Hogares
+
+--
+
+- Descargo la base de juguete y reviso las categorías de la variable `REGION`
+
+
+```r
+library(eph)
+library(tidyverse)
+
+b_eph &lt;- toybase_individual_2016_03
+
+unique(b_eph$REGION)
+## [1]  1 44 43 40 41 42
+```
+
+---
+# Caso de uso
+
+### Calculo la tasa, para la **primera** región:
+
+
+```r
+b_eph %&gt;%
+  filter(REGION == 1) %&gt;% 
+  group_by(REGION) %&gt;% 
+  summarise(pob_tot = sum(PONDERA),
+            pob_ocupada = sum(PONDERA[ESTADO == 1]),
+            tasa_empleo = round(pob_ocupada / pob_tot * 100, digits = 1)) %&gt;%
+  select(REGION, tasa_empleo)
+## # A tibble: 1 × 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1      1          46
+```
+
+--
+
+### Calculo la tasa, para la **segunda** región:
+
+```r
+b_eph %&gt;%
+  filter(REGION == 44) %&gt;% 
+  group_by(REGION) %&gt;% 
+  summarise(pob_tot = sum(PONDERA),
+            pob_ocupada = sum(PONDERA[ESTADO == 1]),
+            tasa_empleo = round(pob_ocupada / pob_tot * 100, digits = 1)) %&gt;%
+  select(REGION, tasa_empleo)
+## # A tibble: 1 × 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1     44          39
+```
+
+---
+# Caso de uso (con _for_)
+
+
+```r
+for (i in unique(b_eph$REGION)) {
+  
+  tasa &lt;- b_eph %&gt;%
+    filter(REGION == i) %&gt;% 
+    group_by(REGION) %&gt;% 
+    summarise(pob_tot = sum(PONDERA),
+              pob_ocupada = sum(PONDERA[ESTADO == 1]),
+              tasa_empleo = pob_ocupada / pob_tot * 100) %&gt;%
+    select(REGION, tasa_empleo)
+  
+  print(tasa)
+}
+## # A tibble: 1 × 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1      1        46.0
+## # A tibble: 1 × 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1     44        39.0
+## # A tibble: 1 × 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1     43        39.3
+## # A tibble: 1 × 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1     40        42.7
+## # A tibble: 1 × 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1     41        45.1
+## # A tibble: 1 × 2
+##   REGION tasa_empleo
+##    &lt;int&gt;       &lt;dbl&gt;
+## 1     42        43.0
+```
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -27,7 +27,7 @@ navbar:
         - text: "Clase 4"
           href: https://tuqmano.github.io/geo_utdt/sesiones/sesion4.html
         - text: "Clase 5"
-       #   href: https://tuqmano.github.io/geo_utdt/sesiones/sesion5.html
+          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion5.html
         - text: "Clase 6"
        #   href: https://tuqmano.github.io/geo_utdt/sesiones/sesion6.html
         - text: "Clase 7"
@@ -41,7 +41,7 @@ navbar:
     - text: "TPs"
       menu:
         - text: "TP 1"
-       #   href: https://tuqmano.github.io/geo_utdt/tp_1.html
+          href: https://tuqmano.github.io/geo_utdt/tp_1.html
         - text: "TP 2"
        #   href: https://tuqmano.github.io/geo_utdt/tp_2.html
   right:

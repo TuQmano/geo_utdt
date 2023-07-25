@@ -1,0 +1,519 @@
+---
+title: "Instrumentos de An&aacute;lisis Urbanos II"
+subtitle: "Maestría en Economía Urbana"
+author: ""
+institute: "Universidad Torcuato Di Tella"
+date: "25/07/2023"
+output:
+  xaringan::moon_reader:
+    css: ["footer-header.css", "styles.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+---
+
+layout: true
+  
+<div class="my-footer"><span>Instrumentos de Análisis Urbanos II - <a href="https://tuqmano.github.io/geo_utdt/">https://tuqmano.github.io/geo_utdt/</a></span></div> 
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.retina = 3,
+                      out.width = 300, ### control plot size
+                      cache = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+
+```
+
+
+```{r xaringan, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "extra_styles", "scribble", "editable", "broadcast", "webcam"))
+
+
+```
+
+```{r extrasXaringan, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+
+xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
+```
+
+
+```{r echo=FALSE}
+library(tidyverse)
+library(eph)
+```
+
+
+---
+# FUNCIONES + LOOPS (*for*)
+
+## HOJA DE RUTA
+
+<br><br>
+
+- ¿Para qué sirven las funciones?
+
+- Aprender a crear una función propia. 
+
+- "Si se repite más de tres veces, merece ser una función"
+
+- Iterar (*for*)
+
+---
+# ¿Cuándo necesitamos crear una función?
+
+```{r echo=FALSE, out.height = 450, out.width = 800 , fig.align='center'}
+knitr::include_graphics("../figs/funcion_drake.png")
+```
+
+
+---
+# ¿Cómo armamos una función?
+
+
+```{r echo=FALSE, out.height = 300, out.width = 800 , fig.align='center'}
+knitr::include_graphics("../figs/funcion.png")
+```
+
+---
+# ¿Cómo armamos una función?
+
+
+### Quiero armar una función que le sume `2` a un número cualquiera:
+
+```{r}
+le_sumo_dos_a <- function(numero) {
+  
+  numero + 2
+
+}
+```
+
+--
+
+```{r}
+le_sumo_dos_a(2)
+```
+
+--
+
+```{r}
+le_sumo_dos_a(5)
+```
+
+
+
+
+---
+# ¿Cómo armamos una función?
+
+### En este ejemplo, el argumento `numero` es un genérico. Lo puedo llamar como desee, siempre y cuando respete ese nombre en todo el cuerpo de la función.
+
+```r
+le_sumo_dos_a <- function(numero) {
+  
+  numero + 2
+
+}
+```
+
+```r
+le_sumo_dos_a <- function(pepito) {
+  
+  pepito + 2
+
+}
+```
+
+
+---
+class: inverse, middle, center
+
+# Práctica
+
+
+- Diseñar una función que multiplique por 4 a cualquier valor que le indique
+
+
+---
+# Ejemplo
+
+### Quiero una función que tome un nombre de varón y devuelva un texto
+
+```{r}
+pongo_nombre <- function(texto) {
+  
+  paste("el", texto, "está en cualquiera", sep = " ")
+
+}
+
+pongo_nombre("Pablo")
+```
+
+
+
+---
+# Ejemplo
+
+### Quiero aplicar siempre un formato de salida de valores numéricos para que el separador de decimales sea la `,` y el de miles el `.`:
+
+```{r}
+formateo <- function(valor) {
+  
+  format(valor, 
+         big.mark = ".", 
+         decimal.mark = ",", 
+         digits = 2, nsmall = 2)}
+```
+--
+
+```{r}
+formateo(2349382.456)
+```
+
+--
+
+```{r}
+formateo(3/4)
+```
+
+---
+# Recomendaciones
+
+<br>
+
+### Para construir una función suele ser útil comenzar por lo simple:
+
+<br>
+
+💡 Primero escribo la línea de código que necesito automatizar
+
+<br>
+
+💡 Luego la hago función
+
+---
+# Armando una función
+
+### Supongamos que suelo tener que calcular la __tasa de empleo__, por lo que una función nos vendría bien para evitar tantas líneas de código:
+
+--
+
+#### Tal como se sugirió, vamos a generar el resultado deseado para luego pasar a pensar la función:
+```{r}
+library(eph)
+base_eph_ind <- toybase_individual_2016_04
+
+base_eph_ind %>% 
+  summarise(pob_tot = sum(PONDERA),
+            pob_ocupada = sum(PONDERA[ESTADO == 1]),
+            tasa_empleo = pob_ocupada / pob_tot * 100) %>% 
+  select(tasa_empleo)
+```
+
+
+---
+# Armando una función
+
+### Lo transformo en una función:
+
+```{r}
+tasa_empleo <- function(base){
+  
+  base %>% 
+    summarise(pob_tot = sum(PONDERA),
+              pob_ocupada = sum(PONDERA[ESTADO == 1]),
+              tasa_empleo = pob_ocupada / pob_tot * 100)  %>% 
+    select(tasa_empleo)
+  
+}
+```
+
+--
+
+```{r}
+tasa_empleo(base_eph_ind)
+```
+
+---
+class: inverse, middle, center
+
+# Práctica
+
+
+- Diseñar una función que estime la tasa de desocupación
+
+
+---
+# Condicionales - if / if else
+
+## if
+La función *if* sirve para ejecutar una sentencia sólo *si una condición es verdadera*:
+     
+```
+if(condicion){
+
+  codigo a ejecutar si se cumple la condición
+
+}
+```
+
+```{r,warning=FALSE}
+if( 2+2 == 4){
+
+  print("Todo marcha bien")
+
+}
+```
+
+
+```{r,warning=FALSE}
+if( 2+2 == 148.24){
+  
+  print("R, tenemos un problema")
+
+}
+```
+
+---
+## if + else
+
+La función **if** también puede utilizarse para indicar la ejecución de uno u otro fragmentos de código según se cumpla o no una condición. Para ello, agregamos **`else{}`** y el código a ejecutar en caso de NO cumplimiento de la condición, de la siguiente manera:   
+
+```{r eval=F}
+if(condicion){
+  
+  codigo a ejecutar si se cumple la condición
+  
+} else {
+  
+  codigo a ejecutar si NO se cumple la condición
+}
+```      
+
+---
+# Ejemplo de uso
+
+Creamos una sentencia que verifica si el objeto `base_inmuebles` fue creado y existe en el ambiente de R. Para ello nos ayudamos de la función `exists()`:
+
+```{r}
+base_cargada <- exists("base_inmuebles")
+
+base_cargada
+```
+
+Luego corremos la siguiente sentencia:
+
+```{r warning=F, message=F}
+if (exists("base_inmuebles") == TRUE) {
+  
+    print("La base ya se encuentra en el ambiente")
+  
+  } else {
+    
+    print("La base no se encuentra en el ambiente, procedemos a importarla")
+    
+    base_inmuebles <- vroom::vroom("data/inmuebles-estado-nacional.csv")
+    
+    print("ahora sí, base cargada")
+}
+```
+
+
+---
+# Se picó
+
+## Necesito una única función que estime las principales tasas del mercado de trabajo y devuelva el resultado en función de cuál de ellas quiero en particular
+
+
+---
+# Se picó (primer paso)
+
+```{r}
+tasa <- function(base, tasa = NULL) {
+  
+  ## Armo la tabla
+  
+  tabla <- base %>% 
+    summarise(pob_tot = sum(PONDERA),
+              pob_activa = sum(PONDERA[ESTADO %in% c(1,2)]),
+              pob_ocupada = sum(PONDERA[ESTADO == 1]),
+              pob_desocupada = sum(PONDERA[ESTADO == 2]),
+              pob_inactiva = sum(PONDERA[ESTADO %in% c(3,4)]),
+              tasa_empleo = pob_ocupada / pob_tot * 100,
+              tasa_desempleo = pob_desocupada / pob_activa * 100,
+              tasa_inactividad = pob_inactiva / pob_tot * 100)
+  
+  
+  ## Defino la salida
+  
+  if(tasa == "empleo") { # <-- Si se cumple esta condición
+    
+    select(tabla, tasa_empleo) # <-- Quiero que pase esto
+    
+  } else { # <-- ¿Y si no?
+    
+    if(tasa == "desempleo"){ # <-- Chequeo si se cumple esta condición
+      
+      select(tabla, tasa_desempleo) # <-- Y que pase esto
+      
+    }
+  }
+}
+```
+
+--
+
+```{r}
+tasa(base_eph_ind, tasa = "empleo")
+```
+
+
+
+
+---
+# Se picó (final)
+
+```{r}
+tasa <- function(base, tasa = NULL) {
+  
+  tabla <- base %>% 
+    summarise(pob_tot = sum(PONDERA),
+              pob_activa = sum(PONDERA[ESTADO %in% c(1,2)]),
+              pob_ocupada = sum(PONDERA[ESTADO == 1]),
+              pob_desocupada = sum(PONDERA[ESTADO == 2]),
+              pob_inactiva = sum(PONDERA[ESTADO %in% c(3,4)]),
+              tasa_empleo = pob_ocupada / pob_tot * 100,
+              tasa_desempleo = pob_desocupada / pob_activa * 100,
+              tasa_inactividad = pob_inactiva / pob_tot * 100)
+  
+  if(tasa == "empleo") { # <-- Si se cumple esta condición
+    
+    select(tabla, tasa_empleo) # <-- Quiero que pase esto
+    
+  } else { # <-- ¿Y si no?
+    
+    if(tasa == "desempleo"){ # <-- Chequeo si se cumple esta condición
+      
+      select(tabla, tasa_desempleo) # <-- Y que pase esto
+      
+    } else { 
+      
+      if(tasa == "inactividad"){ 
+        
+        select(tabla, tasa_inactividad)
+        
+      } else { 
+        
+        if(tasa == "todas"){
+          
+          select(tabla, contains("tasa"))
+          
+        }
+      }
+      
+    }
+  }
+}
+```
+
+---
+# Iterar (*for*)
+
+- ¿Cuándo? Necesitamos realizar una operación donde cambia un valor pero no la estructura de la sentencia
+
+### Ejemplo
+
+```{r}
+1 + 1
+1 + 2
+1 + 3
+1 + 4
+1 + 5
+```
+
+
+---
+# Solución
+
+```{r echo = TRUE}
+for (i in 1:5) {
+  print(1 + i)
+}
+```
+
+---
+# Caso de uso
+
+- Necesito calcular la tasa de empleo para todas las REGIONES de la Encuesta Permanente de Hogares
+
+--
+
+- Descargo la base de juguete y reviso las categorías de la variable `REGION`
+
+```{r}
+library(eph)
+library(tidyverse)
+
+b_eph <- toybase_individual_2016_03
+
+unique(b_eph$REGION)
+```
+
+---
+# Caso de uso
+
+### Calculo la tasa, para la **primera** región:
+
+```{r}
+b_eph %>%
+  filter(REGION == 1) %>% 
+  group_by(REGION) %>% 
+  summarise(pob_tot = sum(PONDERA),
+            pob_ocupada = sum(PONDERA[ESTADO == 1]),
+            tasa_empleo = round(pob_ocupada / pob_tot * 100, digits = 1)) %>%
+  select(REGION, tasa_empleo)
+```
+
+--
+
+### Calculo la tasa, para la **segunda** región:
+```{r}
+b_eph %>%
+  filter(REGION == 44) %>% 
+  group_by(REGION) %>% 
+  summarise(pob_tot = sum(PONDERA),
+            pob_ocupada = sum(PONDERA[ESTADO == 1]),
+            tasa_empleo = round(pob_ocupada / pob_tot * 100, digits = 1)) %>%
+  select(REGION, tasa_empleo)
+```
+
+---
+# Caso de uso (con _for_)
+
+```{r}
+for (i in unique(b_eph$REGION)) {
+  
+  tasa <- b_eph %>%
+    filter(REGION == i) %>% 
+    group_by(REGION) %>% 
+    summarise(pob_tot = sum(PONDERA),
+              pob_ocupada = sum(PONDERA[ESTADO == 1]),
+              tasa_empleo = pob_ocupada / pob_tot * 100) %>%
+    select(REGION, tasa_empleo)
+  
+  print(tasa)
+}
+```
+

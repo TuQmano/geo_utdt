@@ -1,0 +1,56 @@
+---
+title: "Trabajo Práctico"
+description: |
+ Consigna Número 1
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+#### 1. Crear un repositorio público en la cuenta personal de Github.
+
+<br>
+
+#### 2. Crear un proyecto en la computadora desde Rstudio y vincularlo al repositorio de Github (_nota: elegir la opción "versión de control" / "Control version" al crear el proyecto_)
+
+<br>
+
+#### 3. Crear un **script.R** / **Rmarkdown** (en el que más cómodo/a te sientas) y guardarlo en el proyecto.
+
+<br>
+
+#### 4. Importar una base de datos (de las que vimos en clase; de algún repositorio de datos abiertos como [opción 1](https://datos.gob.ar/) / [opción 2](https://data.buenosaires.gob.ar/dataset/)), sea guardando el archivo en la carpeta del proyecto, sea a través de un link, directo de la web ([ver ejemplo](https://tuqmano.github.io/geo_utdt/sesiones/sesion3.html#16))
+
+<br>
+
+#### 5. Sobre esta base, plantearse una pregunta sencilla (ejemplo: "Cuál es el promedio de x en el año z" / "Cuál es la categoría más frecuente de la variable y") e intentar responderla pasando por los pasos de importación / limpieza / armado de indicadores que vimos en clase. Ejemplo de funciones a utilizar:
+
+  - `filter()` (seleccionar universe de análisis -filas-)
+  - `select()` (seleccionar variables de interés -columnas-)
+  - `mutate()` (recodificar / limpiar / armar indicadores)
+  - `pivot_longer()` / `pivot_vider()` (re-estructurar la base -sólo si es necesario-)
+  
+<br>
+
+#### 6. Al finalizar, guardar el script.R / rmarkdown.Rmd y subir los cambios en el proyecto _local_ al repositorio _remoto_ de Github.
+
+  - Recordar la secuencia (por terminal o por la pestaña _GIT_ del panel de control de Rstudio):
+  
+    - `git pull`
+    - `git add -A`
+    - `git commit -m "acá el mensaje"`
+    - `git push`
+    
+
+<br>
+
+    
+## Entrega
+
+Una vez realizado los puntos anteriores, copiar el link del repositorio en la columna **TP 1** del [siguiente archivo](https://docs.google.com/spreadsheets/d/1zs4iAFX6D0qZTse62nVPRreOXxhb17DaPr2H5Qzc1is/edit#gid=0).
+
+<br>
