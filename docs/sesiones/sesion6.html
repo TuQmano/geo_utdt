@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Instrumentos de Análisis Urbanos II</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="date" content="2023-01-08" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"a653a9649713438a98d16f5f57a5f19e","expires":14}</script>
+    <script src="libs/himalaya/himalaya.js"></script>
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <link href="libs/editable/editable.css" rel="stylesheet" />
+    <script src="libs/editable/editable.js"></script>
+    <script src="libs/xaringanExtra-webcam/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <script src="libs/peerjs/peerjs.min.js"></script>
+    <script src="libs/tiny.toast/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast/broadcast.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link rel="stylesheet" href="footer-header.css" type="text/css" />
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Instrumentos de Análisis Urbanos II
+## Maestría en Economía Urbana
+### 
+### Universidad Torcuato Di Tella
+### 01/08/2023
+
+---
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;&lt;span&gt;Instrumentos de Análisis Urbanos II - &lt;a href="https://tuqmano.github.io/geo_utdt/"&gt;https://tuqmano.github.io/geo_utdt/&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
+
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #fdbd15;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+---
+
+class: inverse, center, middle
+
+
+
+## Domar los Datos III
+
+###  `geo`
+
+
+
+---
+
+class: inverse
+
+## &lt;svg viewBox="0 0 448 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#fdbd15;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"&gt;&lt;/path&gt;&lt;/svg&gt; Referencias
+
+* R - Spatial:  &lt;https://www.r-spatial.org/&gt;
+
+* [Geocomputation with R](https://geocompr.robinlovelace.net/), Robin Lovelace, Jakub Nowosad, Jannes Muenchow (2019)
+
+* [Spatial Data Science](https://r-spatial.org/book/), Edzer Pebesma y Roger Bivand (2023)
+
+---
+class: inverse, middle
+
+# _useR 2021_: Pebesma
+
+* Video: https://youtu.be/O8V4QJ13Gjc
+
+* Slides: https://edzer.github.io/UseR2021/#1
+
+
+---
+
+## Universo _geo_ (desde `R`)
+
+&lt;img src="https://r-spatial.org/book/images/sf_deps.png" width="80%" /&gt;
+
+Fuente: [_Spatial Data Science_](https://r-spatial.org/book/)
+
+---
+
+### Geometrías
+
+&lt;img src="sesion6_files/figure-html/unnamed-chunk-2-1.png" width="60%" /&gt;
+
+Fuente: [_Spatial Data Science_](https://r-spatial.org/book/03-Geometries.html) (ver detalle)
+
+---
+
+### Operaciones - [Spatial Data Science](https://r-spatial.org/book/03-Geometries.html#sec-opgeom)
+
+#### INPUTS
+
+--
+
+* `predicates`: una consulta lógica para determinar si una propiedad es  `TRUE` 
+
+ - `is.empty()`
+--
+
+* `measures`: una cantidad (e.g. un valor númerico con una unidad de medida determinada)
+
+ - `area()`
+--
+
+* `transformations`: generación de nuevas geometrías 
+
+ - `centroid()`
+
+
+
+---
+
+### Operaciones - [Spatial Data Science](https://r-spatial.org/book/03-Geometries.html#sec-opgeom)
+
+
+#### SOBRE QUE OPERAN
+
+
+--
+
+
+* `unary`: una única _geometry_
+
+
+
+* `binary`: pares de _geometry_
+
+
+
+* `n-ary`: conjunto de _geometries_
+
+
+&lt;https://r-spatial.org/book/03-Geometries.html#sec-opgeom&gt;
+
+---
+
+### Proyecciones
+ 
+
+&lt;img src="sesion6_files/figure-html/unnamed-chunk-3-1.png" width="60%" /&gt;
+
+Fuente: Pebezma - useR (2021)
+
+---
+
+### Proyecciones
+
+&lt;img src="sesion6_files/figure-html/unnamed-chunk-4-1.png" width="60%" /&gt;
+
+Fuente: Pebezma - useR (2021)
+
+
+---
+
+class: inverse, middle
+
+# Hoja de ruta
+
+1. `{sf}` / _RSpatial_
+
+--
+
+2. `{geoAr}`
+
+--
+
+3. `{rmapshaper}`
+
+
+---
+
+
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+background-position: 95% 5%
+background-size: 10%
+
+
+
+### Datos Espaciales Simplificados
+
+&lt;img src="https://user-images.githubusercontent.com/520851/50280460-e35c1880-044c-11e9-9ed7-cc46754e49db.jpg" width="80%" /&gt;
+
+---
+
+
+background-image: url(https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)
+background-position: 95% 5%
+background-size: 10%
+
+
+## _Simple Features_ 
+
+
+&lt;img src="https://r-spatial.org/book/images/sf_obj.png" width="80%" /&gt;
+
+
+
+
+[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt;`{sf}`](https://r-spatial.github.io/sf/)
+
+
+---
+
+class: inverse, center, middle
+
+
+background-image: url(../figs/geoAr.png)
+background-size: contain
+
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## Geometrías Argentinas
+
+### Diccionario  - [show_arg_codes()](https://politicaargentina.github.io/geoAr/index.html)
+
+
+--
+
+
+```r
+library(geoAr)
+
+show_arg_codes()
+## # A tibble: 26 x 5
+##    id           codprov codprov_censo codprov_iso name_iso                      
+##    &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;                         
+##  1 ARGENTINA    " "     " "           AR          Argentina                     
+##  2 CABA         "01"    "02"          AR-C        Ciudad Autónoma de Buenos Air~
+##  3 BUENOS AIRES "02"    "06"          AR-B        Buenos Aires                  
+##  4 CATAMARCA    "03"    "10"          AR-K        Catamarca                     
+##  5 CORDOBA      "04"    "14"          AR-X        Córdoba                       
+##  6 CORRIENTES   "05"    "18"          AR-W        Corrientes                    
+##  7 CHACO        "06"    "22"          AR-H        Chaco                         
+##  8 CHUBUT       "07"    "26"          AR-U        Chubut                        
+##  9 ENTRE RIOS   "08"    "30"          AR-E        Entre Ríos                    
+## 10 FORMOSA      "09"    "34"          AR-P        Formosa                       
+## # i 16 more rows
+```
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## Geometrías Argentinas 
+
+### Diccionario (**departamentos**) - [show_arg_codes()](https://politicaargentina.github.io/geoAr/index.html)
+
+--
+
+
+```r
+library(geoAr)
+
+show_arg_codes(nivel = "departamentos")
+## # A tibble: 527 x 6
+##    id        codprov coddepto codprov_censo coddepto_censo nomdepto_censo
+##    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;         
+##  1 ARGENTINA " "     " "      " "           " "            " "           
+##  2 CABA      "01"    "001"    "02"          "001"          "COMUNA 01"   
+##  3 CABA      "01"    "002"    "02"          "002"          "COMUNA 02"   
+##  4 CABA      "01"    "003"    "02"          "003"          "COMUNA 03"   
+##  5 CABA      "01"    "004"    "02"          "004"          "COMUNA 04"   
+##  6 CABA      "01"    "005"    "02"          "005"          "COMUNA 05"   
+##  7 CABA      "01"    "006"    "02"          "006"          "COMUNA 06"   
+##  8 CABA      "01"    "007"    "02"          "007"          "COMUNA 07"   
+##  9 CABA      "01"    "008"    "02"          "008"          "COMUNA 08"   
+## 10 CABA      "01"    "009"    "02"          "009"          "COMUNA 09"   
+## # i 517 more rows
+```
+
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## Geometrías Argentinas 
+
+### Obtener poligonos  - [get_geo()](https://politicaargentina.github.io/geoAr/index.html)
+
+--
+
+
+```r
+
+get_geo(geo = "TUCUMAN")
+## Simple feature collection with 17 features and 2 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -66.18101 ymin: -28.01575 xmax: -64.48315 ymax: -26.06037
+## Geodetic CRS:  WGS 84
+## # A tibble: 17 x 3
+##    codprov_censo coddepto_censo                                         geometry
+##  * &lt;chr&gt;         &lt;chr&gt;                                        &lt;MULTIPOLYGON [°]&gt;
+##  1 90            007            (((-64.49919 -26.23353, -64.49857 -26.26325, -6~
+##  2 90            014            (((-65.13782 -26.74975, -65.10095 -26.75771, -6~
+##  3 90            021            (((-65.94729 -27.08444, -65.93885 -27.0989, -65~
+##  4 90            028            (((-65.62733 -26.87134, -65.62598 -26.84177, -6~
+##  5 90            035            (((-65.47532 -27.53838, -65.43503 -27.5425, -65~
+##  6 90            042            (((-65.51768 -27.54528, -65.53685 -27.62278, -6~
+##  7 90            049            (((-65.51348 -27.62978, -65.52091 -27.66553, -6~
+##  8 90            056            (((-65.12933 -27.02488, -65.12589 -27.01659, -6~
+##  9 90            063            (((-65.43583 -26.83751, -65.38124 -26.84196, -6~
+## 10 90            070            (((-65.86853 -26.99852, -65.85796 -27.01388, -6~
+## 11 90            077            (((-65.93481 -27.39544, -65.89887 -27.3702, -65~
+## 12 90            084            (((-65.16293 -26.82289, -65.18562 -26.86204, -6~
+## 13 90            091            (((-65.33499 -27.20478, -65.33462 -27.21948, -6~
+## 14 90            098            (((-66.08361 -26.23547, -66.06621 -26.23792, -6~
+## 15 90            105            (((-65.70111 -26.52317, -65.65078 -26.5263, -65~
+## 16 90            112            (((-65.52483 -26.09667, -65.4682 -26.09253, -65~
+## 17 90            119            (((-65.27025 -26.84087, -65.28587 -26.83549, -6~
+```
+
+
+
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+
+## Geometrías Argentinas  **raw**
+
+### Obtener poligonos  - [get_geo()](https://politicaargentina.github.io/geoAr/index.html)
+
+--
+
+
+```r
+
+(TUCUMAN &lt;- get_geo(geo = "TUCUMAN", 
+*                   simplified = FALSE))
+## Simple feature collection with 17 features and 2 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -66.18101 ymin: -28.01579 xmax: -64.48315 ymax: -26.05908
+## Geodetic CRS:  WGS 84
+## # A tibble: 17 x 3
+##    codprov_censo coddepto_censo                                         geometry
+##  * &lt;chr&gt;         &lt;chr&gt;                                        &lt;MULTIPOLYGON [°]&gt;
+##  1 90            007            (((-64.49901 -26.21797, -64.49802 -26.21785, -6~
+##  2 90            014            (((-65.15839 -26.75995, -65.15823 -26.75983, -6~
+##  3 90            021            (((-65.97171 -27.06826, -65.96785 -27.07572, -6~
+##  4 90            028            (((-65.63634 -26.89105, -65.63651 -26.88802, -6~
+##  5 90            035            (((-65.51768 -27.54528, -65.51643 -27.54505, -6~
+##  6 90            042            (((-65.69166 -27.53619, -65.69142 -27.53633, -6~
+##  7 90            049            (((-65.56105 -27.61559, -65.56011 -27.61536, -6~
+##  8 90            056            (((-65.24617 -26.99868, -65.22815 -27.00267, -6~
+##  9 90            063            (((-65.43325 -26.81063, -65.43241 -26.81151, -6~
+## 10 90            070            (((-65.92069 -26.98053, -65.9161 -26.98135, -65~
+## 11 90            077            (((-65.9636 -27.40235, -65.96164 -27.40343, -65~
+## 12 90            084            (((-65.1627 -26.79866, -65.16266 -26.79888, -65~
+## 13 90            091            (((-65.35637 -27.18297, -65.35391 -27.18319, -6~
+## 14 90            098            (((-66.10172 -26.21991, -66.08361 -26.23547, -6~
+## 15 90            105            (((-65.71564 -26.51466, -65.71181 -26.51591, -6~
+## 16 90            112            (((-65.54407 -26.09089, -65.54315 -26.09155, -6~
+## 17 90            119            (((-65.25443 -26.78508, -65.25646 -26.78906, -6~
+```
+
+
+---
+
+background-image: url(https://github.com/PoliticaArgentina/data_warehouse/raw/master/hex/geoAr.png)
+background-position: 95% 5%
+background-size: 10%
+
+## Geometrías Argentinas 
+
+### Aumentar data - [add_geo_codes()](https://politicaargentina.github.io/geoAr/index.html)
+
+
+
+```r
+
+add_geo_codes(TUCUMAN)
+## Simple feature collection with 17 features and 8 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -66.18101 ymin: -28.01579 xmax: -64.48315 ymax: -26.05908
+## Geodetic CRS:  WGS 84
+## # A tibble: 17 x 9
+##    codprov_censo coddepto_censo codprov coddepto nomdepto_censo  name_prov
+##    &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt;    
+##  1 90            007            23      013      BURRUYACU       TUCUMAN  
+##  2 90            014            23      012      CRUZ ALTA       TUCUMAN  
+##  3 90            021            23      005      CHICLIGASTA     TUCUMAN  
+##  4 90            028            23      003      FAMAILLA        TUCUMAN  
+##  5 90            035            23      009      GRANEROS        TUCUMAN  
+##  6 90            042            23      007      JUAN B. ALBERDI TUCUMAN  
+##  7 90            049            23      008      LA COCHA        TUCUMAN  
+##  8 90            056            23      011      LEALES          TUCUMAN  
+##  9 90            063            23      002      LULES           TUCUMAN  
+## 10 90            070            23      004      MONTEROS        TUCUMAN  
+## 11 90            077            23      006      RIO CHICO       TUCUMAN  
+## 12 90            084            23      001      CAPITAL         TUCUMAN  
+## 13 90            091            23      010      SIMOCA          TUCUMAN  
+## 14 90            098            23      017      TAFI DEL VALLE  TUCUMAN  
+## 15 90            105            23      016      TAFI VIEJO      TUCUMAN  
+## 16 90            112            23      014      TRANCAS         TUCUMAN  
+## 17 90            119            23      015      YERBA BUENA     TUCUMAN  
+## # i 3 more variables: codprov_iso &lt;chr&gt;, name_iso &lt;chr&gt;,
+## #   geometry &lt;MULTIPOLYGON [°]&gt;
+```
+
+---
+
+
+class: center, inverse, middle
+
+# Bonus 
+## [`{rmapshaper}`](https://github.com/ateucher/rmapshaper)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
