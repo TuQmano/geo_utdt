@@ -29,7 +29,7 @@ navbar:
         - text: "Clase 5"
           href: https://tuqmano.github.io/geo_utdt/sesiones/sesion5.html
         - text: "Clase 6"
-       #   href: https://tuqmano.github.io/geo_utdt/sesiones/sesion6.html
+          href: https://tuqmano.github.io/geo_utdt/sesiones/sesion6.html
         - text: "Clase 7"
        #   href: https://tuqmano.github.io/geo_utdt/sesiones/sesion7.html  
         - text: "Clase 8"
