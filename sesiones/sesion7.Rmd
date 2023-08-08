@@ -1,0 +1,474 @@
+---
+title: "Instrumentos de An&aacute;lisis Urbanos II"
+subtitle: "Maestría en Economía Urbana"
+author: ""
+institute: "Universidad Torcuato Di Tella"
+date: "08/08/2023"
+output:
+  xaringan::moon_reader:
+    css: ["footer-header.css", "styles.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+---
+
+layout: true
+  
+<div class="my-footer"><span>Instrumentos de Análisis Urbanos II - <a href="https://tuqmano.github.io/geo_utdt/">https://tuqmano.github.io/geo_utdt/</a></span></div> 
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.retina = 3,
+                      out.width = 300, ### control plot size
+                      cache = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+
+```
+
+
+```{r xaringan, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "extra_styles", "scribble", "editable", "broadcast", "webcam"))
+
+
+```
+
+```{r extrasXaringan, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+
+xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
+
+
+
+
+```
+
+
+---
+
+class:  middle, center, inverse
+
+
+# Data Viz I 
+
+## La _Gramática de los Gráficos_
+
+
+---
+class: inverse, middle
+
+
+# Garmática de los Gráficos
+
+
+
+>**Un conjunto formal de reglas para la producción de gráficos estadísticos**
+
+--
+
+> **Se basa en la definición de capas**
+
+--
+
+**- _Leland Wilkinson_**
+
+--
+ 
+
+* Estadística y Ciencia de Computación  **+**
+
+--
+
+* Experto en Viz (_SPSS, Tableau_) **+**
+
+--
+
+**->**  [_**Grammar of Graphics**_ (1999)](https://www.springer.com/gp/book/9780387245447)    
+
+
+
+---
+
+## `r icons::fontawesome("book")` Referencias (I)
+
+ Tres libros relevantes:
+
+- [`ggplot2`: _**Elegant Graphics for Data Analysis**_](https://ggplot2-book.org/) (**H. Wickham**) es el material principal con definiciones de la aplicación de la _gramática de gráficos_ en `R`. 
+
+--
+
+- [_**Data Visualization: A Pracitcal Introduction**_](https://socviz.co/index.html#preface) (**K. Heley**) disute principios sobre visualización de datos, y consejos práctivos de su aplicación acompañado de código en `R` par reproducirlos. 
+
+--
+
+- En [_**Fundamentals of Data Visualization**_](https://clauswilke.com/dataviz/) (**Claus Wilke**) presentan argumentos y consejos para realizar visualizaciones profesionales que representen correctamente los datos. 
+
+---
+
+## `r icons::fontawesome("book")` Referencias (II)
+
+
+1. _Visualización de Datos (Intro)_, en "[R para Ciencia de Datos](https://es.r4ds.hadley.nz/visualizaci%C3%B3n-de-datos.html#introducci%C3%B3n-1)" (Wickham y Grolemnud).
+
+2. [_ModernDive_](https://moderndive.com/2-viz.html)
+
+3. [(a) Urdinez y Cruz](https://arcruz0.github.io/libroadp/dataviz.html); [(b) Montané](https://martinmontane.github.io/CienciaDeDatosBook/visualizaciones-de-datos-en-r.html); y [(c) Vázquez Brust](https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/visualizaci%C3%B3n.html). 
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 15%
+background-size: 10%
+
+
+# Data Viz
+
+## La **g**ramática de los **g**ráficos en `R` 
+
+#### _Dibujando por capas_ con [`r icons::fontawesome("link")``{ggplot2}`](https://ggplot2.tidyverse.org/index.html)
+
+
+```{r, echo = FALSE, out.width= '35%'}
+knitr::include_graphics("https://github.com/TuQmano/geo_utdt2022/blob/main/fig/ggplot_layers.png?raw=true")
+```
+
+--
+
+**`r icons::fontawesome("youtube")`** [_Plotting Anything with `ggplot2`_](https://www.youtube.com/watch?v=h29g21z0a68) - Thomas Lin Pedersen.
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 15%
+background-size: 10%
+
+class: middle, inverse
+
+# Data Viz
+
+## RECETA BÁSICA
+
+
+
+```{r,eval=FALSE}
+ggplot(data = <DATA>) + 
+  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+```
+
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 10%
+background-size: 10%
+
+
+# Data Viz
+
+### `millas` del   [paquete `r icons::fontawesome("link")``{datos}`](https://cienciadedatos.github.io/datos/)
+
+
+
+```{r}
+library(tidyverse)
+library(datos)
+
+dplyr::as_tibble(millas)
+
+```
+
+
+---
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 15%
+background-size: 10%
+
+
+# Data Viz: _ggplot2_ 
+
+### Receta básica
+
+
+
+```{r millas, out.width="40%"}
+ggplot(data = millas) +  # DATOS 
+  geom_point(mapping = aes(x = cilindrada,      
+                           y = autopista)) # ESTETICAS
+```
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 15%
+background-size: 10%
+
+
+# _Dibujando por capas_
+
+### mapeo y estéticas
+
+
+
+```{r, echo = FALSE, out.width= '35%'}
+knitr::include_graphics("https://github.com/TuQmano/geo_utdt2022/blob/main/fig/ggplot_layers.png?raw=true")
+```
+
+---
+
+
+## Una capa estética extra con **_aes()_**
+ 
+ 
+```{r, out.width="50%"}
+ggplot(data = millas) +   # 'Esteticas'
+  geom_point(mapping = aes(x = cilindrada,      
+                           y = autopista,         
+                           colour = clase)) #<<    
+```
+
+
+---
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 5%
+background-size: 10%
+
+## _mapping_ VS _setting_
+
+
+```{r, out.width="40%"}
+# Que pasa acá?  #<< 
+ggplot(data = millas) +  
+  geom_point(mapping = aes(x = cilindrada,      
+                           y = autopista, 
+                           colour = "blue")) #<<  
+```
+
+---
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 1%
+background-size: 10%
+
+## Data Viz: _ggplot2_ 
+
+
+```{r, out.width="40%"}
+ggplot(data = millas) +  
+  geom_point(mapping = aes(x = cilindrada,      
+                           y = autopista), 
+             colour = "blue") #<<    
+```
+
+---
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 1%
+background-size: 10%
+
+## Data Viz: _ggplot2_
+
+Cada **_geometry_ tiene parámetros específicos** que pueden ser ajustados dentro de la capa _estética_.  El **color** es uno de ellos. 
+
+--
+
+
+
+A `geom_point` podemos asignarle una forma particular en función de valores de alguna variable, por ejemplo:
+
+```{r, echo=F, out.width='30%'}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/2f8f27c472d7df78486e248c40931019b286361b/10d08/visualize_files/figure-html/unnamed-chunk-7-1.png")
+```
+
+* `shape`
+
+--
+
+* `size`
+
+--
+
+* `alpha`
+
+--
+
+* `fill`
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 15%
+background-size: 10%
+
+
+## _Dibujando por capas_ : **_facets_**
+
+
+
+```{r, echo = FALSE, out.width= '35%'}
+knitr::include_graphics("https://github.com/TuQmano/geo_utdt2022/blob/main/fig/ggplot_layers.png?raw=true")
+```
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 1%
+background-size: 10%
+
+## Data Viz: _ggplot2_: **facetas**
+
+##### _small multiples_
+
+```{r, out.width= "45%"}
+ggplot(data = millas) +
+  geom_point(mapping = aes(x = cilindrada, y = autopista)) +
+  facet_wrap(~ clase, nrow = 2) #<<
+```
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 15%
+background-size: 10%
+
+
+## _Dibujando por capas_: **_geometry_**
+
+
+```{r, echo = FALSE, out.width= '35%'}
+knitr::include_graphics("https://github.com/TuQmano/geo_utdt2022/blob/main/fig/ggplot_layers.png?raw=true")
+```
+
+---
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 1%
+background-size: 10%
+
+## Data Viz: _ggplot2_: 
+
+variedad de **geometrías** posibles
+
+
+```{r echo = FALSE, out.width = "35%", fig.align="default", message = FALSE}
+ggplot(data = millas) +
+  geom_point(mapping = aes(x = cilindrada, y = autopista))
+ggplot(data = millas) +
+  geom_smooth(mapping = aes(x = cilindrada, y = autopista))
+```
+
+--
+
+```{r, eval=FALSE}
+# izquierda
+ggplot(data = millas) +
+  geom_point(mapping = aes(x = cilindrada, y = autopista)) #<<
+# derecha
+ggplot(data = millas) +
+  geom_smooth(mapping = aes(x = cilindrada, y = autopista)) #<<
+```
+
+---
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 1%
+background-size: 10%
+
+
+## Data Viz: _ggplot2_
+
+> Integramos los dos `geom_` como capas de un mismo gráfico
+
+```{r, out.width="35%"}
+ggplot(data = millas) +
+  geom_point(mapping = aes(x = cilindrada, y = autopista)) +
+  geom_smooth(mapping = aes(x = cilindrada, y = autopista))
+```
+
+--
+
+#### **Que notan en el código?**
+
+
+---
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 1%
+background-size: 10%
+
+## Data Viz: _ggplot2_
+
+**Podemos asignar parametros _globales_ para todo el gráfico (que pueden ser sobrescritos en capas siguientes)**
+
+```{r, out.width= '35%'}
+ggplot(data = millas, aes(x = cilindrada, y = autopista)) +
+  geom_point() +
+  geom_smooth()
+```
+
+---
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 1%
+background-size: 10%
+
+## Data Viz: _ggplot2_
+
+```{r, out.width="35%"}
+ggplot(millas, aes(cilindrada, autopista)) +
+  geom_point() +
+  geom_smooth()
+```
+
+> **Se pueden elidir los nombres de parámetros**
+
+--
+
+**`r icons::fontawesome("link")`** Más detalle en esta [Intro a ggplot]("https://es.r4ds.hadley.nz/visualización-de-datos.html")
+
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png)
+background-position: 95% 15%
+background-size: 10%
+
+
+## _Dibujando por capas_: **_theme_**
+
+
+```{r, echo = FALSE, out.width= '35%'}
+knitr::include_graphics("https://github.com/TuQmano/geo_utdt2022/blob/main/fig/ggplot_layers.png?raw=true")
+```
+
+---
+
+## Data Viz: _ggplot2_: **_theme()_**
+
+```{r,  out.width="35%"}
+ggplot(millas, aes(cilindrada, autopista)) +
+  geom_point() +
+  geom_point(data = millas %>% 
+               filter(fabricante == "audi"), color = "blue", size =3) +
+  geom_smooth(se = FALSE) +
+  labs(title = "Performance de los AUDI",  subtitle = "Un gráfico del TuQmano", 
+        y = "Etiqueta Y",  x = "Etiqueta X", 
+        caption = "FUENTE: {datos} 'R Para Ciencia de Datos'") +
+  ggthemes::theme_wsj() #<<
+```
+
+---
+
+class: inverse, middle, center
+
+# Graficando Properati
+
+[`sesiones/scripts/primer_ggplot.R`](https://github.com/TuQmano/geo_utdt/blob/master/sesiones/scripts/primer_ggplot.R)

@@ -94,7 +94,7 @@ El formato de entrega esperado es un proyecto de trabajo en RStudio vinculado a 
 
 
 
-## Módulo 2: _Domar los datos_(espaciales) y Representación Visual de la Información
+## Módulo 2: _Domar los datos_ (espaciales) y Representación Visual de la Información
 
 
 ### Sesión 6  **Trabajar con *geo* data:**
