@@ -1,0 +1,172 @@
+---
+title: "Instrumentos de An&aacute;lisis Urbanos II"
+subtitle: "Maestría en Economía Urbana"
+author: ""
+institute: "Universidad Torcuato Di Tella"
+date: "22/08/2023"
+output:
+  xaringan::moon_reader:
+    css: ["footer-header.css", "styles.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+---
+
+layout: true
+  
+  
+<div class="my-footer"><span>Instrumentos de Análisis Urbanos II - <a href="https://tuqmano.github.io/geo_utdt/">https://tuqmano.github.io/geo_utdt/</a></span></div> 
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.retina = 3,
+                      #out.width = 300, ### control plot size
+                      cache = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+library(icons)
+```
+
+
+```{r xaringan, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "extra_styles", "scribble", "editable", "broadcast", "webcam"))
+
+
+```
+
+```{r extrasXaringan, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+)
+
+xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
+
+
+
+
+```
+
+---
+class: inverse, center, middle
+
+# GEO Data Viz I
+
+
+---
+
+# Hoja de Ruta
+
+### 1. _Live Coding_ para representacion geográfica con `{ggplot2}`
+
+#### a. `{geoAr}`
+ 
+#### b. `{sf}`
+
+### 2. Alternativa de mapas estáticos con `{mapsf}`
+
+### 3. Extras: Casos de uso son _Shiny_
+
+#### `MapeAr` para mapas estáticos 
+
+#### `Socioeconómico` para mapas interactivos
+
+
+
+---
+class: inverse, center, middle
+
+# _Live Coding_
+
+## Facetado `{geoAr}` 
+
+
+---
+
+class: inverse, center, middle
+
+# _Live Coding_
+
+## Mapas estáticos con `{sf} `
+
+
+---
+class:inverse
+
+# (2) `{mapsf}`
+
+```{r, echo=FALSE, out.width='60%'}
+
+### mapsf
+
+
+library(geoAr) # Argentina's Spatial Data Toolbox, [github::politicaargentina/geoAr] v0.0.1.0
+library(mapsf) # Thematic Cartography, CRAN v0.2.0
+library(electorAr) # Toolbox for Argentina's Electoral Data, [github::PoliticaArgentina/electorAr] v0.0.1.0
+library(tidyverse) # Easily Install and Load the 'Tidyverse', CRAN v1.3.0
+
+tuc <- get_geo("TUCUMAN")
+
+
+electores <- get_election_data(district = "tucuman", 
+                               category = "dip", 
+                               round = "gral", 
+                               year = 2017,
+                               level = "departamento") %>% 
+  select(electores) %>% 
+  distinct()
+
+
+tuc2 <- tuc %>% 
+  add_geo_codes() %>% 
+  left_join(electores)
+
+### MAPSF
+
+
+mf_init(tuc2, theme = "iceberg")
+
+mf_shadow(tuc2, add = T)
+
+mf_map(tuc2, add = T)
+
+mf_map(tuc2, 
+       var = "electores", 
+       type = "prop", 
+       inche = 0.25, 
+       col = "red", 
+       leg_title = "Electores")
+
+mf_layout(title = "TUCUMAN - Elección 2017", credits = "DATOS: (a) electorales con {electorAr}\n
+          (b) geometrías con {geoAr} \n 
+          (c) mapa con {mapsf}")
+
+```
+
+
+### [scripts/mapsf.r](https://github.com/TuQmano/geo_utdt2021/blob/master/sesiones/scripts/mapsf.R) 
+
+
+
+---
+
+class:inverse, middle
+
+# (4) EXTRAS: 
+
+## Desarga capa base (_Tiles_)
+
+### [srcipts/get_tiles.r](https://github.com/TuQmano/geo_utdt2021/blob/master/sesiones/scripts/get_tiles.R)
+
+## Ejemplos de usos _GIS_ vía interfaz (_Shiny apps_)
+
+### `r icons::icon_style(icons::fontawesome("link"), fill = '#fdbd15')` [A. Mapas estáticos (_mapeAr_)](https://tableros.yvera.tur.ar/mapeAr) 
+
+
+### `r icons::icon_style(icons::fontawesome("link"), fill = '#fdbd15')` [B. Mapas interactivos (_Indice Socioeconómico_)](http://socioeconomico.mentacomunicacion.com.ar/)
+
