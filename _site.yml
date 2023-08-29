@@ -43,7 +43,7 @@ navbar:
         - text: "TP 1"
           href: https://tuqmano.github.io/geo_utdt/tp_1.html
         - text: "TP 2"
-       #   href: https://tuqmano.github.io/geo_utdt/tp_2.html
+          href: https://tuqmano.github.io/geo_utdt/tp_2.html
   right:
     - text: "Ediciones Anteriores"
       menu:

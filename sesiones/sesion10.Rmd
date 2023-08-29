@@ -1,0 +1,216 @@
+---
+title: "Instrumentos de An&aacute;lisis Urbanos II"
+subtitle: "Maestría en Economía Urbana"
+author: ""
+institute: "Universidad Torcuato Di Tella"
+date: "22/08/2023"
+output:
+  xaringan::moon_reader:
+    css: ["footer-header.css", "styles.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+---
+
+layout: true
+  
+  
+<div class="my-footer"><span>Instrumentos de Análisis Urbanos II - <a href="https://tuqmano.github.io/geo_utdt/">https://tuqmano.github.io/geo_utdt/</a></span></div> 
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.retina = 3,
+                      #out.width = 300, ### control plot size
+                      cache = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+library(icons)
+```
+
+
+```{r xaringan, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "extra_styles", "scribble", "editable", "broadcast", "webcam"))
+
+
+```
+
+```{r extrasXaringan, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+)
+
+xaringanExtra::use_progress_bar(color = "#fdbd15", location = "top")
+
+
+
+
+```
+
+
+---
+class: inverse middle
+
+## HOJA DE RUTA
+
+1. Trabajo final (y ejemplo)
+
+2. {leaflet}
+
+3. ¿Cómo compartir un mapa interactivo?
+
+
+---
+class: inverse
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("https://github.com/TuQmano/geo_utdt2022/blob/main/sesiones/figs/clarin.png?raw=true")
+```
+ 
+ **P.Tiscornia**: https://rpubs.com/pablotisco/inmuebles_estado
+
+
+
+
+---
+
+class: inverse
+
+# TRABAJO FINAL
+
+## Contenido del trabajo:
+
+* Un informe - puede ser un sitio web (`distill`), un Rmarkdown (`.Rmd`) o Script (`.R`) con comentarios, en donde se pueda evidenciar el armado de un proyecto, recorriendo las siguientes etapas:
+
+* Planteo de la pregunta y mínima presentación del tema.
+
+* Descripción de los pasos realizados para encarar el problema, sin eludir posibles obstáculos durante el proceso.
+
+* Importación de datos o acceso de los mismos a través de la metodología scrapping
+
+* Limpieza, tratamiento y transformación de datos.
+
+* Visualización de la información
+
+* Comentarios a modo de conclusión respecto a los resultados obtenidos, tanto en lo que refiere a la información producida como a lo enfrentado durante el procesamiento de datos
+
+**Formato de entrega:**  Repositorio en `Github` cuyo contenido sea el proyecto, estructurado y ordenado para el análisis.
+
+
+---
+
+class: inverse
+
+
+### Data Viz (III) - Mapas interactivos  [`r icons::fontawesome("link")``{leaflet}`](https://rstudio.github.io/leaflet/)
+
+```{r, echo = FALSE, out.width=="100%", cache=FALSE}
+library(leaflet)
+
+library(geoAr)
+
+tucson <- get_geo("TUCUMAN") 
+
+bb <- sf::st_bbox(tucson)
+
+longitud <- mean(c(bb[1], bb[3]))
+
+latitud <- mean(c(bb[2], bb[4]))
+
+
+
+map_leaflet <- leaflet(tucson) %>% 
+  addPolygons(color = "red")%>% 
+  addProviderTiles(providers$Stamen.Toner)
+
+map_leaflet %>%
+  leaflet::setView(zoom = 2, lng = longitud, lat = latitud ) 
+
+
+```
+---
+
+### Mapas interactivos 
+
+[`r icons::fontawesome("link")``{leaflet}`](https://rstudio.github.io/leaflet/)
+
+```{r, echo = T, eval=F}
+library(geoAr)
+
+library(leaflet) #<<
+# tucson <- polAr::get_geo("TUCUMAN)
+ leaflet(tucson) %>% 
+    #Dibuja Polygons
+  addPolygons() %>%  #<<
+   #Agrega fondo
+  addProviderTiles(providers$Stamen.Toner) #<< 
+```
+
+```{r, eval = T, echo=F, out.width='100%', out.height='50%'}
+map_leaflet
+```
+
+
+---
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Leaflet_logo.svg/1200px-Leaflet_logo.svg.png)
+background-position: 95% 5%
+background-size: 20%
+
+### Dónde deberiamos estar ahora?
+
+```{r, out.width='100%' , out.height="65%"}
+leaflet() %>% 
+    #Dibuja MARCADOR #<<
+  addMarkers(lng = -58.4469439, -34.5480059) %>%  #<<
+   #Agrega fondo
+  addProviderTiles(providers$OpenStreetMap)  
+```
+
+---
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Leaflet_logo.svg/1200px-Leaflet_logo.svg.png)
+background-position: 95% 5%
+background-size: 20%
+
+### Dónde deberiamos estar ahora?
+
+```{r, out.width='100%' , out.height="65%"}
+leaflet() %>% 
+    #Dibuja MARCADOR 
+  addMarkers(lng = -58.4469439, -34.5480059) %>%  
+   #Agrega fondo con otro TILE #<<
+  addProviderTiles(providers$Stamen.Watercolor)  #<<
+```
+
+
+---
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Leaflet_logo.svg/1200px-Leaflet_logo.svg.png)
+background-position: 95% 5%
+background-size: 20%
+
+### Capa de fondo disponible en `{geoAr}`
+
+```{r, out.width='100%' , out.height="65%"}
+leaflet() %>% 
+    #Dibuja MARCADOR 
+  addMarkers(lng = -58.4469439, -34.5480059) %>%  
+   #Agrega fondo con otro TILE #<<
+  geoAr::addArgTiles()  #<<
+```
+
+
+---
+class: inverse
+
+## Contenido en línea con RStudio y Github 
+
+#### **Recetas simples para desplegar mapas, código, artículos, TPs y hasta TRABAJOS FINALES DE LA MEU en línea**
+
+**_rstudio4edu_** https://rstudio4edu.github.io/rstudio4edu-book/intro-distill.html

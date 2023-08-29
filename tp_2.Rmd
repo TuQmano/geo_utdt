@@ -1,0 +1,61 @@
+---
+title: "Trabajo Práctico"
+description: |
+ Consigna Número 2
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+En esta segunda entega se espera que las y los participantes puedan avanzar sobre el segúndo módulo del Ciclo de Ciencia de Datos propuesto en el curso. Es decír, sobre el _domar los datos_ espaciales y el uso de técnicas de visualización de información como herramienta para contar una historia con datos. 
+
+
+#### 1. Crear un nuevo repositorio público en la cuenta personal de Github (ej: _TP2_Pepito_Perez_MEU_). 
+
+
+<br>
+
+#### 2. Crear un proyecto en la computadora desde Rstudio y vincularlo al repositorio de Github 
+
+**Nota**: elegir la opción "versión de control" / "Control version" al crear el proyecto y pegar allí la URL copiada desde Github - ya sea SSH o HTTPS, el protocolo con el que vinculan su remoto y local
+
+<br>
+
+#### 3. Se espera que en esta instancia se incorpore a los temas propuestos en el primer módulo (_importacion, limpieza y manipulación de datos_) los relativos a datos espaciales especificamente. 
+
+Para ello, además de documentar la importación de datos de interés a analizar y la etapa de descubrimento, limpieza y procesamiento de la información, se propone la incorporación de una fuente de datos de relevancia geográfica. 
+
+<br>
+
+#### 4. Se espera que generen (al menos): 
+
+**(a)** una visualización _standard_ de los datos (esto sería, con `geom_` de `ggplot2` **NO SIG**. En este punto, es posible y valorable la utilización de `geofacet` como _alternativa GEO_); y 
+
+**(b)** una viz utilizando `geom_sf` como capa de la VIZ.
+
+
+<br>
+  
+<br>
+
+#### 5. Al finalizar, guardar el script.R / rmarkdown.Rmd y subir los cambios en el proyecto _local_ al repositorio _remoto_ de Github.
+
+  - Recordar la secuencia (por terminal / por la pestaña _GIT_ del panel de control de Rstudio):
+  
+    - `git pull` / PULL (flecha azul abajo)
+    - `git add -A` /  STAGED (click en checkbox)
+    - `git commit -m "acá el mensaje"` / Click en Commit (escribir mensaje)
+    - `git push` / PUSH (flacha verde arriba)
+    
+
+<br>
+
+    
+## Entrega
+
+Una vez realizado los puntos anteriores, copiar el link del repositorio en la columna **TP 2** del [siguiente archivo](https://docs.google.com/spreadsheets/d/1zs4iAFX6D0qZTse62nVPRreOXxhb17DaPr2H5Qzc1is/edit#gid=0).
+
+<br>
